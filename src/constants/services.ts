@@ -38,11 +38,7 @@ export const SERVICES = [
     title: "Business Automation",
     description:
       "AI-powered workflows that eliminate manual tasks and accelerate growth.",
-    features: [
-      "AI Integration",
-      "Workflow Automation",
-      "Process Optimization",
-    ],
+    features: ["AI Integration", "Workflow Automation", "Process Optimization"],
   },
 ] as const;
 
@@ -160,4 +156,3 @@ export const SERVICES_DETAILED = [
     color: "from-yellow-500 to-yellow-700",
   },
 ] as const;
-

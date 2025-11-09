@@ -84,4 +84,3 @@ export const PROJECT_CATEGORIES = [
   "UI/UX Design",
   "Business Automation",
 ] as const;
-

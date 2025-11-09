@@ -45,4 +45,3 @@ export const CASE_STUDIES = [
     color: "from-purple-500 to-pink-500",
   },
 ] as const;
-

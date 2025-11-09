@@ -1,10 +1,4 @@
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Calendar,
-  MessageSquare,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Calendar, MessageSquare } from "lucide-react";
 
 export const QUICK_CONTACT_OPTIONS = [
   {
@@ -90,4 +84,3 @@ export const SERVICE_OPTIONS = [
   { value: "business-automation", label: "Business Automation" },
   { value: "consulting", label: "Consulting" },
 ] as const;
-

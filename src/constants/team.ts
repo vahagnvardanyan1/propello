@@ -44,4 +44,3 @@ export const TEAM_MEMBERS = [
     },
   },
 ] as const;
-

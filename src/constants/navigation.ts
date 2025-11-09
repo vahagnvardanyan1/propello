@@ -5,4 +5,3 @@ export const NAVIGATION_LINKS = [
   { name: "About", path: "/about", ariaLabel: "Learn about us" },
   { name: "Contact", path: "/contact", ariaLabel: "Get in touch" },
 ] as const;
-

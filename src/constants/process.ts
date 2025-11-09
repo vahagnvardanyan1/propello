@@ -37,4 +37,3 @@ export const PROCESS_STEPS = [
     color: "from-red-400 to-red-600",
   },
 ] as const;
-

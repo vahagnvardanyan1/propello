@@ -61,12 +61,11 @@ export const ContactHero = () => {
             <span className="text-[var(--buttercream)]">Next Breakthrough</span>
           </h1>
           <p className="text-[var(--ivory)] text-xl leading-relaxed max-w-3xl mx-auto">
-            From code to automation — let&apos;s build efficiency together. Ready
-            to transform your vision into reality?
+            From code to automation — let&apos;s build efficiency together.
+            Ready to transform your vision into reality?
           </p>
         </motion.div>
       </motion.div>
     </section>
   );
 };
-

@@ -12,4 +12,3 @@ export * from "./about";
 export * from "./contact";
 export * from "./portfolio";
 export * from "./home";
-

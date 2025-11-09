@@ -65,4 +65,3 @@ export const COMPANY_CULTURE = [
   { emoji: "⚡", label: "Fast-Paced" },
   { emoji: "🎨", label: "Design-Focused" },
 ] as const;
-

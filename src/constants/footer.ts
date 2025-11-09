@@ -17,4 +17,3 @@ export const FOOTER_LEGAL_LINKS = [
   { name: "Privacy Policy", path: "#" },
   { name: "Terms of Service", path: "#" },
 ] as const;
-
