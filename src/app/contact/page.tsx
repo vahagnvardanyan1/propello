@@ -1,5 +1,8 @@
 "use client";
 
+import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
+
 import {
   ContactHero,
   QuickContactOptions,
@@ -8,29 +11,51 @@ import {
   FAQSection,
   ContactCTA,
 } from "@/components/contact";
+import { colors, spacing } from "@/theme/theme";
+
+const StyledContactFormSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  background: `linear-gradient(to bottom right, ${colors.white}, ${colors.ivory}33)`,
+});
+
+const FormContainer = styled(Container)({
+  padding: `0 ${spacing.base}`,
+
+  "@media (min-width: 1024px)": {
+    padding: `0 ${spacing["2xl"]}`,
+  },
+});
+
+const FormGrid = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: spacing["5xl"],
+  alignItems: "start",
+
+  "@media (min-width: 1024px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+});
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen">
+    <Box id="main-content" sx={{ minHeight: "100vh" }}>
       <ContactHero />
       <QuickContactOptions />
 
       {/* Main Contact Form Section */}
-      <section
-        className="py-24 bg-gradient-to-br from-white to-[var(--ivory)]/30"
-        aria-labelledby="contact-form-title"
-      >
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <StyledContactFormSection aria-labelledby="contact-form-title">
+        <FormContainer maxWidth={false}>
+          <FormGrid>
             <ContactInfo />
             <ContactFormSection />
-          </div>
-        </div>
-      </section>
+          </FormGrid>
+        </FormContainer>
+      </StyledContactFormSection>
 
       <FAQSection />
       <ContactCTA />
-    </div>
+    </Box>
   );
 };
 

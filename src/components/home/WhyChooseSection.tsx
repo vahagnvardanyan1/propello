@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 
 import {
   ScrollReveal,
@@ -8,58 +10,189 @@ import {
   StaggerItem,
 } from "@/components/ScrollReveal";
 import { WHY_CHOOSE_PROPELLO } from "@/constants";
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  shadows,
+} from "@/theme/theme";
+
+const StyledSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  background: `linear-gradient(to bottom right, ${colors.ivory}, ${colors.white})`,
+  position: "relative",
+  overflow: "hidden",
+});
+
+const DecorativeOrb1 = styled(Box)({
+  position: "absolute",
+  top: 0,
+  right: 0,
+  width: "500px",
+  height: "500px",
+  backgroundColor: colors.buttercream,
+  opacity: 0.05,
+  borderRadius: "50%",
+  filter: "blur(48px)",
+});
+
+const DecorativeOrb2 = styled(Box)({
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  width: "400px",
+  height: "400px",
+  backgroundColor: colors.midnightBlue,
+  opacity: 0.05,
+  borderRadius: "50%",
+  filter: "blur(48px)",
+});
+
+const SectionContainer = styled(Container)({
+  position: "relative",
+  zIndex: 10,
+  padding: `0 ${spacing.base}`,
+
+  "@media (min-width: 1024px)": {
+    padding: `0 ${spacing["2xl"]}`,
+  },
+});
+
+const SectionHeader = styled(Box)({
+  textAlign: "center",
+  marginBottom: spacing["5xl"],
+});
+
+const SectionLabel = styled("p")({
+  color: colors.dustyBlue,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  fontSize: "14px",
+  marginBottom: spacing.md,
+  fontWeight: 600,
+  margin: `0 0 ${spacing.md} 0`,
+});
+
+const SectionTitle = styled("h2")({
+  color: colors.midnightBlue,
+  marginBottom: spacing.base,
+  fontSize: "clamp(2rem, 4vw, 3rem)",
+  fontWeight: 600,
+  margin: `0 0 ${spacing.base} 0`,
+});
+
+const SectionDescription = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "18px",
+  maxWidth: "640px",
+  margin: `0 auto`,
+  lineHeight: 1.6,
+});
+
+const AdvantagesGrid = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: spacing["2xl"],
+  maxWidth: "1200px",
+  margin: "0 auto",
+
+  "@media (min-width: 768px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+
+  "@media (min-width: 1024px)": {
+    gridTemplateColumns: "repeat(4, 1fr)",
+  },
+});
+
+const AdvantageCard = styled(motion.div)({
+  textAlign: "center",
+  cursor: "pointer",
+});
+
+const IconWrapper = styled(motion.div)({
+  width: "80px",
+  height: "80px",
+  margin: `0 auto ${spacing.xl} auto`,
+  borderRadius: borderRadius["2xl"],
+  background: `linear-gradient(to bottom right, ${colors.midnightBlue}, ${colors.dustyBlue})`,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxShadow: shadows.lg,
+  transition: `box-shadow ${transitions.slow}`,
+
+  ".group:hover &": {
+    boxShadow: shadows["2xl"],
+  },
+});
+
+const AdvantageTitle = styled("h3")({
+  color: colors.midnightBlue,
+  fontWeight: 600,
+  fontSize: "18px",
+  marginBottom: spacing.md,
+  transition: `color ${transitions.slow}`,
+  margin: `0 0 ${spacing.md} 0`,
+
+  ".group:hover &": {
+    color: colors.dustyBlue,
+  },
+});
+
+const AdvantageDescription = styled("p")({
+  color: colors.dustyBlue,
+  lineHeight: 1.6,
+  fontSize: "14px",
+  margin: 0,
+});
 
 export const WhyChooseSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-[var(--ivory)] to-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--buttercream)] opacity-5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--midnight-blue)] opacity-5 rounded-full blur-3xl" />
+    <StyledSection>
+      <DecorativeOrb1 />
+      <DecorativeOrb2 />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <ScrollReveal direction="up" className="text-center mb-16">
-          <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3 font-semibold">
-            The Propello Advantage
-          </p>
-          <h2
-            className="text-[var(--midnight-blue)] mb-4"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          >
-            Why Choose Propello?
-          </h2>
-          <p className="text-[var(--dusty-blue)] text-lg max-w-2xl mx-auto">
-            We combine technical excellence with business intelligence to
-            deliver measurable results
-          </p>
+      <SectionContainer maxWidth={false}>
+        <ScrollReveal direction="up">
+          <SectionHeader>
+            <SectionLabel>The Propello Advantage</SectionLabel>
+            <SectionTitle>Why Choose Propello?</SectionTitle>
+            <SectionDescription>
+              We combine technical excellence with business intelligence to
+              deliver measurable results
+            </SectionDescription>
+          </SectionHeader>
         </ScrollReveal>
 
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {WHY_CHOOSE_PROPELLO.map((item, index) => (
-            <StaggerItem key={index}>
-              <motion.div
-                className="text-center group cursor-pointer"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div
-                  className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-[var(--midnight-blue)] to-[var(--dusty-blue)] flex items-center justify-center mb-6 shadow-lg group-hover:shadow-2xl transition-shadow"
-                  whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
-                  transition={{ duration: 0.4 }}
+        <StaggerContainer>
+          <AdvantagesGrid>
+            {WHY_CHOOSE_PROPELLO.map((item, index) => (
+              <StaggerItem key={index}>
+                <AdvantageCard
+                  className="group"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <item.icon className="text-white" size={36} />
-                </motion.div>
+                  <IconWrapper
+                    whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <item.icon color={colors.white} size={36} />
+                  </IconWrapper>
 
-                <h3 className="text-[var(--midnight-blue)] font-semibold text-lg mb-3 group-hover:text-[var(--dusty-blue)] transition-colors">
-                  {item.title}
-                </h3>
+                  <AdvantageTitle>{item.title}</AdvantageTitle>
 
-                <p className="text-[var(--dusty-blue)] leading-relaxed text-sm">
-                  {item.description}
-                </p>
-              </motion.div>
-            </StaggerItem>
-          ))}
+                  <AdvantageDescription>
+                    {item.description}
+                  </AdvantageDescription>
+                </AdvantageCard>
+              </StaggerItem>
+            ))}
+          </AdvantagesGrid>
         </StaggerContainer>
-      </div>
-    </section>
+      </SectionContainer>
+    </StyledSection>
   );
 };

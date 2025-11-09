@@ -1,60 +1,122 @@
 "use client";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 
 import { COMPANY_VALUES } from "@/constants";
+import { colors, spacing, borderRadius, shadows } from "@/theme/theme";
+
+const StyledSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  backgroundColor: colors.white,
+});
+
+const SectionHeader = styled(motion.div)({
+  textAlign: "center",
+  marginBottom: spacing["5xl"],
+});
+
+const Label = styled("p")({
+  color: colors.dustyBlue,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  fontSize: "14px",
+  marginBottom: spacing.md,
+  fontWeight: 600,
+  margin: `0 0 ${spacing.md} 0`,
+});
+
+const Title = styled("h2")({
+  color: colors.midnightBlue,
+  fontSize: "clamp(2rem, 4vw, 3.5rem)",
+  fontWeight: 600,
+  margin: 0,
+});
+
+const ValuesGrid = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: spacing["2xl"],
+  maxWidth: "1200px",
+  margin: "0 auto",
+
+  "@media (min-width: 768px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+
+  "@media (min-width: 1024px)": {
+    gridTemplateColumns: "repeat(4, 1fr)",
+  },
+});
+
+const ValueCard = styled(motion.div)({
+  textAlign: "center",
+});
+
+const ValueIcon = styled(motion.div)({
+  width: "80px",
+  height: "80px",
+  margin: `0 auto ${spacing.xl} auto`,
+  borderRadius: borderRadius["2xl"],
+  background: `linear-gradient(to bottom right, ${colors.midnightBlue}, ${colors.dustyBlue})`,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxShadow: shadows.xl,
+});
+
+const ValueTitle = styled("h3")({
+  color: colors.midnightBlue,
+  fontWeight: 700,
+  fontSize: "20px",
+  marginBottom: spacing.md,
+  margin: `0 0 ${spacing.md} 0`,
+});
+
+const ValueDescription = styled("p")({
+  color: colors.dustyBlue,
+  lineHeight: 1.6,
+  margin: 0,
+});
 
 export const ValuesSection = () => {
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
+    <StyledSection>
+      <Container maxWidth={false}>
+        <SectionHeader
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
         >
-          <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
-            What Drives Us
-          </p>
-          <h2
-            className="text-[var(--midnight-blue)]"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-          >
-            Our Core Values
-          </h2>
-        </motion.div>
+          <Label>What Drives Us</Label>
+          <Title>Our Core Values</Title>
+        </SectionHeader>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <ValuesGrid>
           {COMPANY_VALUES.map((value, index) => (
-            <motion.div
+            <ValueCard
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="text-center"
             >
-              <motion.div
-                className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--midnight-blue)] to-[var(--dusty-blue)] flex items-center justify-center shadow-xl"
+              <ValueIcon
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <value.icon className="text-white" size={36} />
-              </motion.div>
+                <value.icon color={colors.white} size={36} />
+              </ValueIcon>
 
-              <h3 className="text-[var(--midnight-blue)] font-bold text-xl mb-3">
-                {value.title}
-              </h3>
+              <ValueTitle>{value.title}</ValueTitle>
 
-              <p className="text-[var(--dusty-blue)] leading-relaxed">
-                {value.description}
-              </p>
-            </motion.div>
+              <ValueDescription>{value.description}</ValueDescription>
+            </ValueCard>
           ))}
-        </div>
-      </div>
-    </section>
+        </ValuesGrid>
+      </Container>
+    </StyledSection>
   );
 };

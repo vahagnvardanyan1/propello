@@ -1,27 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
 
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Propello - Accelerate Innovation, Automate Success",
@@ -52,14 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en">
       <body>
-        <div className="min-h-screen flex flex-col">
+        <ThemeProvider>
           <ScrollProgress />
           <Navigation />
-          <main id="main-content" className="flex-grow pt-16 md:pt-20">
-            {children}
-          </main>
+          <main id="main-content">{children}</main>
           <Footer />
           <BackToTop />
           <Toaster
@@ -71,7 +55,7 @@ export default function RootLayout({
               },
             }}
           />
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

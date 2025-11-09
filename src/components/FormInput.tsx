@@ -5,6 +5,10 @@ import type { InputHTMLAttributes } from "react";
 
 import { motion, AnimatePresence } from "motion/react";
 import { AlertCircle, CheckCircle2, Eye, EyeOff } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
+
+import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 interface FormInputProps
   extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
@@ -16,6 +20,189 @@ interface FormInputProps
   rows?: number;
   showPasswordToggle?: boolean;
 }
+
+const InputWrapper = styled(Box)({
+  width: "100%",
+});
+
+const Label = styled("label")({
+  display: "block",
+  marginBottom: spacing.sm,
+  color: colors.midnightBlue,
+  fontWeight: 500,
+});
+
+const RequiredIndicator = styled("span")({
+  color: "#ef4444",
+  marginLeft: spacing.xs,
+});
+
+const InputContainer = styled(Box)({
+  position: "relative",
+});
+
+const BaseInputStyled = styled("input", {
+  shouldForwardProp: (prop) =>
+    !["hasError", "hasSuccess", "isFocused", "hasPasswordToggle"].includes(
+      prop as string,
+    ),
+})<{
+  hasError: boolean;
+  hasSuccess: boolean;
+  isFocused: boolean;
+  hasPasswordToggle: boolean;
+}>(({ hasError, hasSuccess, isFocused, hasPasswordToggle }) => ({
+  width: "100%",
+  padding: `14px ${spacing.base}`,
+  backgroundColor: colors.white,
+  border: `2px solid ${
+    hasError
+      ? "#ef4444"
+      : hasSuccess
+        ? "#10b981"
+        : isFocused
+          ? colors.midnightBlue
+          : colors.ivory
+  }`,
+  borderRadius: borderRadius.xl,
+  transition: `all ${transitions.base}`,
+  fontSize: "16px",
+  minHeight: "48px",
+  color: colors.midnightBlue,
+  paddingRight:
+    hasPasswordToggle || hasError || hasSuccess ? "48px" : spacing.base,
+
+  "&::placeholder": {
+    color: `${colors.dustyBlue}80`,
+  },
+
+  "&:hover:not(:disabled)": {
+    borderColor: hasError
+      ? "#dc2626"
+      : hasSuccess
+        ? "#059669"
+        : colors.dustyBlue,
+  },
+
+  "&:focus": {
+    outline: "none",
+    boxShadow: hasError
+      ? "0 0 0 4px rgba(239, 68, 68, 0.1)"
+      : hasSuccess
+        ? "0 0 0 4px rgba(16, 185, 129, 0.1)"
+        : `0 0 0 4px ${colors.midnightBlue}1a`,
+  },
+
+  "&:disabled": {
+    backgroundColor: "#f9fafb",
+    cursor: "not-allowed",
+  },
+
+  "@media (min-width: 640px)": {
+    padding: `12px ${spacing.base}`,
+  },
+}));
+
+const BaseTextareaStyled = styled("textarea", {
+  shouldForwardProp: (prop) =>
+    !["hasError", "hasSuccess", "isFocused"].includes(prop as string),
+})<{
+  hasError: boolean;
+  hasSuccess: boolean;
+  isFocused: boolean;
+}>(({ hasError, hasSuccess, isFocused }) => ({
+  width: "100%",
+  padding: `14px ${spacing.base}`,
+  backgroundColor: colors.white,
+  border: `2px solid ${
+    hasError
+      ? "#ef4444"
+      : hasSuccess
+        ? "#10b981"
+        : isFocused
+          ? colors.midnightBlue
+          : colors.ivory
+  }`,
+  borderRadius: borderRadius.xl,
+  transition: `all ${transitions.base}`,
+  fontSize: "16px",
+  minHeight: "48px",
+  color: colors.midnightBlue,
+  fontFamily: "inherit",
+  resize: "vertical",
+
+  "&::placeholder": {
+    color: `${colors.dustyBlue}80`,
+  },
+
+  "&:hover:not(:disabled)": {
+    borderColor: hasError
+      ? "#dc2626"
+      : hasSuccess
+        ? "#059669"
+        : colors.dustyBlue,
+  },
+
+  "&:focus": {
+    outline: "none",
+    boxShadow: hasError
+      ? "0 0 0 4px rgba(239, 68, 68, 0.1)"
+      : hasSuccess
+        ? "0 0 0 4px rgba(16, 185, 129, 0.1)"
+        : `0 0 0 4px ${colors.midnightBlue}1a`,
+  },
+
+  "&:disabled": {
+    backgroundColor: "#f9fafb",
+    cursor: "not-allowed",
+  },
+
+  "@media (min-width: 640px)": {
+    padding: `12px ${spacing.base}`,
+  },
+}));
+
+const IconsContainer = styled(Box)({
+  position: "absolute",
+  right: spacing.md,
+  top: "50%",
+  transform: "translateY(-50%)",
+  display: "flex",
+  alignItems: "center",
+  gap: spacing.sm,
+});
+
+const ToggleButton = styled("button")({
+  color: colors.dustyBlue,
+  padding: spacing.xs,
+  border: "none",
+  background: "none",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: `color ${transitions.base}`,
+
+  "&:hover": {
+    color: colors.midnightBlue,
+  },
+});
+
+const MessageText = styled(motion.p, {
+  shouldForwardProp: (prop) => prop !== "messageType",
+})<{ messageType: "error" | "success" | "helper" }>(({ messageType }) => ({
+  marginTop: spacing.sm,
+  fontSize: "14px",
+  display: "flex",
+  alignItems: "center",
+  gap: spacing.xs,
+  color:
+    messageType === "error"
+      ? "#dc2626"
+      : messageType === "success"
+        ? "#059669"
+        : colors.dustyBlue,
+}));
 
 export const FormInput = forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
@@ -47,79 +234,71 @@ export const FormInput = forwardRef<
     const helperId = `${inputId}-helper`;
     const inputType = showPasswordToggle && !showPassword ? "password" : type;
 
-    const baseInputStyles = `
-      w-full px-4 py-3.5 sm:py-3
-      bg-white border-2 rounded-xl 
-      transition-all duration-200
-      placeholder:text-[var(--dusty-blue)]/50
-      disabled:bg-gray-50 disabled:cursor-not-allowed
-      focus:outline-none
-      text-[16px]
-      min-h-[48px]
-    `;
-
-    const stateStyles = error
-      ? "border-red-500 focus:border-red-600 focus:ring-4 focus:ring-red-500/10"
-      : success
-        ? "border-green-500 focus:border-green-600 focus:ring-4 focus:ring-green-500/10"
-        : isFocused
-          ? "border-[var(--midnight-blue)] ring-4 ring-[var(--midnight-blue)]/10"
-          : "border-[var(--ivory)] hover:border-[var(--dusty-blue)] active:border-[var(--midnight-blue)]";
-
-    const InputComponent = multiline ? "textarea" : "input";
-
     return (
-      <div className={`w-full ${className}`}>
-        <label
-          htmlFor={inputId}
-          className="block mb-2 text-[var(--midnight-blue)] font-medium"
-        >
+      <InputWrapper className={className}>
+        <Label htmlFor={inputId}>
           {label}
           {required && (
-            <span className="text-red-500 ml-1" aria-label="required">
-              *
-            </span>
+            <RequiredIndicator aria-label="required">*</RequiredIndicator>
           )}
-        </label>
+        </Label>
 
-        <div className="relative">
-          <InputComponent
-            ref={ref as React.Ref<HTMLInputElement & HTMLTextAreaElement>}
-            id={inputId}
-            type={inputType}
-            rows={multiline ? rows : undefined}
-            disabled={disabled}
-            required={required}
-            aria-invalid={error ? "true" : "false"}
-            aria-describedby={
-              error ? errorId : helperText || success ? helperId : undefined
-            }
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            className={`${baseInputStyles} ${stateStyles} ${
-              showPasswordToggle ? "pr-12" : ""
-            } ${error || success ? "pr-12" : ""}`}
-            {...props}
-          />
+        <InputContainer>
+          {multiline ? (
+            <BaseTextareaStyled
+              ref={ref as React.Ref<HTMLTextAreaElement>}
+              id={inputId}
+              rows={rows}
+              disabled={disabled}
+              required={required}
+              aria-invalid={error ? "true" : "false"}
+              aria-describedby={
+                error ? errorId : helperText || success ? helperId : undefined
+              }
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              hasError={!!error}
+              hasSuccess={!!success}
+              isFocused={isFocused}
+              {...props}
+            />
+          ) : (
+            <BaseInputStyled
+              ref={ref as React.Ref<HTMLInputElement>}
+              id={inputId}
+              type={inputType}
+              disabled={disabled}
+              required={required}
+              aria-invalid={error ? "true" : "false"}
+              aria-describedby={
+                error ? errorId : helperText || success ? helperId : undefined
+              }
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              hasError={!!error}
+              hasSuccess={!!success}
+              isFocused={isFocused}
+              hasPasswordToggle={showPasswordToggle}
+              {...props}
+            />
+          )}
 
-          {/* Status Icons */}
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+          <IconsContainer>
             {showPasswordToggle && type === "password" && (
-              <button
+              <ToggleButton
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-[var(--dusty-blue)] hover:text-[var(--midnight-blue)] transition-colors p-1"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
+              </ToggleButton>
             )}
 
             {error && (
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-red-500"
+                style={{ color: "#ef4444", display: "flex" }}
               >
                 <AlertCircle size={20} />
               </motion.div>
@@ -129,73 +308,54 @@ export const FormInput = forwardRef<
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-green-500"
+                style={{ color: "#10b981", display: "flex" }}
               >
                 <CheckCircle2 size={20} />
               </motion.div>
             )}
-          </div>
+          </IconsContainer>
+        </InputContainer>
 
-          {/* Focus Ring Animation */}
-          <AnimatePresence>
-            {isFocused && !error && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="absolute inset-0 rounded-lg border-2 border-[var(--buttercream)] pointer-events-none"
-                style={{
-                  marginTop: -2,
-                  marginLeft: -2,
-                  marginRight: -2,
-                  marginBottom: -2,
-                }}
-              />
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Error/Success/Helper Text */}
         <AnimatePresence mode="wait">
           {error && (
-            <motion.p
+            <MessageText
+              messageType="error"
               id={errorId}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mt-2 text-sm text-red-600 flex items-center gap-1"
               role="alert"
             >
               <AlertCircle size={16} />
               {error}
-            </motion.p>
+            </MessageText>
           )}
 
           {success && !error && (
-            <motion.p
+            <MessageText
+              messageType="success"
               id={helperId}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mt-2 text-sm text-green-600 flex items-center gap-1"
             >
               <CheckCircle2 size={16} />
               {success}
-            </motion.p>
+            </MessageText>
           )}
 
           {helperText && !error && !success && (
-            <motion.p
+            <MessageText
+              messageType="helper"
               id={helperId}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-2 text-sm text-[var(--dusty-blue)]"
             >
               {helperText}
-            </motion.p>
+            </MessageText>
           )}
         </AnimatePresence>
-      </div>
+      </InputWrapper>
     );
   },
 );

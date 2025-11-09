@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { TechStackScroll } from "@/components/TechStackScroll";
@@ -9,68 +11,123 @@ import {
   CaseStudiesSection,
   PortfolioCTA,
 } from "@/components/portfolio";
+import { colors, spacing } from "@/theme/theme";
+
+const ProjectsSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  backgroundColor: colors.white,
+});
+
+const SectionContainer = styled(Container)({
+  padding: `0 ${spacing.base}`,
+
+  "@media (min-width: 1024px)": {
+    padding: `0 ${spacing["2xl"]}`,
+  },
+});
+
+const SectionHeader = styled(motion.div)({
+  textAlign: "center",
+  marginBottom: spacing["5xl"],
+});
+
+const Label = styled("p")({
+  color: colors.dustyBlue,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  fontSize: "14px",
+  marginBottom: spacing.md,
+  fontWeight: 600,
+  margin: `0 0 ${spacing.md} 0`,
+});
+
+const Title = styled("h2")({
+  color: colors.midnightBlue,
+  marginBottom: spacing.base,
+  fontSize: "clamp(2rem, 4vw, 3.5rem)",
+  fontWeight: 600,
+  margin: `0 0 ${spacing.base} 0`,
+});
+
+const Description = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "18px",
+  maxWidth: "640px",
+  margin: `0 auto`,
+  lineHeight: 1.6,
+});
+
+const TechSection = styled("section")({
+  padding: `${spacing["6xl"]} 0`,
+  backgroundColor: colors.white,
+});
+
+const TechHeader = styled(motion.div)({
+  textAlign: "center",
+  marginBottom: spacing["4xl"],
+});
+
+const TechTitle = styled("h2")({
+  color: colors.midnightBlue,
+  marginBottom: spacing.md,
+  fontSize: "clamp(2rem, 4vw, 3rem)",
+  fontWeight: 600,
+  margin: `0 0 ${spacing.md} 0`,
+});
+
+const TechDescription = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "18px",
+  margin: 0,
+});
 
 const PortfolioPage = () => {
   return (
-    <div className="min-h-screen" id="main-content">
+    <Box id="main-content" sx={{ minHeight: "100vh" }}>
       <PortfolioHero />
 
       {/* Projects Grid */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
+      <ProjectsSection>
+        <SectionContainer maxWidth={false}>
+          <SectionHeader
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
-              Featured Projects
-            </p>
-            <h2
-              className="text-[var(--midnight-blue)] mb-4"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-            >
-              Our Latest Work
-            </h2>
-            <p className="text-[var(--dusty-blue)] text-lg max-w-2xl mx-auto">
+            <Label>Featured Projects</Label>
+            <Title>Our Latest Work</Title>
+            <Description>
               Explore our portfolio of cutting-edge solutions across web,
               mobile, design, and automation
-            </p>
-          </motion.div>
+            </Description>
+          </SectionHeader>
 
           <ProjectGrid />
-        </div>
-      </section>
+        </SectionContainer>
+      </ProjectsSection>
 
       <CaseStudiesSection />
 
       {/* Technology Stack */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 mb-12">
-          <motion.div
+      <TechSection>
+        <SectionContainer maxWidth={false}>
+          <TechHeader
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center"
           >
-            <h2
-              className="text-[var(--midnight-blue)] mb-3"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-            >
-              Technologies We Master
-            </h2>
-            <p className="text-[var(--dusty-blue)] text-lg">
+            <TechTitle>Technologies We Master</TechTitle>
+            <TechDescription>
               Building with the best tools in the industry
-            </p>
-          </motion.div>
-        </div>
+            </TechDescription>
+          </TechHeader>
+        </SectionContainer>
 
         <TechStackScroll />
-      </section>
+      </TechSection>
 
       <PortfolioCTA />
-    </div>
+    </Box>
   );
 };
 

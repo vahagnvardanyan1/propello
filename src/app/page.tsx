@@ -1,5 +1,7 @@
 "use client";
 
+import { Box } from "@mui/material";
+
 import {
   HeroSection,
   ServicesSection,
@@ -9,12 +11,12 @@ import {
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen" id="main-content">
+    <Box id="main-content" sx={{ minHeight: "100vh" }}>
       <HeroSection />
       <ServicesSection />
       <WhyChooseSection />
       <FinalCTASection />
-    </div>
+    </Box>
   );
 };
 

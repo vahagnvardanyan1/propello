@@ -1,13 +1,76 @@
 "use client";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Container } from "@mui/material";
+
+import { colors, spacing } from "@/theme/theme";
+
+const HeroSection = styled("section")({
+  position: "relative",
+  padding: `${spacing["7xl"]} 0`,
+  overflow: "hidden",
+  background: `linear-gradient(to bottom right, ${colors.deepNavy}, ${colors.midnightBlue}, ${colors.dustyBlue})`,
+});
+
+const AnimatedOrb = styled(motion.div)({
+  position: "absolute",
+  top: 0,
+  right: 0,
+  width: "600px",
+  height: "600px",
+  backgroundColor: colors.buttercream,
+  opacity: 0.1,
+  borderRadius: "50%",
+  filter: "blur(48px)",
+});
+
+const HeroContent = styled(motion.div)({
+  textAlign: "center",
+  maxWidth: "1024px",
+  margin: "0 auto",
+  position: "relative",
+  zIndex: 10,
+});
+
+const Label = styled(motion.p)({
+  color: colors.buttercream,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  fontSize: "14px",
+  marginBottom: spacing.xl,
+  fontWeight: 600,
+  margin: `0 0 ${spacing.xl} 0`,
+});
+
+const Title = styled("h1")({
+  color: colors.white,
+  marginBottom: spacing.xl,
+  fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+  lineHeight: 1.1,
+  fontWeight: 700,
+  margin: `0 0 ${spacing.xl} 0`,
+});
+
+const GradientText = styled("span")({
+  background: `linear-gradient(to right, ${colors.buttercream}, ${colors.ivory})`,
+  backgroundClip: "text",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+});
+
+const Description = styled("p")({
+  color: colors.ivory,
+  fontSize: "20px",
+  lineHeight: 1.6,
+  maxWidth: "750px",
+  margin: "0 auto",
+});
 
 export const ServicesHero = () => {
   return (
-    <section className="relative py-32 overflow-hidden bg-gradient-to-br from-[var(--deep-navy)] via-[var(--midnight-blue)] to-[var(--dusty-blue)]">
-      {/* Animated Background */}
-      <motion.div
-        className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--buttercream)] opacity-10 rounded-full blur-3xl"
+    <HeroSection>
+      <AnimatedOrb
         animate={{
           scale: [1, 1.3, 1],
           x: [0, -50, 0],
@@ -19,42 +82,32 @@ export const ServicesHero = () => {
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <motion.div
+      <Container maxWidth={false}>
+        <HeroContent
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto"
         >
-          <motion.p
-            className="text-[var(--buttercream)] uppercase tracking-wider text-sm mb-6"
+          <Label
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
             Our Services
-          </motion.p>
+          </Label>
 
-          <h1
-            className="text-white mb-6"
-            style={{
-              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-              lineHeight: "1.1",
-            }}
-          >
+          <Title>
             We Craft Intelligent Systems
             <br />
-            <span className="bg-gradient-to-r from-[var(--buttercream)] to-[var(--ivory)] bg-clip-text text-transparent">
-              That Automate Business Growth
-            </span>
-          </h1>
+            <GradientText>That Automate Business Growth</GradientText>
+          </Title>
 
-          <p className="text-[var(--ivory)] text-xl leading-relaxed max-w-3xl mx-auto">
+          <Description>
             From ideation to deployment, we build technology that transforms how
             businesses operate, compete, and scale.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+          </Description>
+        </HeroContent>
+      </Container>
+    </HeroSection>
   );
 };

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 
 import {
   ScrollReveal,
@@ -10,83 +12,226 @@ import {
   StaggerItem,
 } from "@/components/ScrollReveal";
 import { SERVICES } from "@/constants";
+import {
+  colors,
+  spacing,
+  borderRadius,
+  transitions,
+  shadows,
+} from "@/theme/theme";
+
+const StyledSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  backgroundColor: colors.white,
+});
+
+const SectionContainer = styled(Container)({
+  padding: `0 ${spacing.base}`,
+
+  "@media (min-width: 1024px)": {
+    padding: `0 ${spacing["2xl"]}`,
+  },
+});
+
+const SectionHeader = styled(Box)({
+  textAlign: "center",
+  marginBottom: spacing["5xl"],
+});
+
+const SectionLabel = styled("p")({
+  color: colors.dustyBlue,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  fontSize: "14px",
+  marginBottom: spacing.md,
+  fontWeight: 600,
+  margin: `0 0 ${spacing.md} 0`,
+});
+
+const SectionTitle = styled("h2")({
+  color: colors.midnightBlue,
+  marginBottom: spacing.base,
+  fontSize: "clamp(2rem, 4vw, 3rem)",
+  fontWeight: 600,
+  margin: `0 0 ${spacing.base} 0`,
+});
+
+const SectionDescription = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "18px",
+  maxWidth: "640px",
+  margin: `0 auto`,
+  lineHeight: 1.6,
+});
+
+const ServicesGrid = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: spacing["2xl"],
+
+  "@media (min-width: 768px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+
+  "@media (min-width: 1024px)": {
+    gridTemplateColumns: "repeat(4, 1fr)",
+  },
+});
+
+const ServiceCard = styled(motion.div)({
+  height: "100%",
+  background: `linear-gradient(to bottom right, ${colors.midnightBlue}, ${colors.deepNavy})`,
+  borderRadius: borderRadius["2xl"],
+  padding: spacing["2xl"],
+  boxShadow: shadows.xl,
+  position: "relative",
+  overflow: "hidden",
+  transition: `box-shadow ${transitions.slow}`,
+
+  "&:hover": {
+    boxShadow: shadows["2xl"],
+  },
+});
+
+const IconContainer = styled(motion.div)({
+  width: "64px",
+  height: "64px",
+  borderRadius: borderRadius["2xl"],
+  background: `linear-gradient(to bottom right, ${colors.buttercream}, ${colors.ivory})`,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginBottom: spacing.xl,
+  boxShadow: shadows.lg,
+});
+
+const ServiceTitle = styled("h3")({
+  color: colors.white,
+  fontSize: "20px",
+  fontWeight: 600,
+  marginBottom: spacing.md,
+  transition: `color ${transitions.slow}`,
+
+  ".group:hover &": {
+    color: colors.buttercream,
+  },
+});
+
+const ServiceDescription = styled("p")({
+  color: colors.ivory,
+  marginBottom: spacing.xl,
+  lineHeight: 1.6,
+  fontSize: "14px",
+  margin: `0 0 ${spacing.xl} 0`,
+});
+
+const FeatureList = styled("ul")({
+  listStyle: "none",
+  padding: 0,
+  margin: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+});
+
+const FeatureItem = styled("li")({
+  display: "flex",
+  alignItems: "center",
+  gap: spacing.sm,
+  color: colors.buttercream,
+  fontSize: "14px",
+});
+
+const FeatureDot = styled("div")({
+  width: "6px",
+  height: "6px",
+  borderRadius: "50%",
+  backgroundColor: colors.buttercream,
+  flexShrink: 0,
+});
+
+const CTAContainer = styled(Box)({
+  textAlign: "center",
+  marginTop: spacing["5xl"],
+});
+
+const ExploreButton = styled(Link)({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: spacing.md,
+  padding: `${spacing.base} ${spacing["2xl"]}`,
+  backgroundColor: colors.midnightBlue,
+  color: colors.white,
+  borderRadius: borderRadius.xl,
+  textDecoration: "none",
+  fontWeight: 600,
+  transition: `all ${transitions.slow}`,
+
+  "&:hover": {
+    backgroundColor: colors.dustyBlue,
+    boxShadow: shadows.xl,
+    transform: "translateY(-4px)",
+  },
+});
 
 export const ServicesSection = () => {
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 lg:px-8">
-        <ScrollReveal direction="up" className="text-center mb-16">
-          <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
-            Our Expertise
-          </p>
-          <h2
-            className="text-[var(--midnight-blue)] mb-4"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          >
-            Core Services
-          </h2>
-          <p className="text-[var(--dusty-blue)] text-lg max-w-2xl mx-auto">
-            Comprehensive solutions designed to transform your business through
-            technology
-          </p>
+    <StyledSection>
+      <SectionContainer maxWidth={false}>
+        <ScrollReveal direction="up">
+          <SectionHeader>
+            <SectionLabel>Our Expertise</SectionLabel>
+            <SectionTitle>Core Services</SectionTitle>
+            <SectionDescription>
+              Comprehensive solutions designed to transform your business
+              through technology
+            </SectionDescription>
+          </SectionHeader>
         </ScrollReveal>
 
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {SERVICES.map((service, index) => (
-            <StaggerItem key={index}>
-              <motion.div
-                whileHover={{ y: -12, scale: 1.03 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                className="group h-full bg-gradient-to-br from-[var(--midnight-blue)] to-[var(--deep-navy)] rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow relative overflow-hidden"
-              >
-                <motion.div
-                  className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--buttercream)] to-[var(--ivory)] flex items-center justify-center mb-6 shadow-lg"
-                  whileHover={{ rotate: [0, 10, -10, 0], scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
+        <StaggerContainer>
+          <ServicesGrid>
+            {SERVICES.map((service, index) => (
+              <StaggerItem key={index}>
+                <ServiceCard
+                  className="group"
+                  whileHover={{ y: -12, scale: 1.03 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <service.icon
-                    className="text-[var(--midnight-blue)]"
-                    size={32}
-                  />
-                </motion.div>
+                  <IconContainer
+                    whileHover={{ rotate: [0, 10, -10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <service.icon color={colors.midnightBlue} size={32} />
+                  </IconContainer>
 
-                <h3 className="text-white text-xl font-semibold mb-3 group-hover:text-[var(--buttercream)] transition-colors duration-300">
-                  {service.title}
-                </h3>
+                  <ServiceTitle>{service.title}</ServiceTitle>
 
-                <p className="text-[var(--ivory)] mb-6 leading-relaxed text-sm">
-                  {service.description}
-                </p>
+                  <ServiceDescription>{service.description}</ServiceDescription>
 
-                <ul className="space-y-2.5">
-                  {service.features.map((feature, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-2 text-[var(--buttercream)] text-sm"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--buttercream)]" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </StaggerItem>
-          ))}
+                  <FeatureList>
+                    {service.features.map((feature, i) => (
+                      <FeatureItem key={i}>
+                        <FeatureDot />
+                        {feature}
+                      </FeatureItem>
+                    ))}
+                  </FeatureList>
+                </ServiceCard>
+              </StaggerItem>
+            ))}
+          </ServicesGrid>
         </StaggerContainer>
 
-        <ScrollReveal direction="up" delay={0.2} className="text-center mt-16">
-          <Link
-            href="/services"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--midnight-blue)] text-white rounded-xl hover:bg-[var(--dusty-blue)] transition-all hover:shadow-xl hover:-translate-y-1 font-semibold"
-          >
-            <span>Explore All Services</span>
-            <ArrowRight
-              className="group-hover:translate-x-2 transition-transform duration-300"
-              size={18}
-            />
-          </Link>
+        <ScrollReveal direction="up" delay={0.2}>
+          <CTAContainer>
+            <ExploreButton href="/services" className="group">
+              <span>Explore All Services</span>
+              <ArrowRight size={18} />
+            </ExploreButton>
+          </CTAContainer>
         </ScrollReveal>
-      </div>
-    </section>
+      </SectionContainer>
+    </StyledSection>
   );
 };

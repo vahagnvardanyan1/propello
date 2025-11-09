@@ -18,7 +18,7 @@ export const CASE_STUDIES = [
       { metric: "$50K", label: "Annual Savings" },
       { metric: "99.9%", label: "Accuracy Rate" },
     ],
-    color: "from-blue-500 to-cyan-500",
+    color: "linear-gradient(to bottom right, #3b82f6, #06b6d4)",
   },
   {
     title: "Healthcare Platform Scale",
@@ -30,7 +30,7 @@ export const CASE_STUDIES = [
       { metric: "0.8s", label: "Load Time" },
       { metric: "99.99%", label: "Uptime" },
     ],
-    color: "from-green-500 to-emerald-500",
+    color: "linear-gradient(to bottom right, #10b981, #059669)",
   },
   {
     title: "UX Redesign Impact",
@@ -42,6 +42,6 @@ export const CASE_STUDIES = [
       { metric: "45%", label: "Conversion Up" },
       { metric: "4.9/5", label: "Satisfaction" },
     ],
-    color: "from-purple-500 to-pink-500",
+    color: "linear-gradient(to bottom right, #a855f7, #ec4899)",
   },
 ] as const;

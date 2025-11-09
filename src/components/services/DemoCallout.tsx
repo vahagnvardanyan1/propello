@@ -3,19 +3,86 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Zap, ArrowRight } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import { Container } from "@mui/material";
+
+import {
+  colors,
+  spacing,
+  borderRadius,
+  shadows,
+  transitions,
+} from "@/theme/theme";
+
+const CalloutSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  background: `linear-gradient(to bottom right, ${colors.midnightBlue}, ${colors.deepNavy}, ${colors.midnightBlue})`,
+});
+
+const CalloutContent = styled(motion.div)({
+  maxWidth: "1024px",
+  margin: "0 auto",
+  textAlign: "center",
+});
+
+const IconBox = styled(motion.div)({
+  width: "80px",
+  height: "80px",
+  margin: `0 auto ${spacing.xl} auto`,
+  borderRadius: borderRadius["2xl"],
+  background: `linear-gradient(to bottom right, ${colors.buttercream}, ${colors.ivory})`,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxShadow: shadows.xl,
+});
+
+const Title = styled("h2")({
+  color: colors.white,
+  marginBottom: spacing.xl,
+  fontSize: "clamp(2rem, 4vw, 3rem)",
+  fontWeight: 600,
+  margin: `0 0 ${spacing.xl} 0`,
+});
+
+const Description = styled("p")({
+  color: colors.ivory,
+  fontSize: "18px",
+  marginBottom: spacing["2xl"],
+  lineHeight: 1.6,
+  margin: `0 0 ${spacing["2xl"]} 0`,
+});
+
+const DemoButton = styled(Link)({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: spacing.sm,
+  padding: `${spacing.base} ${spacing["2xl"]}`,
+  backgroundColor: colors.buttercream,
+  color: colors.midnightBlue,
+  borderRadius: borderRadius.xl,
+  textDecoration: "none",
+  fontSize: "18px",
+  fontWeight: 600,
+  transition: `all ${transitions.slow}`,
+
+  "&:hover": {
+    backgroundColor: `${colors.buttercream}e6`,
+    boxShadow: `0 25px 50px ${colors.buttercream}66`,
+    transform: "translateY(-4px)",
+  },
+});
 
 export const DemoCallout = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-[var(--midnight-blue)] via-[var(--deep-navy)] to-[var(--midnight-blue)]">
-      <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
+    <CalloutSection>
+      <Container maxWidth={false}>
+        <CalloutContent
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
         >
-          <motion.div
-            className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--buttercream)] to-[var(--ivory)] flex items-center justify-center shadow-xl"
+          <IconBox
             animate={{
               y: [0, -10, 0],
               rotate: [0, 5, -5, 0],
@@ -26,33 +93,22 @@ export const DemoCallout = () => {
               ease: "easeInOut",
             }}
           >
-            <Zap className="text-[var(--midnight-blue)]" size={40} />
-          </motion.div>
+            <Zap color={colors.midnightBlue} size={40} />
+          </IconBox>
 
-          <h2
-            className="text-white mb-6"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          >
-            See Automation in Action
-          </h2>
+          <Title>See Automation in Action</Title>
 
-          <p className="text-[var(--ivory)] text-lg mb-8 leading-relaxed">
+          <Description>
             Watch how we integrate AI-powered workflows that save 40+ hours per
             week and increase productivity by 300%
-          </p>
+          </Description>
 
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl hover:bg-[var(--buttercream)]/90 transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-1 text-lg font-semibold group"
-          >
+          <DemoButton href="/" className="group">
             View Live Demo
-            <ArrowRight
-              className="group-hover:translate-x-1 transition-transform"
-              size={20}
-            />
-          </Link>
-        </motion.div>
-      </div>
-    </section>
+            <ArrowRight size={20} />
+          </DemoButton>
+        </CalloutContent>
+      </Container>
+    </CalloutSection>
   );
 };

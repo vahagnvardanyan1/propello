@@ -72,7 +72,7 @@ export const SERVICES_DETAILED = [
       },
     ],
     technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"],
-    color: "from-blue-500 to-blue-700",
+    color: "linear-gradient(to bottom right, #3b82f6, #1d4ed8)",
   },
   {
     icon: Smartphone,
@@ -99,7 +99,7 @@ export const SERVICES_DETAILED = [
       { icon: Lock, text: "Advanced Security", detail: "OAuth 2.0 & JWT" },
     ],
     technologies: ["Node.js", "GraphQL", "MongoDB", "Redis", "AWS"],
-    color: "from-purple-500 to-purple-700",
+    color: "linear-gradient(to bottom right, #a855f7, #7e22ce)",
   },
   {
     icon: Palette,
@@ -122,7 +122,7 @@ export const SERVICES_DETAILED = [
       { icon: Zap, text: "Conversion Optimization", detail: "Maximize ROI" },
     ],
     technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Framer"],
-    color: "from-pink-500 to-pink-700",
+    color: "linear-gradient(to bottom right, #ec4899, #be185d)",
   },
   {
     icon: Zap,
@@ -153,6 +153,6 @@ export const SERVICES_DETAILED = [
       },
     ],
     technologies: ["OpenAI API", "Zapier", "Make", "n8n", "AWS Lambda"],
-    color: "from-yellow-500 to-yellow-700",
+    color: "linear-gradient(to bottom right, #eab308, #a16207)",
   },
 ] as const;

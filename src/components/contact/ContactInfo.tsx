@@ -1,13 +1,108 @@
 "use client";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 import { SectionHeading } from "@/components/SectionHeading";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/constants";
+import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
+
+const InfoContainer = styled(motion.div)({});
+
+const ContactItems = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  gap: spacing.xl,
+  marginTop: spacing["4xl"],
+});
+
+const ContactItem = styled(motion.a)({
+  display: "flex",
+  alignItems: "flex-start",
+  gap: spacing.base,
+  padding: spacing.base,
+  borderRadius: borderRadius.xl,
+  textDecoration: "none",
+  transition: `all ${transitions.slow}`,
+
+  "&:hover": {
+    backgroundColor: colors.white,
+  },
+});
+
+const IconContainer = styled(Box)({
+  width: "48px",
+  height: "48px",
+  borderRadius: borderRadius.md,
+  backgroundColor: `${colors.midnightBlue}0d`,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: `all ${transitions.slow}`,
+
+  ".group:hover &": {
+    backgroundColor: colors.midnightBlue,
+  },
+
+  "& svg": {
+    color: colors.midnightBlue,
+    transition: `color ${transitions.slow}`,
+  },
+
+  ".group:hover & svg": {
+    color: colors.white,
+  },
+});
+
+const InfoContent = styled(Box)({});
+
+const InfoLabel = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "14px",
+  marginBottom: spacing.xs,
+  margin: `0 0 ${spacing.xs} 0`,
+});
+
+const InfoValue = styled("p")({
+  color: colors.midnightBlue,
+  fontWeight: 500,
+  margin: 0,
+});
+
+const SocialSection = styled(motion.div)({
+  marginTop: spacing["4xl"],
+});
+
+const SocialLabel = styled("p")({
+  color: colors.dustyBlue,
+  marginBottom: spacing.base,
+  margin: `0 0 ${spacing.base} 0`,
+});
+
+const SocialLinksContainer = styled(Box)({
+  display: "flex",
+  gap: spacing.md,
+});
+
+const SocialLink = styled(motion.a, {
+  shouldForwardProp: (prop) => prop !== "bgColor",
+})<{ bgColor?: string }>(({ bgColor }) => ({
+  width: "48px",
+  height: "48px",
+  borderRadius: borderRadius.md,
+  backgroundColor: bgColor || colors.midnightBlue,
+  color: colors.white,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textDecoration: "none",
+  transition: `all ${transitions.slow}`,
+}));
 
 export const ContactInfo = () => {
   return (
-    <motion.div
+    <InfoContainer
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -19,69 +114,61 @@ export const ContactInfo = () => {
         align="left"
       />
 
-      <div className="space-y-6 mt-12">
+      <ContactItems>
         {CONTACT_INFO.map((info, index) => {
           const Icon = info.icon;
           return (
-            <motion.a
+            <ContactItem
               key={info.label}
               href={info.href}
+              className="group"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ x: 5 }}
-              className="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-all group"
               aria-label={`${info.label}: ${info.value}`}
             >
-              <div className="w-12 h-12 rounded-lg bg-[var(--midnight-blue)]/5 flex items-center justify-center group-hover:bg-[var(--midnight-blue)] transition-colors">
-                <Icon
-                  className="text-[var(--midnight-blue)] group-hover:text-white transition-colors"
-                  size={20}
-                />
-              </div>
-              <div>
-                <p className="text-[var(--dusty-blue)] text-sm mb-1">
-                  {info.label}
-                </p>
-                <p className="text-[var(--midnight-blue)]">{info.value}</p>
-              </div>
-            </motion.a>
+              <IconContainer>
+                <Icon size={20} />
+              </IconContainer>
+              <InfoContent>
+                <InfoLabel>{info.label}</InfoLabel>
+                <InfoValue>{info.value}</InfoValue>
+              </InfoContent>
+            </ContactItem>
           );
         })}
-      </div>
+      </ContactItems>
 
       {/* Social Links */}
-      <motion.div
+      <SocialSection
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-12"
       >
-        <p className="text-[var(--dusty-blue)] mb-4">
-          Follow us on social media
-        </p>
-        <div className="flex gap-3">
+        <SocialLabel>Follow us on social media</SocialLabel>
+        <SocialLinksContainer>
           {SOCIAL_LINKS.map((social, index) => {
             const Icon = social.icon;
             return (
-              <motion.a
+              <SocialLink
                 key={social.label}
                 href={social.href}
+                bgColor={social.color}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, type: "spring" }}
                 whileHover={{ scale: 1.1, y: -2 }}
-                className={`w-12 h-12 rounded-lg bg-[var(--midnight-blue)] text-white flex items-center justify-center transition-all ${social.color}`}
                 aria-label={`Follow us on ${social.label}`}
               >
                 <Icon size={20} />
-              </motion.a>
+              </SocialLink>
             );
           })}
-        </div>
-      </motion.div>
-    </motion.div>
+        </SocialLinksContainer>
+      </SocialSection>
+    </InfoContainer>
   );
 };

@@ -7,7 +7,7 @@ export const QUICK_CONTACT_OPTIONS = [
     description: "Get a response within 24 hours",
     action: "hello@propello.com",
     href: "mailto:hello@propello.com",
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)",
   },
   {
     icon: Calendar,
@@ -15,7 +15,7 @@ export const QUICK_CONTACT_OPTIONS = [
     description: "Book a free 30-minute consultation",
     action: "Schedule Now",
     href: "#schedule",
-    gradient: "from-purple-500 to-pink-500",
+    gradient: "linear-gradient(to bottom right, #a855f7, #ec4899)",
   },
   {
     icon: MessageSquare,
@@ -23,7 +23,7 @@ export const QUICK_CONTACT_OPTIONS = [
     description: "Chat with our team instantly",
     action: "Start Chat",
     href: "#chat",
-    gradient: "from-orange-500 to-red-500",
+    gradient: "linear-gradient(to bottom right, #f97316, #ef4444)",
   },
 ] as const;
 

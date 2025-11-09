@@ -1,22 +1,218 @@
 "use client";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
 import type { LucideIcon } from "lucide-react";
+
+import { colors, spacing, borderRadius, shadows } from "@/theme/theme";
 
 interface ServiceCardProps {
   icon: LucideIcon;
   title: string;
   tagline: string;
   description: string;
-  features: Array<{
+  features: readonly {
     icon: LucideIcon;
     text: string;
     detail: string;
-  }>;
+  }[];
   technologies: readonly string[];
   color: string;
   index: number;
 }
+
+const CardContainer = styled(motion.div)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: spacing["4xl"],
+  alignItems: "center",
+
+  "@media (min-width: 1024px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+});
+
+const ContentSection = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "reverseOrder",
+})<{ reverseOrder: boolean }>(({ reverseOrder }) => ({
+  "@media (min-width: 1024px)": {
+    order: reverseOrder ? 2 : 1,
+  },
+}));
+
+const IconTitleGroup = styled(Box)({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: spacing.md,
+  marginBottom: spacing.xl,
+});
+
+const IconContainer = styled(motion.div, {
+  shouldForwardProp: (prop) => prop !== "gradient",
+})<{ gradient: string }>(({ gradient }) => ({
+  width: "56px",
+  height: "56px",
+  borderRadius: borderRadius["2xl"],
+  background: gradient,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  boxShadow: shadows.lg,
+}));
+
+const TitleGroup = styled(Box)({});
+
+const ServiceTitle = styled("h2")({
+  color: colors.midnightBlue,
+  fontSize: "32px",
+  fontWeight: 700,
+  margin: 0,
+});
+
+const Tagline = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "14px",
+  fontStyle: "italic",
+  margin: 0,
+});
+
+const ServiceDescription = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "18px",
+  marginBottom: spacing["2xl"],
+  lineHeight: 1.6,
+  margin: `0 0 ${spacing["2xl"]} 0`,
+});
+
+const FeaturesGrid = styled(Box)({
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: spacing.base,
+  marginBottom: spacing["2xl"],
+
+  "@media (min-width: 640px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+});
+
+const FeatureItem = styled(motion.div)({
+  display: "flex",
+  gap: spacing.md,
+  alignItems: "flex-start",
+});
+
+const FeatureIconBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "gradient",
+})<{ gradient: string }>(({ gradient }) => ({
+  width: "40px",
+  height: "40px",
+  borderRadius: borderRadius.md,
+  background: gradient,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
+}));
+
+const FeatureContent = styled(Box)({});
+
+const FeatureText = styled("h4")({
+  color: colors.midnightBlue,
+  fontWeight: 600,
+  fontSize: "14px",
+  marginBottom: spacing.xs,
+  margin: `0 0 ${spacing.xs} 0`,
+});
+
+const FeatureDetail = styled("p")({
+  color: colors.dustyBlue,
+  fontSize: "12px",
+  margin: 0,
+});
+
+const TechStack = styled(Box)({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: spacing.sm,
+});
+
+const TechBadge = styled("span")({
+  padding: `${spacing.sm} ${spacing.base}`,
+  backgroundColor: colors.ivory,
+  color: colors.midnightBlue,
+  borderRadius: borderRadius.md,
+  fontSize: "14px",
+  fontWeight: 500,
+});
+
+const VisualSection = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "reverseOrder",
+})<{ reverseOrder: boolean }>(({ reverseOrder }) => ({
+  "@media (min-width: 1024px)": {
+    order: reverseOrder ? 1 : 2,
+  },
+}));
+
+const VisualBox = styled(motion.div, {
+  shouldForwardProp: (prop) => prop !== "gradient",
+})<{ gradient: string }>(({ gradient }) => ({
+  position: "relative",
+  height: "400px",
+  borderRadius: borderRadius["2xl"],
+  background: gradient,
+  padding: spacing["2xl"],
+  overflow: "hidden",
+  boxShadow: shadows["2xl"],
+}));
+
+const DecorativeElements = styled(Box)({
+  position: "absolute",
+  inset: 0,
+  opacity: 0.1,
+});
+
+const Circle = styled(Box)({
+  position: "absolute",
+  top: "40px",
+  right: "40px",
+  width: "128px",
+  height: "128px",
+  border: "4px solid white",
+  borderRadius: "50%",
+});
+
+const Square = styled(Box)({
+  position: "absolute",
+  bottom: "40px",
+  left: "40px",
+  width: "96px",
+  height: "96px",
+  border: "4px solid white",
+  borderRadius: borderRadius.md,
+  transform: "rotate(45deg)",
+});
+
+const CentralBlur = styled(Box)({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "192px",
+  height: "192px",
+  backgroundColor: "white",
+  borderRadius: "50%",
+  filter: "blur(48px)",
+});
+
+const IconDisplay = styled(Box)({
+  position: "relative",
+  zIndex: 10,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100%",
+});
 
 export const ServiceCard = ({
   icon: Icon,
@@ -28,93 +224,72 @@ export const ServiceCard = ({
   color,
   index,
 }: ServiceCardProps) => {
+  const reverseOrder = index % 2 === 1;
+
   return (
-    <motion.div
+    <CardContainer
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className={`grid lg:grid-cols-2 gap-12 items-center ${
-        index % 2 === 1 ? "lg:flex-row-reverse" : ""
-      }`}
     >
-      {/* Content */}
-      <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-        <div className="inline-flex items-center gap-3 mb-6">
-          <motion.div
-            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg`}
+      <ContentSection reverseOrder={reverseOrder}>
+        <IconTitleGroup>
+          <IconContainer
+            gradient={color}
             whileHover={{ rotate: 360, scale: 1.1 }}
             transition={{ duration: 0.6 }}
           >
-            <Icon className="text-white" size={28} />
-          </motion.div>
-          <div>
-            <h2 className="text-[var(--midnight-blue)] text-3xl font-bold">
-              {title}
-            </h2>
-            <p className="text-[var(--dusty-blue)] text-sm italic">{tagline}</p>
-          </div>
-        </div>
+            <Icon color={colors.white} size={28} />
+          </IconContainer>
+          <TitleGroup>
+            <ServiceTitle>{title}</ServiceTitle>
+            <Tagline>{tagline}</Tagline>
+          </TitleGroup>
+        </IconTitleGroup>
 
-        <p className="text-[var(--dusty-blue)] text-lg mb-8 leading-relaxed">
-          {description}
-        </p>
+        <ServiceDescription>{description}</ServiceDescription>
 
-        <div className="grid sm:grid-cols-2 gap-4 mb-8">
+        <FeaturesGrid>
           {features.map((feature, i) => (
-            <motion.div
+            <FeatureItem
               key={i}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex gap-3 items-start"
             >
-              <div
-                className={`w-10 h-10 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}
-              >
-                <feature.icon className="text-white" size={18} />
-              </div>
-              <div>
-                <h4 className="text-[var(--midnight-blue)] font-semibold text-sm mb-1">
-                  {feature.text}
-                </h4>
-                <p className="text-[var(--dusty-blue)] text-xs">
-                  {feature.detail}
-                </p>
-              </div>
-            </motion.div>
+              <FeatureIconBox gradient={color}>
+                <feature.icon color={colors.white} size={18} />
+              </FeatureIconBox>
+              <FeatureContent>
+                <FeatureText>{feature.text}</FeatureText>
+                <FeatureDetail>{feature.detail}</FeatureDetail>
+              </FeatureContent>
+            </FeatureItem>
           ))}
-        </div>
+        </FeaturesGrid>
 
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2">
+        <TechStack>
           {technologies.map((tech, i) => (
-            <span
-              key={i}
-              className="px-4 py-2 bg-[var(--ivory)] text-[var(--midnight-blue)] rounded-lg text-sm font-medium"
-            >
-              {tech}
-            </span>
+            <TechBadge key={i}>{tech}</TechBadge>
           ))}
-        </div>
-      </div>
+        </TechStack>
+      </ContentSection>
 
-      {/* Visual */}
-      <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-        <motion.div
-          className={`relative h-[400px] rounded-3xl bg-gradient-to-br ${color} p-8 overflow-hidden shadow-2xl`}
+      <VisualSection reverseOrder={reverseOrder}>
+        <VisualBox
+          gradient={color}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 right-10 w-32 h-32 border-4 border-white rounded-full" />
-            <div className="absolute bottom-10 left-10 w-24 h-24 border-4 border-white rounded-lg rotate-45" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white rounded-full blur-3xl" />
-          </div>
+          <DecorativeElements>
+            <Circle />
+            <Square />
+            <CentralBlur />
+          </DecorativeElements>
 
-          <div className="relative z-10 flex items-center justify-center h-full">
+          <IconDisplay>
             <motion.div
               animate={{
                 y: [0, -20, 0],
@@ -125,11 +300,11 @@ export const ServiceCard = ({
                 ease: "easeInOut",
               }}
             >
-              <Icon className="text-white" size={120} strokeWidth={1} />
+              <Icon color={colors.white} size={120} strokeWidth={1} />
             </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </motion.div>
+          </IconDisplay>
+        </VisualBox>
+      </VisualSection>
+    </CardContainer>
   );
 };

@@ -3,6 +3,10 @@
 import type { ReactNode } from "react";
 
 import { motion } from "motion/react";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
+
+import { colors, spacing } from "@/theme/theme";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -13,6 +17,56 @@ interface SectionHeadingProps {
   maxWidth?: "sm" | "md" | "lg" | "xl" | "full";
 }
 
+const maxWidthMap: Record<string, string> = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+  full: "100%",
+};
+
+const Container = styled(Box, {
+  shouldForwardProp: (prop) => !["align", "maxWidth"].includes(prop as string),
+})<{ align: "left" | "center" | "right"; maxWidth: string }>(
+  ({ align, maxWidth }) => ({
+    textAlign: align,
+    maxWidth,
+    margin: align === "center" ? "0 auto" : 0,
+  }),
+);
+
+const Eyebrow = styled(motion.p, {
+  shouldForwardProp: (prop) => prop !== "dark",
+})<{ dark: boolean }>(({ dark }) => ({
+  color: dark ? colors.buttercream : colors.dustyBlue,
+  marginBottom: spacing.base,
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  fontSize: "14px",
+  fontWeight: 500,
+  margin: `0 0 ${spacing.base} 0`,
+}));
+
+const Title = styled(motion.h2, {
+  shouldForwardProp: (prop) => prop !== "dark",
+})<{ dark: boolean }>(({ dark }) => ({
+  color: dark ? colors.white : colors.midnightBlue,
+  marginBottom: spacing.base,
+  fontSize: "clamp(2rem, 4vw, 3rem)",
+  lineHeight: 1.25,
+  fontWeight: 600,
+  margin: `0 0 ${spacing.base} 0`,
+}));
+
+const Description = styled(motion.div, {
+  shouldForwardProp: (prop) => prop !== "dark",
+})<{ dark: boolean }>(({ dark }) => ({
+  color: dark ? colors.ivory : colors.dustyBlue,
+  fontSize: "18px",
+  lineHeight: 1.6,
+  maxWidth: "100%",
+}));
+
 export const SectionHeading = ({
   eyebrow,
   title,
@@ -21,69 +75,41 @@ export const SectionHeading = ({
   dark = false,
   maxWidth = "lg",
 }: SectionHeadingProps) => {
-  const alignClass = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
-  }[align];
-
-  const maxWidthClass = {
-    sm: "max-w-2xl",
-    md: "max-w-3xl",
-    lg: "max-w-4xl",
-    xl: "max-w-5xl",
-    full: "max-w-full",
-  }[maxWidth];
-
-  const containerClass = align === "center" ? "mx-auto" : "";
-
-  const eyebrowColor = dark
-    ? "text-[var(--buttercream)]"
-    : "text-[var(--dusty-blue)]";
-  const titleColor = dark ? "text-white" : "text-[var(--midnight-blue)]";
-  const descriptionColor = dark
-    ? "text-[var(--ivory)]"
-    : "text-[var(--dusty-blue)]";
-
   return (
-    <div className={`${alignClass} ${maxWidthClass} ${containerClass}`}>
+    <Container align={align} maxWidth={maxWidthMap[maxWidth]}>
       {eyebrow && (
-        <motion.p
+        <Eyebrow
+          dark={dark}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={`${eyebrowColor} mb-4 uppercase tracking-wider text-sm font-medium`}
         >
           {eyebrow}
-        </motion.p>
+        </Eyebrow>
       )}
 
-      <motion.h2
+      <Title
+        dark={dark}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className={`${titleColor} mb-4`}
-        style={{
-          fontSize: "clamp(2rem, 4vw, 3rem)",
-          lineHeight: "var(--leading-tight)",
-        }}
       >
         {title}
-      </motion.h2>
+      </Title>
 
       {description && (
-        <motion.div
+        <Description
+          dark={dark}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`${descriptionColor} text-lg leading-relaxed prose max-w-full`}
         >
           {typeof description === "string" ? <p>{description}</p> : description}
-        </motion.div>
+        </Description>
       )}
-    </div>
+    </Container>
   );
 };

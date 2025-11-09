@@ -3,35 +3,82 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Award } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import { Container } from "@mui/material";
+
+import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
+
+const StyledSection = styled("section")({
+  padding: `${spacing["7xl"]} 0`,
+  background: `linear-gradient(to bottom right, ${colors.midnightBlue}, ${colors.deepNavy})`,
+});
+
+const SectionContainer = styled(Container)({
+  textAlign: "center",
+  padding: `0 ${spacing.base}`,
+
+  "@media (min-width: 1024px)": {
+    padding: `0 ${spacing["2xl"]}`,
+  },
+});
+
+const MainHeading = styled("h2")({
+  color: colors.white,
+  marginBottom: spacing.xl,
+  fontSize: "clamp(2rem, 4vw, 3.5rem)",
+  fontWeight: 600,
+  margin: `0 0 ${spacing.xl} 0`,
+});
+
+const Description = styled("p")({
+  color: colors.ivory,
+  fontSize: "20px",
+  marginBottom: spacing["3xl"],
+  maxWidth: "640px",
+  margin: `0 auto ${spacing["3xl"]} auto`,
+  lineHeight: 1.6,
+});
+
+const CTAButton = styled(Link)({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: spacing.md,
+  padding: `${spacing.lg} ${spacing["3xl"]}`,
+  backgroundColor: colors.buttercream,
+  color: colors.midnightBlue,
+  borderRadius: borderRadius.xl,
+  textDecoration: "none",
+  fontSize: "18px",
+  fontWeight: 600,
+  transition: `all ${transitions.slow}`,
+
+  "&:hover": {
+    backgroundColor: `${colors.buttercream}e6`,
+    boxShadow: `0 25px 50px ${colors.buttercream}66`,
+    transform: "translateY(-4px)",
+  },
+});
 
 export const PortfolioCTA = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-[var(--midnight-blue)] to-[var(--deep-navy)]">
-      <div className="container mx-auto px-4 lg:px-8 text-center">
+    <StyledSection>
+      <SectionContainer maxWidth={false}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2
-            className="text-white mb-6"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-          >
-            Ready to Create Your Success Story?
-          </h2>
-          <p className="text-[var(--ivory)] text-xl mb-10 max-w-2xl mx-auto">
+          <MainHeading>Ready to Create Your Success Story?</MainHeading>
+          <Description>
             Let&apos;s build something that transforms your business
-          </p>
+          </Description>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl hover:bg-[var(--buttercream)]/90 transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-1 text-lg font-semibold"
-          >
+          <CTAButton href="/contact">
             Let&apos;s Talk
             <Award size={22} />
-          </Link>
+          </CTAButton>
         </motion.div>
-      </div>
-    </section>
+      </SectionContainer>
+    </StyledSection>
   );
 };

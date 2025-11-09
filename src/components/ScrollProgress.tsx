@@ -1,6 +1,20 @@
 "use client";
 
 import { motion, useScroll, useSpring } from "motion/react";
+import { styled } from "@mui/material/styles";
+
+import { colors, zIndex } from "@/theme/theme";
+
+const ProgressBar = styled(motion.div)({
+  position: "fixed",
+  top: 0,
+  left: 0,
+  right: 0,
+  height: "4px",
+  backgroundColor: colors.buttercream,
+  transformOrigin: "left",
+  zIndex: zIndex.tooltip,
+});
 
 export const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
@@ -10,10 +24,5 @@ export const ScrollProgress = () => {
     restDelta: 0.001,
   });
 
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-[var(--buttercream)] origin-left z-50"
-      style={{ scaleX }}
-    />
-  );
+  return <ProgressBar style={{ scaleX }} />;
 };

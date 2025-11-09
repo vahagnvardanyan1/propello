@@ -5,9 +5,269 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, Zap } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { HOME_METRICS } from "@/constants";
+import { colors, spacing, transitions, borderRadius } from "@/theme/theme";
+
+const StyledHeroSection = styled("section")({
+  position: "relative",
+  minHeight: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  overflow: "hidden",
+  background: `linear-gradient(to bottom right, ${colors.deepNavy}, ${colors.midnightBlue}, ${colors.dustyBlue})`,
+});
+
+const AnimatedOrb1 = styled(motion.div)({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "800px",
+  height: "800px",
+  backgroundColor: colors.buttercream,
+  opacity: 0.1,
+  borderRadius: "50%",
+  filter: "blur(48px)",
+});
+
+const AnimatedOrb2 = styled(motion.div)({
+  position: "absolute",
+  bottom: 0,
+  right: 0,
+  width: "600px",
+  height: "600px",
+  backgroundColor: colors.dustyBlue,
+  opacity: 0.2,
+  borderRadius: "50%",
+  filter: "blur(48px)",
+});
+
+const HeroContent = styled(motion.div)({
+  position: "relative",
+  zIndex: 10,
+  textAlign: "center",
+  padding: `0 ${spacing.base}`,
+
+  "@media (min-width: 640px)": {
+    padding: `0 ${spacing.xl}`,
+  },
+
+  "@media (min-width: 1024px)": {
+    padding: `0 ${spacing["2xl"]}`,
+  },
+});
+
+const BrandTagline = styled(motion.div)({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: spacing.sm,
+  padding: `10px ${spacing.lg}`,
+  borderRadius: borderRadius.full,
+  backgroundColor: "rgba(255, 255, 255, 0.1)",
+  backdropFilter: "blur(8px)",
+  border: "1px solid rgba(255, 255, 255, 0.2)",
+  marginBottom: spacing.xl,
+
+  "@media (min-width: 640px)": {
+    padding: `10px ${spacing.lg}`,
+    marginBottom: spacing["2xl"],
+  },
+});
+
+const TaglineText = styled("span")({
+  color: "rgba(255, 255, 255, 0.9)",
+  fontWeight: 500,
+  fontSize: "14px",
+
+  "@media (min-width: 640px)": {
+    fontSize: "16px",
+  },
+});
+
+const MainHeadline = styled(motion.h1)({
+  color: colors.white,
+  marginBottom: spacing.base,
+  fontSize: "clamp(2rem, 8vw, 5rem)",
+  lineHeight: 1.15,
+  letterSpacing: "-0.02em",
+  fontWeight: 700,
+
+  "@media (min-width: 640px)": {
+    marginBottom: spacing.xl,
+  },
+});
+
+const GradientText = styled("span")({
+  background: `linear-gradient(to right, ${colors.buttercream}, ${colors.ivory})`,
+  backgroundClip: "text",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+});
+
+const Subheadline = styled(motion.p)({
+  color: colors.ivory,
+  fontSize: "16px",
+  marginBottom: spacing["2xl"],
+  maxWidth: "750px",
+  margin: `0 auto ${spacing["2xl"]} auto`,
+  lineHeight: 1.6,
+  padding: `0 ${spacing.sm}`,
+
+  "@media (min-width: 640px)": {
+    fontSize: "18px",
+  },
+
+  "@media (min-width: 768px)": {
+    fontSize: "20px",
+    marginBottom: spacing["4xl"],
+  },
+});
+
+const CTAContainer = styled(motion.div)({
+  display: "flex",
+  flexDirection: "column",
+  gap: spacing.md,
+  justifyContent: "center",
+  alignItems: "center",
+  padding: `0 ${spacing.sm}`,
+
+  "@media (min-width: 640px)": {
+    flexDirection: "row",
+    gap: spacing.base,
+  },
+});
+
+const PrimaryCTA = styled(Link)({
+  position: "relative",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: spacing.md,
+  padding: `14px ${spacing.xl}`,
+  backgroundColor: colors.buttercream,
+  color: colors.midnightBlue,
+  borderRadius: borderRadius.xl,
+  overflow: "hidden",
+  textDecoration: "none",
+  fontSize: "16px",
+  fontWeight: 600,
+  width: "100%",
+  minHeight: "56px",
+  transition: `all ${transitions.slow}`,
+
+  "@media (min-width: 640px)": {
+    width: "auto",
+    padding: `16px ${spacing["2xl"]}`,
+    fontSize: "18px",
+  },
+
+  "&:hover": {
+    boxShadow: `0 25px 50px ${colors.buttercream}66`,
+    transform: "translateY(-8px)",
+  },
+
+  "&:active": {
+    transform: "scale(0.98)",
+  },
+
+  "& > span": {
+    position: "relative",
+    zIndex: 10,
+  },
+});
+
+const CTAGradient = styled(motion.div)({
+  position: "absolute",
+  inset: 0,
+  background: `linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent)`,
+});
+
+const SecondaryCTA = styled(Link)({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: spacing.md,
+  padding: `14px ${spacing.xl}`,
+  backgroundColor: "rgba(255, 255, 255, 0.75)",
+  backdropFilter: "blur(20px)",
+  color: colors.white,
+  border: "2px solid rgba(255, 255, 255, 0.3)",
+  borderRadius: borderRadius.xl,
+  textDecoration: "none",
+  fontSize: "16px",
+  fontWeight: 600,
+  width: "100%",
+  minHeight: "56px",
+  transition: `all ${transitions.slow}`,
+
+  "@media (min-width: 640px)": {
+    width: "auto",
+    padding: `16px ${spacing["2xl"]}`,
+    fontSize: "18px",
+  },
+
+  "&:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderColor: colors.buttercream,
+    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
+    transform: "translateY(-4px)",
+  },
+
+  "&:active": {
+    transform: "scale(0.98)",
+  },
+});
+
+const MetricsGrid = styled(motion.div)({
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: spacing.base,
+  maxWidth: "640px",
+  margin: `${spacing["4xl"]} auto 0 auto`,
+  padding: `0 ${spacing.sm}`,
+
+  "@media (min-width: 640px)": {
+    gap: spacing["2xl"],
+    marginTop: spacing["6xl"],
+  },
+});
+
+const MetricItem = styled(Box)({
+  textAlign: "center",
+});
+
+const MetricValue = styled(Box)({
+  color: colors.buttercream,
+  fontSize: "32px",
+  fontWeight: 700,
+  marginBottom: spacing.xs,
+
+  "@media (min-width: 640px)": {
+    fontSize: "40px",
+  },
+
+  "@media (min-width: 768px)": {
+    fontSize: "48px",
+    marginBottom: spacing.sm,
+  },
+});
+
+const MetricLabel = styled(Box)({
+  color: "rgba(255, 255, 255, 0.7)",
+  fontSize: "12px",
+
+  "@media (min-width: 640px)": {
+    fontSize: "14px",
+  },
+
+  "@media (min-width: 768px)": {
+    fontSize: "16px",
+  },
+});
 
 export const HeroSection = () => {
   const heroRef = useRef(null);
@@ -20,13 +280,9 @@ export const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--deep-navy)] via-[var(--midnight-blue)] to-[var(--dusty-blue)]"
-    >
+    <StyledHeroSection ref={heroRef}>
       {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-0 left-0 w-[800px] h-[800px] bg-[var(--buttercream)] opacity-10 rounded-full blur-3xl"
+      <AnimatedOrb1
         animate={{
           x: [0, 100, 0],
           y: [0, -100, 0],
@@ -39,8 +295,7 @@ export const HeroSection = () => {
         }}
       />
 
-      <motion.div
-        className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[var(--dusty-blue)] opacity-20 rounded-full blur-3xl"
+      <AnimatedOrb2
         animate={{
           x: [0, -100, 0],
           y: [0, 100, 0],
@@ -53,108 +308,78 @@ export const HeroSection = () => {
         }}
       />
 
-      <motion.div
-        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
-        style={{ y, opacity }}
-      >
-        {/* Brand Tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 sm:mb-8"
-        >
-          <Zap className="text-[var(--buttercream)]" size={16} />
-          <span className="text-white/90 font-medium text-sm sm:text-base">
-            We Build. We Design. We Automate.
-          </span>
-        </motion.div>
-
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-white mb-4 sm:mb-6 px-2"
-          style={{
-            fontSize: "clamp(2rem, 8vw, 5rem)",
-            lineHeight: "1.15",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Accelerate Innovation.
-          <br />
-          <span className="bg-gradient-to-r from-[var(--buttercream)] to-[var(--ivory)] bg-clip-text text-transparent">
-            Automate Success.
-          </span>
-        </motion.h1>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-[var(--ivory)] text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-2"
-        >
-          We design, develop, and automate digital ecosystems that scale
-          businesses through intelligent technology.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-2"
-        >
-          <Link
-            href="/contact"
-            className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-2 text-base sm:text-lg font-semibold w-full sm:w-auto touch-target-large active:scale-[0.98]"
+      <Container maxWidth={false}>
+        <HeroContent style={{ y, opacity }}>
+          {/* Brand Tagline */}
+          <BrandTagline
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
-            <span className="relative z-10">Get Started</span>
-            <ArrowRight
-              className="relative z-10 group-hover:translate-x-2 transition-transform duration-300"
-              size={18}
-            />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "200%" }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            />
-          </Link>
+            <Zap color={colors.buttercream} size={16} />
+            <TaglineText>We Build. We Design. We Automate.</TaglineText>
+          </BrandTagline>
 
-          <Link
-            href="/portfolio"
-            className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 glass-light backdrop-blur-md text-white border-2 border-white/30 rounded-xl hover:bg-white/20 transition-all hover:border-[var(--buttercream)] hover:shadow-xl hover:-translate-y-1 text-base sm:text-lg font-semibold w-full sm:w-auto touch-target-large active:scale-[0.98]"
+          {/* Main Headline */}
+          <MainHeadline
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
           >
-            <span>See Our Work</span>
-            <ArrowRight
-              className="group-hover:translate-x-1 transition-transform"
-              size={18}
-            />
-          </Link>
-        </motion.div>
+            Accelerate Innovation.
+            <br />
+            <GradientText>Automate Success.</GradientText>
+          </MainHeadline>
 
-        {/* Floating Metrics */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mt-12 sm:mt-20 px-2"
-        >
-          {HOME_METRICS.map((metric, index) => (
-            <div key={index} className="text-center">
-              <div className="text-[var(--buttercream)] text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-                <AnimatedCounter end={metric.end} suffix={metric.suffix} />
-              </div>
-              <div className="text-white/70 text-xs sm:text-sm md:text-base">
-                {metric.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
-    </section>
+          {/* Subheadline */}
+          <Subheadline
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            We design, develop, and automate digital ecosystems that scale
+            businesses through intelligent technology.
+          </Subheadline>
+
+          {/* CTAs */}
+          <CTAContainer
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <PrimaryCTA href="/contact">
+              <span>Get Started</span>
+              <ArrowRight size={18} />
+              <CTAGradient
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "200%" }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
+            </PrimaryCTA>
+
+            <SecondaryCTA href="/portfolio">
+              <span>See Our Work</span>
+              <ArrowRight size={18} />
+            </SecondaryCTA>
+          </CTAContainer>
+
+          {/* Floating Metrics */}
+          <MetricsGrid
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+          >
+            {HOME_METRICS.map((metric, index) => (
+              <MetricItem key={index}>
+                <MetricValue>
+                  <AnimatedCounter end={metric.end} suffix={metric.suffix} />
+                </MetricValue>
+                <MetricLabel>{metric.label}</MetricLabel>
+              </MetricItem>
+            ))}
+          </MetricsGrid>
+        </HeroContent>
+      </Container>
+    </StyledHeroSection>
   );
 };
