@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from "react";
 
-import { motion, useInView } from 'motion/react';
+import { motion, useInView } from "motion/react";
 
 interface ScrollRevealProps {
   children: ReactNode;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'scale';
+  direction?: "up" | "down" | "left" | "right" | "scale";
   delay?: number;
   duration?: number;
   className?: string;
@@ -15,39 +15,39 @@ interface ScrollRevealProps {
 
 export const ScrollReveal = ({
   children,
-  direction = 'up',
+  direction = "up",
   delay = 0,
   duration = 0.6,
-  className = '',
-  once = true
+  className = "",
+  once = true,
 }: ScrollRevealProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { 
+  const isInView = useInView(ref, {
     once,
-    margin: "-100px 0px"
+    margin: "-100px 0px",
   });
 
   const variants = {
     up: {
       hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0 }
+      visible: { opacity: 1, y: 0 },
     },
     down: {
       hidden: { opacity: 0, y: -30 },
-      visible: { opacity: 1, y: 0 }
+      visible: { opacity: 1, y: 0 },
     },
     left: {
       hidden: { opacity: 0, x: -30 },
-      visible: { opacity: 1, x: 0 }
+      visible: { opacity: 1, x: 0 },
     },
     right: {
       hidden: { opacity: 0, x: 30 },
-      visible: { opacity: 1, x: 0 }
+      visible: { opacity: 1, x: 0 },
     },
     scale: {
       hidden: { opacity: 0, scale: 0.9 },
-      visible: { opacity: 1, scale: 1 }
-    }
+      visible: { opacity: 1, scale: 1 },
+    },
   };
 
   return (
@@ -59,7 +59,7 @@ export const ScrollReveal = ({
       transition={{
         duration,
         delay,
-        ease: [0.4, 0, 0.2, 1]
+        ease: [0.4, 0, 0.2, 1],
       }}
       className={className}
     >
@@ -77,12 +77,12 @@ interface StaggerContainerProps {
 export const StaggerContainer = ({
   children,
   staggerDelay = 0.1,
-  className = ''
+  className = "",
 }: StaggerContainerProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { 
+  const isInView = useInView(ref, {
     once: true,
-    margin: "-100px 0px"
+    margin: "-100px 0px",
   });
 
   return (
@@ -93,9 +93,9 @@ export const StaggerContainer = ({
       variants={{
         visible: {
           transition: {
-            staggerChildren: staggerDelay
-          }
-        }
+            staggerChildren: staggerDelay,
+          },
+        },
       }}
       className={className}
     >
@@ -109,19 +109,19 @@ interface StaggerItemProps {
   className?: string;
 }
 
-export const StaggerItem = ({ children, className = '' }: StaggerItemProps) => {
+export const StaggerItem = ({ children, className = "" }: StaggerItemProps) => {
   return (
     <motion.div
       variants={{
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-          opacity: 1, 
+        visible: {
+          opacity: 1,
           y: 0,
           transition: {
             duration: 0.5,
-            ease: [0.4, 0, 0.2, 1]
-          }
-        }
+            ease: [0.4, 0, 0.2, 1],
+          },
+        },
       }}
       className={className}
     >
@@ -129,4 +129,3 @@ export const StaggerItem = ({ children, className = '' }: StaggerItemProps) => {
     </motion.div>
   );
 };
-

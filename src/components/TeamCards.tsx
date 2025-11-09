@@ -1,53 +1,53 @@
 "use client";
 
-import { motion } from 'motion/react';
-import { Linkedin, Twitter, Mail } from 'lucide-react';
+import { motion } from "motion/react";
+import { Linkedin, Twitter, Mail } from "lucide-react";
 
 const team = [
   {
-    name: 'Alex Rivera',
-    role: 'Founder & CEO',
-    bio: '15+ years building scalable systems. Former lead engineer at tech giants.',
-    image: '👨‍💼',
+    name: "Alex Rivera",
+    role: "Founder & CEO",
+    bio: "15+ years building scalable systems. Former lead engineer at tech giants.",
+    image: "👨‍💼",
     social: {
-      linkedin: '#',
-      twitter: '#',
-      email: 'alex@propello.com'
-    }
+      linkedin: "#",
+      twitter: "#",
+      email: "alex@propello.com",
+    },
   },
   {
-    name: 'Sarah Chen',
-    role: 'Head of Design',
-    bio: 'Award-winning designer. Obsessed with creating delightful user experiences.',
-    image: '👩‍🎨',
+    name: "Sarah Chen",
+    role: "Head of Design",
+    bio: "Award-winning designer. Obsessed with creating delightful user experiences.",
+    image: "👩‍🎨",
     social: {
-      linkedin: '#',
-      twitter: '#',
-      email: 'sarah@propello.com'
-    }
+      linkedin: "#",
+      twitter: "#",
+      email: "sarah@propello.com",
+    },
   },
   {
-    name: 'Marcus Johnson',
-    role: 'Lead Engineer',
-    bio: 'Full-stack wizard. Passionate about clean code and automation.',
-    image: '👨‍💻',
+    name: "Marcus Johnson",
+    role: "Lead Engineer",
+    bio: "Full-stack wizard. Passionate about clean code and automation.",
+    image: "👨‍💻",
     social: {
-      linkedin: '#',
-      twitter: '#',
-      email: 'marcus@propello.com'
-    }
+      linkedin: "#",
+      twitter: "#",
+      email: "marcus@propello.com",
+    },
   },
   {
-    name: 'Emily Park',
-    role: 'Automation Specialist',
-    bio: 'AI integration expert. Turns complex workflows into simple automations.',
-    image: '👩‍🔬',
+    name: "Emily Park",
+    role: "Automation Specialist",
+    bio: "AI integration expert. Turns complex workflows into simple automations.",
+    image: "👩‍🔬",
     social: {
-      linkedin: '#',
-      twitter: '#',
-      email: 'emily@propello.com'
-    }
-  }
+      linkedin: "#",
+      twitter: "#",
+      email: "emily@propello.com",
+    },
+  },
 ];
 
 export const TeamCards = () => {
@@ -71,7 +71,7 @@ export const TeamCards = () => {
               rotateX: -5,
             }}
             transition={{ duration: 0.3 }}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={{ transformStyle: "preserve-3d" }}
           >
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--midnight-blue)]/0 to-[var(--midnight-blue)]/0 group-hover:from-[var(--midnight-blue)]/5 group-hover:to-[var(--dusty-blue)]/5 transition-all duration-500" />

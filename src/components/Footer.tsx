@@ -1,32 +1,32 @@
 "use client";
 
-import Link from 'next/link';
-import { motion } from 'motion/react';
-import { Twitter, Linkedin, Github, Instagram } from 'lucide-react';
+import Link from "next/link";
+import { motion } from "motion/react";
+import { Twitter, Linkedin, Github, Instagram } from "lucide-react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     Company: [
-      { name: 'About', path: '/about' },
-      { name: 'Services', path: '/services' },
-      { name: 'Portfolio', path: '/portfolio' },
-      { name: 'Contact', path: '/contact' },
+      { name: "About", path: "/about" },
+      { name: "Services", path: "/services" },
+      { name: "Portfolio", path: "/portfolio" },
+      { name: "Contact", path: "/contact" },
     ],
     Services: [
-      { name: 'Web Development', path: '/services' },
-      { name: 'Mobile Backend', path: '/services' },
-      { name: 'UI/UX Design', path: '/services' },
-      { name: 'Business Automation', path: '/services' },
+      { name: "Web Development", path: "/services" },
+      { name: "Mobile Backend", path: "/services" },
+      { name: "UI/UX Design", path: "/services" },
+      { name: "Business Automation", path: "/services" },
     ],
   };
 
   const socialLinks = [
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'Github' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Github, href: "#", label: "Github" },
+    { icon: Instagram, href: "#", label: "Instagram" },
   ];
 
   return (
@@ -49,7 +49,7 @@ export const Footer = () => {
                   href={social.href}
                   aria-label={social.label}
                   whileHover={{ y: -4, scale: 1.1 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--buttercream)] hover:text-[var(--midnight-blue)] transition-colors"
                 >
                   <social.icon size={18} />
@@ -102,10 +102,16 @@ export const Footer = () => {
             © {currentYear} Propello. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link href="#" className="text-[var(--ivory)] opacity-60 hover:text-[var(--buttercream)] hover:opacity-100 transition-all">
+            <Link
+              href="#"
+              className="text-[var(--ivory)] opacity-60 hover:text-[var(--buttercream)] hover:opacity-100 transition-all"
+            >
               Privacy Policy
             </Link>
-            <Link href="#" className="text-[var(--ivory)] opacity-60 hover:text-[var(--buttercream)] hover:opacity-100 transition-all">
+            <Link
+              href="#"
+              className="text-[var(--ivory)] opacity-60 hover:text-[var(--buttercream)] hover:opacity-100 transition-all"
+            >
               Terms of Service
             </Link>
           </div>
@@ -114,4 +120,3 @@ export const Footer = () => {
     </footer>
   );
 };
-

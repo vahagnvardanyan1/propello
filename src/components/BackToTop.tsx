@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUp } from 'lucide-react';
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowUp } from "lucide-react";
 
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,15 +21,15 @@ export const BackToTop = () => {
     // Check initial scroll position
     toggleVisibility();
 
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
-    
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -54,4 +54,3 @@ export const BackToTop = () => {
     </AnimatePresence>
   );
 };
-

@@ -1,50 +1,50 @@
 "use client";
 
-import Link from 'next/link';
-import { motion } from 'motion/react';
-import { TrendingUp, Clock, Users, Award } from 'lucide-react';
+import Link from "next/link";
+import { motion } from "motion/react";
+import { TrendingUp, Clock, Users, Award } from "lucide-react";
 
-import { ProjectGrid } from '@/components/ProjectGrid';
-import { TechStackScroll } from '@/components/TechStackScroll';
+import { ProjectGrid } from "@/components/ProjectGrid";
+import { TechStackScroll } from "@/components/TechStackScroll";
 
 const PortfolioPage = () => {
   const caseStudies = [
     {
-      title: 'E-Commerce Automation',
-      company: 'RetailTech Inc.',
-      challenge: 'Manual order processing taking 20+ hours weekly',
-      solution: 'AI-powered automation with real-time inventory sync',
+      title: "E-Commerce Automation",
+      company: "RetailTech Inc.",
+      challenge: "Manual order processing taking 20+ hours weekly",
+      solution: "AI-powered automation with real-time inventory sync",
       results: [
-        { metric: '95%', label: 'Time Saved' },
-        { metric: '$50K', label: 'Annual Savings' },
-        { metric: '99.9%', label: 'Accuracy Rate' }
+        { metric: "95%", label: "Time Saved" },
+        { metric: "$50K", label: "Annual Savings" },
+        { metric: "99.9%", label: "Accuracy Rate" },
       ],
-      color: 'from-blue-500 to-cyan-500'
+      color: "from-blue-500 to-cyan-500",
     },
     {
-      title: 'Healthcare Platform Scale',
-      company: 'MediConnect',
-      challenge: 'Platform crashing under 10K concurrent users',
-      solution: 'Microservices architecture with auto-scaling',
+      title: "Healthcare Platform Scale",
+      company: "MediConnect",
+      challenge: "Platform crashing under 10K concurrent users",
+      solution: "Microservices architecture with auto-scaling",
       results: [
-        { metric: '100K+', label: 'Active Users' },
-        { metric: '0.8s', label: 'Load Time' },
-        { metric: '99.99%', label: 'Uptime' }
+        { metric: "100K+", label: "Active Users" },
+        { metric: "0.8s", label: "Load Time" },
+        { metric: "99.99%", label: "Uptime" },
       ],
-      color: 'from-green-500 to-emerald-500'
+      color: "from-green-500 to-emerald-500",
     },
     {
-      title: 'UX Redesign Impact',
-      company: 'SaaS Platform',
-      challenge: 'High bounce rate and low user engagement',
-      solution: 'Complete UX overhaul with user research',
+      title: "UX Redesign Impact",
+      company: "SaaS Platform",
+      challenge: "High bounce rate and low user engagement",
+      solution: "Complete UX overhaul with user research",
       results: [
-        { metric: '200%', label: 'Engagement' },
-        { metric: '45%', label: 'Conversion Up' },
-        { metric: '4.9/5', label: 'Satisfaction' }
+        { metric: "200%", label: "Engagement" },
+        { metric: "45%", label: "Conversion Up" },
+        { metric: "4.9/5", label: "Satisfaction" },
       ],
-      color: 'from-purple-500 to-pink-500'
-    }
+      color: "from-purple-500 to-pink-500",
+    },
   ];
 
   return (
@@ -56,12 +56,12 @@ const PortfolioPage = () => {
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
-            y: [0, -50, 0]
+            y: [0, -50, 0],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
 
@@ -80,17 +80,24 @@ const PortfolioPage = () => {
             >
               Our Work
             </motion.p>
-            
-            <h1 className="text-white mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.1' }}>
+
+            <h1
+              className="text-white mb-6"
+              style={{
+                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                lineHeight: "1.1",
+              }}
+            >
               Transforming Ideas Into
               <br />
               <span className="bg-gradient-to-r from-[var(--buttercream)] to-[var(--ivory)] bg-clip-text text-transparent">
                 Digital Excellence
               </span>
             </h1>
-            
+
             <p className="text-[var(--ivory)] text-xl leading-relaxed">
-              Real projects. Real results. See how we&apos;ve helped businesses scale, automate, and dominate their markets.
+              Real projects. Real results. See how we&apos;ve helped businesses
+              scale, automate, and dominate their markets.
             </p>
           </motion.div>
 
@@ -102,10 +109,10 @@ const PortfolioPage = () => {
             className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto mt-16"
           >
             {[
-              { icon: Award, value: '100+', label: 'Projects Delivered' },
-              { icon: Users, value: '2M+', label: 'Users Impacted' },
-              { icon: Clock, value: '10K+', label: 'Hours Saved' },
-              { icon: TrendingUp, value: '350%', label: 'Avg ROI' }
+              { icon: Award, value: "100+", label: "Projects Delivered" },
+              { icon: Users, value: "2M+", label: "Users Impacted" },
+              { icon: Clock, value: "10K+", label: "Hours Saved" },
+              { icon: TrendingUp, value: "350%", label: "Avg ROI" },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -120,9 +127,7 @@ const PortfolioPage = () => {
                 <div className="text-white text-3xl font-bold mb-1">
                   {stat.value}
                 </div>
-                <div className="text-[var(--ivory)] text-sm">
-                  {stat.label}
-                </div>
+                <div className="text-[var(--ivory)] text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -141,11 +146,15 @@ const PortfolioPage = () => {
             <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
               Featured Projects
             </p>
-            <h2 className="text-[var(--midnight-blue)] mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)] mb-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Our Latest Work
             </h2>
             <p className="text-[var(--dusty-blue)] text-lg max-w-2xl mx-auto">
-              Explore our portfolio of cutting-edge solutions across web, mobile, design, and automation
+              Explore our portfolio of cutting-edge solutions across web,
+              mobile, design, and automation
             </p>
           </motion.div>
 
@@ -165,11 +174,15 @@ const PortfolioPage = () => {
             <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
               Success Stories
             </p>
-            <h2 className="text-[var(--midnight-blue)] mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)] mb-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Automation Case Studies
             </h2>
             <p className="text-[var(--dusty-blue)] text-lg max-w-2xl mx-auto">
-              Real businesses, real impact. See how automation transformed operations.
+              Real businesses, real impact. See how automation transformed
+              operations.
             </p>
           </motion.div>
 
@@ -217,7 +230,9 @@ const PortfolioPage = () => {
                   </div>
 
                   {/* Results */}
-                  <div className={`bg-gradient-to-br ${study.color} p-8 flex items-center`}>
+                  <div
+                    className={`bg-gradient-to-br ${study.color} p-8 flex items-center`}
+                  >
                     <div className="w-full">
                       <h4 className="text-white font-semibold mb-6 text-lg">
                         Results
@@ -252,7 +267,10 @@ const PortfolioPage = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-[var(--midnight-blue)] mb-3" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)] mb-3"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+            >
               Technologies We Master
             </h2>
             <p className="text-[var(--dusty-blue)] text-lg">
@@ -260,7 +278,7 @@ const PortfolioPage = () => {
             </p>
           </motion.div>
         </div>
-        
+
         <TechStackScroll />
       </section>
 
@@ -272,13 +290,16 @@ const PortfolioPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-white mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-white mb-6"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Ready to Create Your Success Story?
             </h2>
             <p className="text-[var(--ivory)] text-xl mb-10 max-w-2xl mx-auto">
               Let&apos;s build something that transforms your business
             </p>
-            
+
             <Link
               href="/contact"
               className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl hover:bg-[var(--buttercream)]/90 transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-1 text-lg font-semibold"

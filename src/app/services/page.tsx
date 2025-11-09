@@ -1,72 +1,137 @@
 "use client";
 
-import Link from 'next/link';
-import { motion } from 'motion/react';
-import { 
-  Code, Smartphone, Palette, Zap, ArrowRight,
-  Layout, Database, Cloud, Lock, Cpu, Workflow
-} from 'lucide-react';
+import Link from "next/link";
+import { motion } from "motion/react";
+import {
+  Code,
+  Smartphone,
+  Palette,
+  Zap,
+  ArrowRight,
+  Layout,
+  Database,
+  Cloud,
+  Lock,
+  Cpu,
+  Workflow,
+} from "lucide-react";
 
-import { ProcessTimeline } from '@/components/ProcessTimeline';
+import { ProcessTimeline } from "@/components/ProcessTimeline";
 
 const ServicesPage = () => {
   const services = [
     {
       icon: Code,
-      title: 'Web Development',
-      tagline: 'Build. Scale. Dominate.',
-      description: 'We craft high-performance web applications that scale with your business. From startups to enterprise, we deliver solutions that drive results.',
+      title: "Web Development",
+      tagline: "Build. Scale. Dominate.",
+      description:
+        "We craft high-performance web applications that scale with your business. From startups to enterprise, we deliver solutions that drive results.",
       features: [
-        { icon: Layout, text: 'Responsive Design', detail: 'Pixel-perfect on every device' },
-        { icon: Cloud, text: 'Cloud-Native Architecture', detail: 'Scalable and resilient' },
-        { icon: Zap, text: 'Lightning Performance', detail: 'Optimized for speed' },
-        { icon: Lock, text: 'Enterprise Security', detail: 'Bank-level protection' }
+        {
+          icon: Layout,
+          text: "Responsive Design",
+          detail: "Pixel-perfect on every device",
+        },
+        {
+          icon: Cloud,
+          text: "Cloud-Native Architecture",
+          detail: "Scalable and resilient",
+        },
+        {
+          icon: Zap,
+          text: "Lightning Performance",
+          detail: "Optimized for speed",
+        },
+        {
+          icon: Lock,
+          text: "Enterprise Security",
+          detail: "Bank-level protection",
+        },
       ],
-      technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL'],
-      color: 'from-blue-500 to-blue-700'
+      technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"],
+      color: "from-blue-500 to-blue-700",
     },
     {
       icon: Smartphone,
-      title: 'Mobile Backend Engineering',
-      tagline: 'Power. Performance. Scale.',
-      description: 'Robust backend systems that power millions of mobile users. Real-time data, seamless sync, and bulletproof reliability.',
+      title: "Mobile Backend Engineering",
+      tagline: "Power. Performance. Scale.",
+      description:
+        "Robust backend systems that power millions of mobile users. Real-time data, seamless sync, and bulletproof reliability.",
       features: [
-        { icon: Database, text: 'Real-Time Data Sync', detail: 'Instant updates everywhere' },
-        { icon: Cpu, text: 'Microservices Architecture', detail: 'Modular and maintainable' },
-        { icon: Cloud, text: 'Auto-Scaling Infrastructure', detail: 'Handles any load' },
-        { icon: Lock, text: 'Advanced Security', detail: 'OAuth 2.0 & JWT' }
+        {
+          icon: Database,
+          text: "Real-Time Data Sync",
+          detail: "Instant updates everywhere",
+        },
+        {
+          icon: Cpu,
+          text: "Microservices Architecture",
+          detail: "Modular and maintainable",
+        },
+        {
+          icon: Cloud,
+          text: "Auto-Scaling Infrastructure",
+          detail: "Handles any load",
+        },
+        { icon: Lock, text: "Advanced Security", detail: "OAuth 2.0 & JWT" },
       ],
-      technologies: ['Node.js', 'GraphQL', 'MongoDB', 'Redis', 'AWS'],
-      color: 'from-purple-500 to-purple-700'
+      technologies: ["Node.js", "GraphQL", "MongoDB", "Redis", "AWS"],
+      color: "from-purple-500 to-purple-700",
     },
     {
       icon: Palette,
-      title: 'UI/UX Design',
-      tagline: 'Design. Delight. Convert.',
-      description: 'Beautiful interfaces that users love and that drive business metrics. We blend art with science to create experiences that convert.',
+      title: "UI/UX Design",
+      tagline: "Design. Delight. Convert.",
+      description:
+        "Beautiful interfaces that users love and that drive business metrics. We blend art with science to create experiences that convert.",
       features: [
-        { icon: Layout, text: 'User Research', detail: 'Data-driven insights' },
-        { icon: Workflow, text: 'Interactive Prototypes', detail: 'Test before build' },
-        { icon: Palette, text: 'Design Systems', detail: 'Scalable consistency' },
-        { icon: Zap, text: 'Conversion Optimization', detail: 'Maximize ROI' }
+        { icon: Layout, text: "User Research", detail: "Data-driven insights" },
+        {
+          icon: Workflow,
+          text: "Interactive Prototypes",
+          detail: "Test before build",
+        },
+        {
+          icon: Palette,
+          text: "Design Systems",
+          detail: "Scalable consistency",
+        },
+        { icon: Zap, text: "Conversion Optimization", detail: "Maximize ROI" },
       ],
-      technologies: ['Figma', 'Adobe XD', 'Sketch', 'InVision', 'Framer'],
-      color: 'from-pink-500 to-pink-700'
+      technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Framer"],
+      color: "from-pink-500 to-pink-700",
     },
     {
       icon: Zap,
-      title: 'Business Automation',
-      tagline: 'Automate. Accelerate. Grow.',
-      description: 'AI-powered automation that eliminates busywork and supercharges your team. Save time, reduce errors, and scale faster.',
+      title: "Business Automation",
+      tagline: "Automate. Accelerate. Grow.",
+      description:
+        "AI-powered automation that eliminates busywork and supercharges your team. Save time, reduce errors, and scale faster.",
       features: [
-        { icon: Cpu, text: 'AI Integration', detail: 'GPT-4 & machine learning' },
-        { icon: Workflow, text: 'Workflow Automation', detail: 'End-to-end processes' },
-        { icon: Zap, text: 'Smart Triggers', detail: 'Event-driven automation' },
-        { icon: Cloud, text: 'Integration Hub', detail: '1000+ app connections' }
+        {
+          icon: Cpu,
+          text: "AI Integration",
+          detail: "GPT-4 & machine learning",
+        },
+        {
+          icon: Workflow,
+          text: "Workflow Automation",
+          detail: "End-to-end processes",
+        },
+        {
+          icon: Zap,
+          text: "Smart Triggers",
+          detail: "Event-driven automation",
+        },
+        {
+          icon: Cloud,
+          text: "Integration Hub",
+          detail: "1000+ app connections",
+        },
       ],
-      technologies: ['OpenAI API', 'Zapier', 'Make', 'n8n', 'AWS Lambda'],
-      color: 'from-yellow-500 to-yellow-700'
-    }
+      technologies: ["OpenAI API", "Zapier", "Make", "n8n", "AWS Lambda"],
+      color: "from-yellow-500 to-yellow-700",
+    },
   ];
 
   return (
@@ -78,12 +143,12 @@ const ServicesPage = () => {
           className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--buttercream)] opacity-10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
-            x: [0, -50, 0]
+            x: [0, -50, 0],
           }}
           transition={{
             duration: 15,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
 
@@ -102,17 +167,24 @@ const ServicesPage = () => {
             >
               Our Services
             </motion.p>
-            
-            <h1 className="text-white mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.1' }}>
+
+            <h1
+              className="text-white mb-6"
+              style={{
+                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                lineHeight: "1.1",
+              }}
+            >
               We Craft Intelligent Systems
               <br />
               <span className="bg-gradient-to-r from-[var(--buttercream)] to-[var(--ivory)] bg-clip-text text-transparent">
                 That Automate Business Growth
               </span>
             </h1>
-            
+
             <p className="text-[var(--ivory)] text-xl leading-relaxed max-w-3xl mx-auto">
-              From ideation to deployment, we build technology that transforms how businesses operate, compete, and scale.
+              From ideation to deployment, we build technology that transforms
+              how businesses operate, compete, and scale.
             </p>
           </motion.div>
         </div>
@@ -130,11 +202,11 @@ const ServicesPage = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
                 className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
                 {/* Content */}
-                <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                   <div className="inline-flex items-center gap-3 mb-6">
                     <motion.div
                       className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg`}
@@ -167,7 +239,9 @@ const ServicesPage = () => {
                         transition={{ delay: i * 0.1 }}
                         className="flex gap-3 items-start"
                       >
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center flex-shrink-0`}>
+                        <div
+                          className={`w-10 h-10 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center flex-shrink-0`}
+                        >
                           <feature.icon className="text-white" size={18} />
                         </div>
                         <div>
@@ -196,7 +270,7 @@ const ServicesPage = () => {
                 </div>
 
                 {/* Visual */}
-                <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                   <motion.div
                     className={`relative h-[400px] rounded-3xl bg-gradient-to-br ${service.color} p-8 overflow-hidden shadow-2xl`}
                     whileHover={{ scale: 1.02 }}
@@ -217,10 +291,14 @@ const ServicesPage = () => {
                         transition={{
                           duration: 4,
                           repeat: Infinity,
-                          ease: "easeInOut"
+                          ease: "easeInOut",
                         }}
                       >
-                        <service.icon className="text-white" size={120} strokeWidth={1} />
+                        <service.icon
+                          className="text-white"
+                          size={120}
+                          strokeWidth={1}
+                        />
                       </motion.div>
                     </div>
                   </motion.div>
@@ -243,7 +321,10 @@ const ServicesPage = () => {
             <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
               How We Work
             </p>
-            <h2 className="text-[var(--midnight-blue)] mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)] mb-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Our Process
             </h2>
             <p className="text-[var(--dusty-blue)] text-lg max-w-2xl mx-auto">
@@ -268,23 +349,27 @@ const ServicesPage = () => {
               className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--buttercream)] to-[var(--ivory)] flex items-center justify-center shadow-xl"
               animate={{
                 y: [0, -10, 0],
-                rotate: [0, 5, -5, 0]
+                rotate: [0, 5, -5, 0],
               }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <Zap className="text-[var(--midnight-blue)]" size={40} />
             </motion.div>
 
-            <h2 className="text-white mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+            <h2
+              className="text-white mb-6"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+            >
               See Automation in Action
             </h2>
-            
+
             <p className="text-[var(--ivory)] text-lg mb-8 leading-relaxed">
-              Watch how we integrate AI-powered workflows that save 40+ hours per week and increase productivity by 300%
+              Watch how we integrate AI-powered workflows that save 40+ hours
+              per week and increase productivity by 300%
             </p>
 
             <Link
@@ -292,7 +377,10 @@ const ServicesPage = () => {
               className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl hover:bg-[var(--buttercream)]/90 transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-1 text-lg font-semibold group"
             >
               View Live Demo
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+              <ArrowRight
+                className="group-hover:translate-x-1 transition-transform"
+                size={20}
+              />
             </Link>
           </motion.div>
         </div>
@@ -306,19 +394,26 @@ const ServicesPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[var(--midnight-blue)] mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)] mb-6"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Ready to Start Your Project?
             </h2>
             <p className="text-[var(--dusty-blue)] text-xl mb-10 max-w-2xl mx-auto">
-              Let&apos;s discuss how we can help bring your vision to life with world-class technology and design
+              Let&apos;s discuss how we can help bring your vision to life with
+              world-class technology and design
             </p>
-            
+
             <Link
               href="/contact"
               className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[var(--midnight-blue)] to-[var(--dusty-blue)] text-white rounded-xl hover:shadow-2xl transition-all hover:-translate-y-1 text-lg font-semibold group"
             >
               Contact Us Today
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={22} />
+              <ArrowRight
+                className="group-hover:translate-x-1 transition-transform"
+                size={22}
+              />
             </Link>
           </motion.div>
         </div>

@@ -1,99 +1,99 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { motion } from 'motion/react';
-import { Code2, Database, Cloud, Palette, Cpu, Zap } from 'lucide-react';
+import { motion } from "motion/react";
+import { Code2, Database, Cloud, Palette, Cpu, Zap } from "lucide-react";
 
 const technologies = [
-  { 
-    name: 'React', 
-    category: 'Frontend',
+  {
+    name: "React",
+    category: "Frontend",
     icon: Code2,
-    color: 'from-blue-500 to-cyan-500',
-    description: 'Component-based UI'
+    color: "from-blue-500 to-cyan-500",
+    description: "Component-based UI",
   },
-  { 
-    name: 'Node.js', 
-    category: 'Backend',
+  {
+    name: "Node.js",
+    category: "Backend",
     icon: Cpu,
-    color: 'from-green-500 to-emerald-500',
-    description: 'High-performance runtime'
+    color: "from-green-500 to-emerald-500",
+    description: "High-performance runtime",
   },
-  { 
-    name: 'TypeScript', 
-    category: 'Language',
+  {
+    name: "TypeScript",
+    category: "Language",
     icon: Code2,
-    color: 'from-blue-600 to-blue-400',
-    description: 'Type-safe development'
+    color: "from-blue-600 to-blue-400",
+    description: "Type-safe development",
   },
-  { 
-    name: 'AWS', 
-    category: 'Cloud',
+  {
+    name: "AWS",
+    category: "Cloud",
     icon: Cloud,
-    color: 'from-orange-500 to-amber-500',
-    description: 'Scalable infrastructure'
+    color: "from-orange-500 to-amber-500",
+    description: "Scalable infrastructure",
   },
-  { 
-    name: 'OpenAI API', 
-    category: 'AI',
+  {
+    name: "OpenAI API",
+    category: "AI",
     icon: Zap,
-    color: 'from-purple-500 to-pink-500',
-    description: 'AI-powered features'
+    color: "from-purple-500 to-pink-500",
+    description: "AI-powered features",
   },
-  { 
-    name: 'Zapier', 
-    category: 'Automation',
+  {
+    name: "Zapier",
+    category: "Automation",
     icon: Zap,
-    color: 'from-orange-600 to-red-500',
-    description: 'Workflow automation'
+    color: "from-orange-600 to-red-500",
+    description: "Workflow automation",
   },
-  { 
-    name: 'Next.js', 
-    category: 'Framework',
+  {
+    name: "Next.js",
+    category: "Framework",
     icon: Code2,
-    color: 'from-gray-700 to-gray-900',
-    description: 'Full-stack React'
+    color: "from-gray-700 to-gray-900",
+    description: "Full-stack React",
   },
-  { 
-    name: 'PostgreSQL', 
-    category: 'Database',
+  {
+    name: "PostgreSQL",
+    category: "Database",
     icon: Database,
-    color: 'from-blue-700 to-indigo-600',
-    description: 'Reliable data storage'
+    color: "from-blue-700 to-indigo-600",
+    description: "Reliable data storage",
   },
-  { 
-    name: 'Docker', 
-    category: 'DevOps',
+  {
+    name: "Docker",
+    category: "DevOps",
     icon: Cloud,
-    color: 'from-blue-500 to-sky-400',
-    description: 'Containerization'
+    color: "from-blue-500 to-sky-400",
+    description: "Containerization",
   },
-  { 
-    name: 'Figma', 
-    category: 'Design',
+  {
+    name: "Figma",
+    category: "Design",
     icon: Palette,
-    color: 'from-pink-500 to-purple-500',
-    description: 'Design collaboration'
+    color: "from-pink-500 to-purple-500",
+    description: "Design collaboration",
   },
-  { 
-    name: 'TailwindCSS', 
-    category: 'Styling',
+  {
+    name: "TailwindCSS",
+    category: "Styling",
     icon: Palette,
-    color: 'from-cyan-500 to-blue-500',
-    description: 'Utility-first CSS'
+    color: "from-cyan-500 to-blue-500",
+    description: "Utility-first CSS",
   },
-  { 
-    name: 'MongoDB', 
-    category: 'Database',
+  {
+    name: "MongoDB",
+    category: "Database",
     icon: Database,
-    color: 'from-green-600 to-green-400',
-    description: 'NoSQL database'
-  }
+    color: "from-green-600 to-green-400",
+    description: "NoSQL database",
+  },
 ];
 
 interface TechCardProps {
-  tech: typeof technologies[0];
+  tech: (typeof technologies)[0];
   index: number;
 }
 
@@ -113,7 +113,7 @@ const TechCard = ({ tech, index }: TechCardProps) => {
       <motion.div
         className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"
         style={{
-          background: `linear-gradient(135deg, var(--buttercream), var(--ivory))`
+          background: `linear-gradient(135deg, var(--buttercream), var(--ivory))`,
         }}
       />
 
@@ -164,7 +164,7 @@ const TechCard = ({ tech, index }: TechCardProps) => {
           <motion.div
             className={`h-1 rounded-full bg-gradient-to-r ${tech.color} mt-3 sm:mt-4`}
             initial={{ width: 0 }}
-            whileInView={{ width: '100%' }}
+            whileInView={{ width: "100%" }}
             transition={{ duration: 0.8, delay: index * 0.1 }}
           />
         </div>
@@ -183,46 +183,50 @@ export const TechStackScroll = () => {
       {/* Gradient Overlays for Smooth Edges */}
       <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
-      
+
       <div className="relative space-y-6 sm:space-y-8">
         {/* First Row - Scrolling Left */}
         <motion.div
           className="flex gap-4 sm:gap-6"
           animate={{
-            x: [0, -2200]
+            x: [0, -2200],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
               duration: 45,
-              ease: "linear"
-            }
+              ease: "linear",
+            },
           }}
         >
-          {[...technologies, ...technologies, ...technologies].map((tech, index) => (
-            <TechCard key={`tech-1-${index}`} tech={tech} index={index} />
-          ))}
+          {[...technologies, ...technologies, ...technologies].map(
+            (tech, index) => (
+              <TechCard key={`tech-1-${index}`} tech={tech} index={index} />
+            ),
+          )}
         </motion.div>
 
         {/* Second Row - Scrolling Right */}
         <motion.div
           className="flex gap-4 sm:gap-6"
           animate={{
-            x: [-2200, 0]
+            x: [-2200, 0],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
               duration: 45,
-              ease: "linear"
-            }
+              ease: "linear",
+            },
           }}
         >
-          {[...technologies, ...technologies, ...technologies].reverse().map((tech, index) => (
-            <TechCard key={`tech-2-${index}`} tech={tech} index={index} />
-          ))}
+          {[...technologies, ...technologies, ...technologies]
+            .reverse()
+            .map((tech, index) => (
+              <TechCard key={`tech-2-${index}`} tech={tech} index={index} />
+            ))}
         </motion.div>
       </div>
 

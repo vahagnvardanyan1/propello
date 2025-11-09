@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "motion/react";
+import { Menu, X } from "lucide-react";
 
 export const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,11 +15,15 @@ export const Navigation = () => {
   const pathname = usePathname();
 
   const links = [
-    { name: 'Home', path: '/', ariaLabel: 'Navigate to home page' },
-    { name: 'Services', path: '/services', ariaLabel: 'View our services' },
-    { name: 'Portfolio', path: '/portfolio', ariaLabel: 'Explore our portfolio' },
-    { name: 'About', path: '/about', ariaLabel: 'Learn about us' },
-    { name: 'Contact', path: '/contact', ariaLabel: 'Get in touch' },
+    { name: "Home", path: "/", ariaLabel: "Navigate to home page" },
+    { name: "Services", path: "/services", ariaLabel: "View our services" },
+    {
+      name: "Portfolio",
+      path: "/portfolio",
+      ariaLabel: "Explore our portfolio",
+    },
+    { name: "About", path: "/about", ariaLabel: "Learn about us" },
+    { name: "Contact", path: "/contact", ariaLabel: "Get in touch" },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -28,10 +32,10 @@ export const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Set scrolled state for background change
       setScrolled(currentScrollY > 20);
-      
+
       // Auto-hide logic
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & past threshold
@@ -40,12 +44,12 @@ export const Navigation = () => {
         // Scrolling up
         setHidden(false);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   // Close mobile menu on route change
@@ -63,19 +67,19 @@ export const Navigation = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [mobileMenuOpen]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [mobileMenuOpen]);
 
@@ -86,18 +90,18 @@ export const Navigation = () => {
         Skip to main content
       </a>
 
-      <motion.nav 
+      <motion.nav
         className={`fixed w-full z-[var(--z-fixed)] transition-all duration-300 ${
-          scrolled 
-            ? 'bg-[var(--midnight-blue)]/98 backdrop-blur-xl shadow-lg' 
-            : 'bg-[var(--midnight-blue)]/95 backdrop-blur-md'
+          scrolled
+            ? "bg-[var(--midnight-blue)]/98 backdrop-blur-xl shadow-lg"
+            : "bg-[var(--midnight-blue)]/95 backdrop-blur-md"
         } border-b border-white/10 overflow-visible`}
         animate={{
-          top: hidden ? '-100px' : '0'
+          top: hidden ? "-100px" : "0",
         }}
         transition={{
           duration: 0.3,
-          ease: [0.4, 0, 0.2, 1]
+          ease: [0.4, 0, 0.2, 1],
         }}
         role="navigation"
         aria-label="Main navigation"
@@ -105,8 +109,8 @@ export const Navigation = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="flex items-center space-x-2 group touch-target"
               aria-label="Propello - Home"
             >
@@ -133,29 +137,33 @@ export const Navigation = () => {
                   <Link
                     href={link.path}
                     aria-label={link.ariaLabel}
-                    aria-current={isActive(link.path) ? 'page' : undefined}
+                    aria-current={isActive(link.path) ? "page" : undefined}
                     className={`relative px-4 py-2 rounded-lg transition-all duration-300 group ${
                       isActive(link.path)
-                        ? 'text-[var(--buttercream)]'
-                        : 'text-white/90 hover:text-white'
+                        ? "text-[var(--buttercream)]"
+                        : "text-white/90 hover:text-white"
                     }`}
                   >
-                    <span className="relative z-10 transition-transform duration-300 inline-block group-hover:-translate-y-0.5">{link.name}</span>
+                    <span className="relative z-10 transition-transform duration-300 inline-block group-hover:-translate-y-0.5">
+                      {link.name}
+                    </span>
                     {isActive(link.path) ? (
                       <motion.div
                         layoutId="navbar-indicator"
                         className="absolute bottom-1 left-4 right-4 h-0.5 bg-[var(--buttercream)] shadow-[0_0_8px_rgba(209,207,201,0.5)]"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     ) : (
-                      <motion.div
-                        className="absolute bottom-1 left-4 right-4 h-0.5 bg-white/50 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"
-                      />
+                      <motion.div className="absolute bottom-1 left-4 right-4 h-0.5 bg-white/50 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
                     )}
                   </Link>
                 </motion.div>
               ))}
-              
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -167,12 +175,14 @@ export const Navigation = () => {
                   aria-label="Get started with Propello"
                   className="relative inline-flex items-center px-6 py-2.5 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-xl hover:shadow-[var(--buttercream)]/30 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[var(--buttercream)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--midnight-blue)]"
                 >
-                  <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">Get Started</span>
+                  <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
+                    Get Started
+                  </span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-[var(--buttercream)] via-white to-[var(--buttercream)]"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
                     style={{ opacity: 0.3 }}
                   />
                 </Link>
@@ -183,7 +193,7 @@ export const Navigation = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden text-white p-3 -mr-2 rounded-xl hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[var(--buttercream)] touch-target"
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -225,25 +235,25 @@ export const Navigation = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-md z-[var(--z-modal-backdrop)]"
-                style={{ top: '64px' }}
+                style={{ top: "64px" }}
                 onClick={() => setMobileMenuOpen(false)}
                 aria-hidden="true"
               />
-              
+
               {/* Full-Screen Mobile Menu Panel - Right to Left - Mobile Only */}
               <motion.div
                 id="mobile-menu"
-                initial={{ x: '100%' }}
+                initial={{ x: "100%" }}
                 animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 30, stiffness: 300 }}
                 className="md:hidden absolute right-0 top-full w-[85%] max-w-sm bg-gradient-to-br from-[var(--deep-navy)] to-[var(--midnight-blue)] shadow-2xl z-[var(--z-modal)] overflow-y-auto"
-                style={{ height: 'calc(100vh - 64px)' }}
+                style={{ height: "calc(100vh - 64px)" }}
                 role="menu"
               >
                 {/* Decorative Gradient Orb */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--buttercream)] opacity-5 rounded-full blur-3xl" />
-                
+
                 <div className="relative h-full flex flex-col px-6 py-8">
                   <nav className="space-y-2 flex-1">
                     {links.map((link, index) => (
@@ -251,26 +261,30 @@ export const Navigation = () => {
                         key={link.path}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ 
+                        transition={{
                           delay: index * 0.08,
-                          type: 'spring',
+                          type: "spring",
                           stiffness: 260,
-                          damping: 20
+                          damping: 20,
                         }}
                       >
                         <Link
                           href={link.path}
                           role="menuitem"
                           aria-label={link.ariaLabel}
-                          aria-current={isActive(link.path) ? 'page' : undefined}
+                          aria-current={
+                            isActive(link.path) ? "page" : undefined
+                          }
                           className={`group block px-5 py-4 rounded-xl transition-all duration-200 touch-target ${
                             isActive(link.path)
-                              ? 'bg-[var(--buttercream)] text-[var(--midnight-blue)] shadow-lg'
-                              : 'text-white hover:bg-white/10 active:bg-white/20 active:scale-[0.98]'
+                              ? "bg-[var(--buttercream)] text-[var(--midnight-blue)] shadow-lg"
+                              : "text-white hover:bg-white/10 active:bg-white/20 active:scale-[0.98]"
                           }`}
                         >
                           <div className="flex items-center justify-between">
-                            <span className="text-lg font-medium">{link.name}</span>
+                            <span className="text-lg font-medium">
+                              {link.name}
+                            </span>
                             {isActive(link.path) && (
                               <motion.div
                                 initial={{ scale: 0, rotate: -180 }}
@@ -283,11 +297,16 @@ export const Navigation = () => {
                       </motion.div>
                     ))}
                   </nav>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, type: 'spring', stiffness: 260, damping: 20 }}
+                    transition={{
+                      delay: 0.4,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20,
+                    }}
                     className="pt-6 border-t border-white/10 mt-6"
                   >
                     <Link
@@ -314,4 +333,3 @@ export const Navigation = () => {
     </>
   );
 };
-

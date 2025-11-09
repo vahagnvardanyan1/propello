@@ -1,76 +1,88 @@
 "use client";
 
-import { useRef } from 'react';
+import { useRef } from "react";
 
-import Link from 'next/link';
-import { motion } from 'motion/react';
-import { Target, Users, Zap, Heart, Rocket, Code, Lightbulb } from 'lucide-react';
+import Link from "next/link";
+import { motion } from "motion/react";
+import {
+  Target,
+  Users,
+  Zap,
+  Heart,
+  Rocket,
+  Code,
+  Lightbulb,
+} from "lucide-react";
 
-import { TeamCards } from '@/components/TeamCards';
+import { TeamCards } from "@/components/TeamCards";
 
 const AboutPage = () => {
   const timelineRef = useRef(null);
 
   const milestones = [
     {
-      year: '2015',
-      title: 'The Beginning',
-      description: 'Founded with a mission to democratize enterprise-grade technology for growing businesses.'
+      year: "2015",
+      title: "The Beginning",
+      description:
+        "Founded with a mission to democratize enterprise-grade technology for growing businesses.",
     },
     {
-      year: '2017',
-      title: 'First Major Client',
-      description: 'Partnered with Fortune 500 company, scaling our team and capabilities.'
+      year: "2017",
+      title: "First Major Client",
+      description:
+        "Partnered with Fortune 500 company, scaling our team and capabilities.",
     },
     {
-      year: '2019',
-      title: 'AI Integration',
-      description: 'Pioneered AI-powered automation solutions, saving clients 1000+ hours monthly.'
+      year: "2019",
+      title: "AI Integration",
+      description:
+        "Pioneered AI-powered automation solutions, saving clients 1000+ hours monthly.",
     },
     {
-      year: '2022',
-      title: 'Industry Recognition',
-      description: 'Awarded "Top Design & Development Agency" by TechCrunch.'
+      year: "2022",
+      title: "Industry Recognition",
+      description: 'Awarded "Top Design & Development Agency" by TechCrunch.',
     },
     {
-      year: '2025',
-      title: 'Global Expansion',
-      description: '100+ projects delivered. 2M+ users impacted. Building the future.'
-    }
+      year: "2025",
+      title: "Global Expansion",
+      description:
+        "100+ projects delivered. 2M+ users impacted. Building the future.",
+    },
   ];
 
   const values = [
     {
       icon: Target,
-      title: 'Excellence',
-      description: 'We obsess over details and never compromise on quality.'
+      title: "Excellence",
+      description: "We obsess over details and never compromise on quality.",
     },
     {
       icon: Zap,
-      title: 'Speed',
-      description: 'Rapid delivery without sacrificing craftsmanship.'
+      title: "Speed",
+      description: "Rapid delivery without sacrificing craftsmanship.",
     },
     {
       icon: Heart,
-      title: 'Empathy',
-      description: 'We build with users and businesses in mind, always.'
+      title: "Empathy",
+      description: "We build with users and businesses in mind, always.",
     },
     {
       icon: Lightbulb,
-      title: 'Innovation',
-      description: 'Constantly pushing boundaries with cutting-edge tech.'
-    }
+      title: "Innovation",
+      description: "Constantly pushing boundaries with cutting-edge tech.",
+    },
   ];
 
   const culture = [
-    { emoji: '🚀', label: 'Remote-First' },
-    { emoji: '🌍', label: 'Global Team' },
-    { emoji: '📚', label: 'Always Learning' },
-    { emoji: '🎯', label: 'Results-Driven' },
-    { emoji: '💡', label: 'Creative Freedom' },
-    { emoji: '🤝', label: 'Collaborative' },
-    { emoji: '⚡', label: 'Fast-Paced' },
-    { emoji: '🎨', label: 'Design-Focused' }
+    { emoji: "🚀", label: "Remote-First" },
+    { emoji: "🌍", label: "Global Team" },
+    { emoji: "📚", label: "Always Learning" },
+    { emoji: "🎯", label: "Results-Driven" },
+    { emoji: "💡", label: "Creative Freedom" },
+    { emoji: "🤝", label: "Collaborative" },
+    { emoji: "⚡", label: "Fast-Paced" },
+    { emoji: "🎨", label: "Design-Focused" },
   ];
 
   return (
@@ -82,12 +94,12 @@ const AboutPage = () => {
           animate={{
             scale: [1, 1.3, 1],
             x: [0, -100, 0],
-            y: [0, 100, 0]
+            y: [0, 100, 0],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
 
@@ -106,18 +118,25 @@ const AboutPage = () => {
             >
               About Propello
             </motion.p>
-            
-            <h1 className="text-white mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.1' }}>
+
+            <h1
+              className="text-white mb-6"
+              style={{
+                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                lineHeight: "1.1",
+              }}
+            >
               Empowering Creators & Companies
               <br />
               <span className="bg-gradient-to-r from-[var(--buttercream)] to-[var(--ivory)] bg-clip-text text-transparent">
                 Through Intelligent Automation
               </span>
             </h1>
-            
+
             <p className="text-[var(--ivory)] text-xl leading-relaxed max-w-3xl mx-auto">
-              We&apos;re on a mission to make world-class technology accessible to every business, 
-              transforming how companies build, design, and automate their way to success.
+              We&apos;re on a mission to make world-class technology accessible
+              to every business, transforming how companies build, design, and
+              automate their way to success.
             </p>
           </motion.div>
         </div>
@@ -138,16 +157,16 @@ const AboutPage = () => {
                 animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
                 transition={{ duration: 10, repeat: Infinity }}
               />
-              
+
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-[var(--buttercream)] flex items-center justify-center mb-6">
                   <Target className="text-[var(--midnight-blue)]" size={32} />
                 </div>
                 <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
                 <p className="text-[var(--ivory)] text-lg leading-relaxed">
-                  To democratize enterprise-grade technology by building intelligent, 
-                  automated systems that empower businesses to scale faster, work smarter, 
-                  and achieve more with less.
+                  To democratize enterprise-grade technology by building
+                  intelligent, automated systems that empower businesses to
+                  scale faster, work smarter, and achieve more with less.
                 </p>
               </div>
             </motion.div>
@@ -163,16 +182,18 @@ const AboutPage = () => {
                 animate={{ scale: [1, 1.2, 1], rotate: [0, -90, 0] }}
                 transition={{ duration: 10, repeat: Infinity }}
               />
-              
+
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-[var(--midnight-blue)] flex items-center justify-center mb-6">
                   <Rocket className="text-white" size={32} />
                 </div>
-                <h2 className="text-[var(--midnight-blue)] text-3xl font-bold mb-4">Our Vision</h2>
+                <h2 className="text-[var(--midnight-blue)] text-3xl font-bold mb-4">
+                  Our Vision
+                </h2>
                 <p className="text-[var(--dusty-blue)] text-lg leading-relaxed">
-                  To be the world&apos;s most trusted partner for businesses seeking to harness 
-                  the power of automation and AI, creating a future where technology amplifies 
-                  human potential.
+                  To be the world&apos;s most trusted partner for businesses
+                  seeking to harness the power of automation and AI, creating a
+                  future where technology amplifies human potential.
                 </p>
               </div>
             </motion.div>
@@ -192,7 +213,10 @@ const AboutPage = () => {
             <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
               Our Journey
             </p>
-            <h2 className="text-[var(--midnight-blue)]" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)]"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Building the Future, One Milestone at a Time
             </h2>
           </motion.div>
@@ -210,11 +234,13 @@ const AboutPage = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   className={`flex items-center gap-8 ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                   }`}
                 >
                   {/* Content */}
-                  <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                  <div
+                    className={`flex-1 ${index % 2 === 0 ? "lg:text-right" : "lg:text-left"}`}
+                  >
                     <motion.div
                       className="inline-block bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all"
                       whileHover={{ scale: 1.05 }}
@@ -260,7 +286,10 @@ const AboutPage = () => {
             <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
               What Drives Us
             </p>
-            <h2 className="text-[var(--midnight-blue)]" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)]"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Our Core Values
             </h2>
           </motion.div>
@@ -283,11 +312,11 @@ const AboutPage = () => {
                 >
                   <value.icon className="text-white" size={36} />
                 </motion.div>
-                
+
                 <h3 className="text-[var(--midnight-blue)] font-bold text-xl mb-3">
                   {value.title}
                 </h3>
-                
+
                 <p className="text-[var(--dusty-blue)] leading-relaxed">
                   {value.description}
                 </p>
@@ -309,7 +338,10 @@ const AboutPage = () => {
             <p className="text-[var(--dusty-blue)] uppercase tracking-wider text-sm mb-3">
               Meet the Team
             </p>
-            <h2 className="text-[var(--midnight-blue)]" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)]"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Led by Industry Experts
             </h2>
           </motion.div>
@@ -327,7 +359,10 @@ const AboutPage = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-[var(--midnight-blue)] mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+            <h2
+              className="text-[var(--midnight-blue)] mb-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Our Culture
             </h2>
             <p className="text-[var(--dusty-blue)] text-lg">
@@ -365,14 +400,18 @@ const AboutPage = () => {
             <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[var(--buttercream)] flex items-center justify-center">
               <Users className="text-[var(--midnight-blue)]" size={36} />
             </div>
-            
-            <h2 className="text-white mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
+
+            <h2
+              className="text-white mb-6"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+            >
               Join Propello — Let&apos;s Build the Future Together
             </h2>
             <p className="text-[var(--ivory)] text-xl mb-10 max-w-2xl mx-auto">
-              We&apos;re always looking for talented individuals who share our passion for innovation
+              We&apos;re always looking for talented individuals who share our
+              passion for innovation
             </p>
-            
+
             <Link
               href="/contact"
               className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl hover:bg-[var(--buttercream)]/90 transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-1 text-lg font-semibold"
