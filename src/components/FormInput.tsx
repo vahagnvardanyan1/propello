@@ -75,7 +75,7 @@ export const FormInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Form
 
         <div className="relative">
           <InputComponent
-            ref={ref as any}
+            ref={ref as React.Ref<HTMLInputElement & HTMLTextAreaElement>}
             id={inputId}
             type={inputType}
             rows={multiline ? rows : undefined}

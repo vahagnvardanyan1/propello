@@ -225,11 +225,11 @@ const ContactPage = () => {
               className="text-white mb-6" 
               style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', letterSpacing: '-0.02em' }}
             >
-              Let's Talk About Your{' '}
+              Let&apos;s Talk About Your{' '}
               <span className="text-[var(--buttercream)]">Next Breakthrough</span>
             </h1>
             <p className="text-[var(--ivory)] text-xl leading-relaxed max-w-3xl mx-auto">
-              From code to automation — let's build efficiency together. Ready to transform your vision into reality?
+              From code to automation — let&apos;s build efficiency together. Ready to transform your vision into reality?
             </p>
           </motion.div>
         </motion.div>
@@ -349,7 +349,7 @@ const ContactPage = () => {
               className="bg-white rounded-2xl shadow-xl p-8 lg:p-10"
             >
               <h2 id="contact-form-title" className="text-[var(--midnight-blue)] mb-2">Send us a message</h2>
-              <p className="text-[var(--dusty-blue)] mb-8">We'll respond within 24 hours</p>
+              <p className="text-[var(--dusty-blue)] mb-8">We&apos;ll respond within 24 hours</p>
 
               {submitSuccess && (
                 <motion.div
@@ -361,7 +361,7 @@ const ContactPage = () => {
                   <CheckCircle className="text-green-600 mt-0.5" size={20} />
                   <div>
                     <p className="text-green-800">Message sent successfully!</p>
-                    <p className="text-green-700 text-sm mt-1">We'll get back to you within 24 hours.</p>
+                    <p className="text-green-700 text-sm mt-1">We&apos;ll get back to you within 24 hours.</p>
                   </div>
                 </motion.div>
               )}
@@ -555,7 +555,7 @@ const ContactPage = () => {
               Ready to Start?
             </p>
             <h2 className="text-white mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
-              Let's Build Something Amazing
+              Let&apos;s Build Something Amazing
             </h2>
             <p className="text-[var(--ivory)] text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
               Join over 50+ companies who trust Propello to deliver exceptional digital solutions.

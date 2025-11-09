@@ -90,7 +90,7 @@ const PortfolioPage = () => {
             </h1>
             
             <p className="text-[var(--ivory)] text-xl leading-relaxed">
-              Real projects. Real results. See how we've helped businesses scale, automate, and dominate their markets.
+              Real projects. Real results. See how we&apos;ve helped businesses scale, automate, and dominate their markets.
             </p>
           </motion.div>
 
@@ -276,14 +276,14 @@ const PortfolioPage = () => {
               Ready to Create Your Success Story?
             </h2>
             <p className="text-[var(--ivory)] text-xl mb-10 max-w-2xl mx-auto">
-              Let's build something that transforms your business
+              Let&apos;s build something that transforms your business
             </p>
             
             <Link
               href="/contact"
               className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--buttercream)] text-[var(--midnight-blue)] rounded-xl hover:bg-[var(--buttercream)]/90 transition-all hover:shadow-2xl hover:shadow-[var(--buttercream)]/40 hover:-translate-y-1 text-lg font-semibold"
             >
-              Let's Talk
+              Let&apos;s Talk
               <Award size={22} />
             </Link>
           </motion.div>

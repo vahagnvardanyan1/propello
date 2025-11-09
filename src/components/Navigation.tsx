@@ -50,6 +50,8 @@ export const Navigation = () => {
 
   // Close mobile menu on route change
   useEffect(() => {
+    // Intentionally closing menu on route change - this is desired UX behavior
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileMenuOpen(false);
   }, [pathname]);
 

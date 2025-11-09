@@ -310,7 +310,7 @@ const ServicesPage = () => {
               Ready to Start Your Project?
             </h2>
             <p className="text-[var(--dusty-blue)] text-xl mb-10 max-w-2xl mx-auto">
-              Let's discuss how we can help bring your vision to life with world-class technology and design
+              Let&apos;s discuss how we can help bring your vision to life with world-class technology and design
             </p>
             
             <Link

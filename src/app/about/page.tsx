@@ -3,17 +3,13 @@
 import { useRef } from 'react';
 
 import Link from 'next/link';
-import { motion, useScroll } from 'motion/react';
+import { motion } from 'motion/react';
 import { Target, Users, Zap, Heart, Rocket, Code, Lightbulb } from 'lucide-react';
 
 import { TeamCards } from '@/components/TeamCards';
 
 const AboutPage = () => {
   const timelineRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start end", "end start"]
-  });
 
   const milestones = [
     {
@@ -120,7 +116,7 @@ const AboutPage = () => {
             </h1>
             
             <p className="text-[var(--ivory)] text-xl leading-relaxed max-w-3xl mx-auto">
-              We're on a mission to make world-class technology accessible to every business, 
+              We&apos;re on a mission to make world-class technology accessible to every business, 
               transforming how companies build, design, and automate their way to success.
             </p>
           </motion.div>
@@ -174,7 +170,7 @@ const AboutPage = () => {
                 </div>
                 <h2 className="text-[var(--midnight-blue)] text-3xl font-bold mb-4">Our Vision</h2>
                 <p className="text-[var(--dusty-blue)] text-lg leading-relaxed">
-                  To be the world's most trusted partner for businesses seeking to harness 
+                  To be the world&apos;s most trusted partner for businesses seeking to harness 
                   the power of automation and AI, creating a future where technology amplifies 
                   human potential.
                 </p>
@@ -335,7 +331,7 @@ const AboutPage = () => {
               Our Culture
             </h2>
             <p className="text-[var(--dusty-blue)] text-lg">
-              What it's like to be part of the Propello family
+              What it&apos;s like to be part of the Propello family
             </p>
           </motion.div>
 
@@ -371,10 +367,10 @@ const AboutPage = () => {
             </div>
             
             <h2 className="text-white mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
-              Join Propello — Let's Build the Future Together
+              Join Propello — Let&apos;s Build the Future Together
             </h2>
             <p className="text-[var(--ivory)] text-xl mb-10 max-w-2xl mx-auto">
-              We're always looking for talented individuals who share our passion for innovation
+              We&apos;re always looking for talented individuals who share our passion for innovation
             </p>
             
             <Link

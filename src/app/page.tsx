@@ -330,7 +330,7 @@ const HomePage = () => {
           <ScrollReveal direction="up">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-[var(--midnight-blue)] mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: '1.1' }}>
-                Let's Build Something Extraordinary
+                Let&apos;s Build Something Extraordinary
               </h2>
               <p className="text-[var(--dusty-blue)] text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed">
                 Join the visionaries who chose Propello to accelerate their digital transformation and automate their path to success
