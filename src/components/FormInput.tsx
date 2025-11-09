@@ -1,6 +1,7 @@
 "use client";
 
-import { type InputHTMLAttributes, forwardRef, useState } from "react";
+import { forwardRef, useState } from "react";
+import type { InputHTMLAttributes } from "react";
 
 import { motion, AnimatePresence } from "motion/react";
 import { AlertCircle, CheckCircle2, Eye, EyeOff } from "lucide-react";

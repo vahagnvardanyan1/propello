@@ -2,51 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { TrendingUp, Clock, Users, Award } from "lucide-react";
+import { Award } from "lucide-react";
 
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { TechStackScroll } from "@/components/TechStackScroll";
+import { PORTFOLIO_STATS, CASE_STUDIES } from "@/constants";
 
 const PortfolioPage = () => {
-  const caseStudies = [
-    {
-      title: "E-Commerce Automation",
-      company: "RetailTech Inc.",
-      challenge: "Manual order processing taking 20+ hours weekly",
-      solution: "AI-powered automation with real-time inventory sync",
-      results: [
-        { metric: "95%", label: "Time Saved" },
-        { metric: "$50K", label: "Annual Savings" },
-        { metric: "99.9%", label: "Accuracy Rate" },
-      ],
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Healthcare Platform Scale",
-      company: "MediConnect",
-      challenge: "Platform crashing under 10K concurrent users",
-      solution: "Microservices architecture with auto-scaling",
-      results: [
-        { metric: "100K+", label: "Active Users" },
-        { metric: "0.8s", label: "Load Time" },
-        { metric: "99.99%", label: "Uptime" },
-      ],
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      title: "UX Redesign Impact",
-      company: "SaaS Platform",
-      challenge: "High bounce rate and low user engagement",
-      solution: "Complete UX overhaul with user research",
-      results: [
-        { metric: "200%", label: "Engagement" },
-        { metric: "45%", label: "Conversion Up" },
-        { metric: "4.9/5", label: "Satisfaction" },
-      ],
-      color: "from-purple-500 to-pink-500",
-    },
-  ];
-
   return (
     <div className="min-h-screen" id="main-content">
       {/* Hero Section */}
@@ -108,12 +70,7 @@ const PortfolioPage = () => {
             transition={{ delay: 0.4 }}
             className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto mt-16"
           >
-            {[
-              { icon: Award, value: "100+", label: "Projects Delivered" },
-              { icon: Users, value: "2M+", label: "Users Impacted" },
-              { icon: Clock, value: "10K+", label: "Hours Saved" },
-              { icon: TrendingUp, value: "350%", label: "Avg ROI" },
-            ].map((stat, index) => (
+            {PORTFOLIO_STATS.map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -187,7 +144,7 @@ const PortfolioPage = () => {
           </motion.div>
 
           <div className="space-y-8 max-w-5xl mx-auto">
-            {caseStudies.map((study, index) => (
+            {CASE_STUDIES.map((study, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}

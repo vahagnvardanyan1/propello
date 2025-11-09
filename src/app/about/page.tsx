@@ -4,86 +4,13 @@ import { useRef } from "react";
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import {
-  Target,
-  Users,
-  Zap,
-  Heart,
-  Rocket,
-  Code,
-  Lightbulb,
-} from "lucide-react";
+import { Target, Users, Rocket, Code } from "lucide-react";
 
 import { TeamCards } from "@/components/TeamCards";
+import { MILESTONES, COMPANY_VALUES, COMPANY_CULTURE } from "@/constants";
 
 const AboutPage = () => {
   const timelineRef = useRef(null);
-
-  const milestones = [
-    {
-      year: "2015",
-      title: "The Beginning",
-      description:
-        "Founded with a mission to democratize enterprise-grade technology for growing businesses.",
-    },
-    {
-      year: "2017",
-      title: "First Major Client",
-      description:
-        "Partnered with Fortune 500 company, scaling our team and capabilities.",
-    },
-    {
-      year: "2019",
-      title: "AI Integration",
-      description:
-        "Pioneered AI-powered automation solutions, saving clients 1000+ hours monthly.",
-    },
-    {
-      year: "2022",
-      title: "Industry Recognition",
-      description: 'Awarded "Top Design & Development Agency" by TechCrunch.',
-    },
-    {
-      year: "2025",
-      title: "Global Expansion",
-      description:
-        "100+ projects delivered. 2M+ users impacted. Building the future.",
-    },
-  ];
-
-  const values = [
-    {
-      icon: Target,
-      title: "Excellence",
-      description: "We obsess over details and never compromise on quality.",
-    },
-    {
-      icon: Zap,
-      title: "Speed",
-      description: "Rapid delivery without sacrificing craftsmanship.",
-    },
-    {
-      icon: Heart,
-      title: "Empathy",
-      description: "We build with users and businesses in mind, always.",
-    },
-    {
-      icon: Lightbulb,
-      title: "Innovation",
-      description: "Constantly pushing boundaries with cutting-edge tech.",
-    },
-  ];
-
-  const culture = [
-    { emoji: "🚀", label: "Remote-First" },
-    { emoji: "🌍", label: "Global Team" },
-    { emoji: "📚", label: "Always Learning" },
-    { emoji: "🎯", label: "Results-Driven" },
-    { emoji: "💡", label: "Creative Freedom" },
-    { emoji: "🤝", label: "Collaborative" },
-    { emoji: "⚡", label: "Fast-Paced" },
-    { emoji: "🎨", label: "Design-Focused" },
-  ];
 
   return (
     <div className="min-h-screen" id="main-content">
@@ -226,7 +153,7 @@ const AboutPage = () => {
             <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--midnight-blue)] via-[var(--dusty-blue)] to-[var(--buttercream)] -translate-x-1/2 hidden lg:block" />
 
             <div className="space-y-16">
-              {milestones.map((milestone, index) => (
+              {MILESTONES.map((milestone, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
@@ -295,7 +222,7 @@ const AboutPage = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {values.map((value, index) => (
+            {COMPANY_VALUES.map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -371,7 +298,7 @@ const AboutPage = () => {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {culture.map((item, index) => (
+            {COMPANY_CULTURE.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}

@@ -4,16 +4,7 @@ import { useRef } from "react";
 
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import {
-  ArrowRight,
-  Code,
-  Smartphone,
-  Palette,
-  Zap,
-  Gauge,
-  Shield,
-  Award,
-} from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import {
@@ -21,6 +12,7 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/ScrollReveal";
+import { SERVICES, WHY_CHOOSE_PROPELLO, HOME_METRICS } from "@/constants";
 
 const HomePage = () => {
   const heroRef = useRef(null);
@@ -31,67 +23,6 @@ const HomePage = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const services = [
-    {
-      icon: Code,
-      title: "Web Development",
-      description:
-        "Scalable, performant web applications built with cutting-edge technology and best practices.",
-      features: ["React & Next.js", "Cloud-Native", "API Integration"],
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Backend",
-      description:
-        "Robust, secure backend systems that power mobile experiences at any scale.",
-      features: ["RESTful APIs", "Real-time Data", "Microservices"],
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description:
-        "Beautiful, intuitive interfaces that users love and that drive business results.",
-      features: ["User Research", "Prototyping", "Design Systems"],
-    },
-    {
-      icon: Zap,
-      title: "Business Automation",
-      description:
-        "AI-powered workflows that eliminate manual tasks and accelerate growth.",
-      features: [
-        "AI Integration",
-        "Workflow Automation",
-        "Process Optimization",
-      ],
-    },
-  ];
-
-  const whyChoose = [
-    {
-      icon: Gauge,
-      title: "Lightning Speed",
-      description:
-        "Rapid development and deployment without compromising quality.",
-    },
-    {
-      icon: Award,
-      title: "Premium Quality",
-      description:
-        "Enterprise-grade solutions with meticulous attention to detail.",
-    },
-    {
-      icon: Shield,
-      title: "Rock-Solid Reliability",
-      description: "99.9% uptime with proactive monitoring and support.",
-    },
-    {
-      icon: Zap,
-      title: "Automation First",
-      description:
-        "Every solution is optimized for efficiency and scalability.",
-    },
-  ];
 
   return (
     <div className="min-h-screen" id="main-content">
@@ -219,30 +150,16 @@ const HomePage = () => {
             transition={{ delay: 0.7 }}
             className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mt-12 sm:mt-20 px-2"
           >
-            <div className="text-center">
-              <div className="text-[var(--buttercream)] text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-                <AnimatedCounter end={100} suffix="+" />
+            {HOME_METRICS.map((metric, index) => (
+              <div key={index} className="text-center">
+                <div className="text-[var(--buttercream)] text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
+                  <AnimatedCounter end={metric.end} suffix={metric.suffix} />
+                </div>
+                <div className="text-white/70 text-xs sm:text-sm md:text-base">
+                  {metric.label}
+                </div>
               </div>
-              <div className="text-white/70 text-xs sm:text-sm md:text-base">
-                Projects Delivered
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-[var(--buttercream)] text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-                <AnimatedCounter end={10} suffix="+" />
-              </div>
-              <div className="text-white/70 text-xs sm:text-sm md:text-base">
-                Years Experience
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-[var(--buttercream)] text-3xl sm:text-4xl md:text-5xl font-bold mb-1 sm:mb-2">
-                <AnimatedCounter end={98} suffix="%" />
-              </div>
-              <div className="text-white/70 text-xs sm:text-sm md:text-base">
-                Client Retention
-              </div>
-            </div>
+            ))}
           </motion.div>
         </motion.div>
       </section>
@@ -267,7 +184,7 @@ const HomePage = () => {
           </ScrollReveal>
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
+            {SERVICES.map((service, index) => (
               <StaggerItem key={index}>
                 <motion.div
                   whileHover={{ y: -12, scale: 1.03 }}
@@ -351,7 +268,7 @@ const HomePage = () => {
           </ScrollReveal>
 
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {whyChoose.map((item, index) => (
+            {WHY_CHOOSE_PROPELLO.map((item, index) => (
               <StaggerItem key={index}>
                 <motion.div
                   className="text-center group cursor-pointer"

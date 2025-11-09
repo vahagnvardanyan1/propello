@@ -3,57 +3,12 @@
 import { motion } from "motion/react";
 import { Linkedin, Twitter, Mail } from "lucide-react";
 
-const team = [
-  {
-    name: "Alex Rivera",
-    role: "Founder & CEO",
-    bio: "15+ years building scalable systems. Former lead engineer at tech giants.",
-    image: "👨‍💼",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "alex@propello.com",
-    },
-  },
-  {
-    name: "Sarah Chen",
-    role: "Head of Design",
-    bio: "Award-winning designer. Obsessed with creating delightful user experiences.",
-    image: "👩‍🎨",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "sarah@propello.com",
-    },
-  },
-  {
-    name: "Marcus Johnson",
-    role: "Lead Engineer",
-    bio: "Full-stack wizard. Passionate about clean code and automation.",
-    image: "👨‍💻",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "marcus@propello.com",
-    },
-  },
-  {
-    name: "Emily Park",
-    role: "Automation Specialist",
-    bio: "AI integration expert. Turns complex workflows into simple automations.",
-    image: "👩‍🔬",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "emily@propello.com",
-    },
-  },
-];
+import { TEAM_MEMBERS } from "@/constants";
 
 export const TeamCards = () => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {team.map((member, index) => (
+      {TEAM_MEMBERS.map((member, index) => (
         <motion.div
           key={index}
           initial={{ opacity: 0, y: 30 }}

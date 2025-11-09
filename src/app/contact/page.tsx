@@ -1,27 +1,21 @@
 "use client";
 
-import { useState, useRef, type ChangeEvent, type FormEvent } from "react";
+import { useState, useRef } from "react";
 
 import { motion, useScroll, useTransform } from "motion/react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Twitter,
-  Linkedin,
-  Github,
-  Instagram,
-  Calendar,
-  MessageSquare,
-  ChevronDown,
-  CheckCircle,
-} from "lucide-react";
-import { toast } from "sonner";
+import { Mail, Send, ChevronDown, CheckCircle } from "lucide-react";
 
 import { FormInput } from "@/components/FormInput";
 import { Button } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
+import { useContactForm } from "@/hooks";
+import {
+  QUICK_CONTACT_OPTIONS,
+  CONTACT_INFO,
+  SOCIAL_LINKS,
+  FAQ_ITEMS,
+  SERVICE_OPTIONS,
+} from "@/constants";
 
 const ContactPage = () => {
   const heroRef = useRef(null);
@@ -32,188 +26,16 @@ const ContactPage = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
-  });
+  const {
+    formData,
+    formErrors,
+    isSubmitting,
+    submitSuccess,
+    handleChange,
+    handleSubmit,
+  } = useContactForm();
 
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-
-  const validateForm = () => {
-    const errors: Record<string, string> = {};
-
-    if (!formData.name.trim()) {
-      errors.name = "Name is required";
-    }
-
-    if (!formData.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = "Please enter a valid email address";
-    }
-
-    if (!formData.service) {
-      errors.service = "Please select a service";
-    }
-
-    if (!formData.message.trim()) {
-      errors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      errors.message = "Message must be at least 10 characters";
-    }
-
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      toast.error("Please fix the errors in the form", {
-        description: "Check all required fields and try again",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    toast.success("🎉 Message sent successfully!", {
-      description: "We'll get back to you within 24 hours.",
-    });
-
-    // Reset form after short delay
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: "",
-      });
-      setSubmitSuccess(false);
-    }, 3000);
-  };
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
-    // Clear error for this field
-    if (formErrors[name]) {
-      setFormErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name];
-        return newErrors;
-      });
-    }
-  };
-
-  const quickContact = [
-    {
-      icon: Mail,
-      title: "Email Us",
-      description: "Get a response within 24 hours",
-      action: "hello@propello.com",
-      href: "mailto:hello@propello.com",
-      gradient: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Calendar,
-      title: "Schedule a Demo",
-      description: "Book a free 30-minute consultation",
-      action: "Schedule Now",
-      href: "#schedule",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: MessageSquare,
-      title: "Live Chat",
-      description: "Chat with our team instantly",
-      action: "Start Chat",
-      href: "#chat",
-      gradient: "from-orange-500 to-red-500",
-    },
-  ];
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "hello@propello.com",
-      href: "mailto:hello@propello.com",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
-    },
-    {
-      icon: MapPin,
-      label: "Office",
-      value: "123 Innovation Drive, San Francisco, CA 94103",
-      href: "https://maps.google.com",
-    },
-  ];
-
-  const socialLinks = [
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:bg-[#1DA1F2]" },
-    {
-      icon: Linkedin,
-      href: "#",
-      label: "LinkedIn",
-      color: "hover:bg-[#0A66C2]",
-    },
-    { icon: Github, href: "#", label: "Github", color: "hover:bg-[#333]" },
-    {
-      icon: Instagram,
-      href: "#",
-      label: "Instagram",
-      color: "hover:bg-[#E4405F]",
-    },
-  ];
-
-  const faqs = [
-    {
-      question: "What services does Propello offer?",
-      answer:
-        "We specialize in Web Development, Mobile Backend Development, UI/UX Design, and Business Automation. We create end-to-end solutions that scale with your business needs.",
-    },
-    {
-      question: "How long does a typical project take?",
-      answer:
-        "Project timelines vary based on scope and complexity. Simple projects may take 4-6 weeks, while enterprise solutions can span 3-6 months. We provide detailed timelines during our discovery phase.",
-    },
-    {
-      question: "What is your pricing model?",
-      answer:
-        "We offer flexible engagement models including fixed-price projects, time & materials, and dedicated team arrangements. Pricing is customized based on your specific requirements and project scope.",
-    },
-    {
-      question: "Do you offer ongoing support after launch?",
-      answer:
-        "Yes! We provide comprehensive support packages including maintenance, updates, monitoring, and optimization. We're committed to your long-term success.",
-    },
-    {
-      question: "Can you help with automation and AI integration?",
-      answer:
-        "Absolutely! Business automation and AI integration are core strengths. We help streamline workflows, automate repetitive tasks, and integrate AI capabilities into your systems.",
-    },
-  ];
 
   return (
     <div className="min-h-screen">
@@ -281,7 +103,7 @@ const ContactPage = () => {
       >
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {quickContact.map((option, index) => {
+            {QUICK_CONTACT_OPTIONS.map((option, index) => {
               const Icon = option.icon;
               return (
                 <motion.a
@@ -335,7 +157,7 @@ const ContactPage = () => {
               />
 
               <div className="space-y-6 mt-12">
-                {contactInfo.map((info, index) => {
+                {CONTACT_INFO.map((info, index) => {
                   const Icon = info.icon;
                   return (
                     <motion.a
@@ -379,7 +201,7 @@ const ContactPage = () => {
                   Follow us on social media
                 </p>
                 <div className="flex gap-3">
-                  {socialLinks.map((social, index) => {
+                  {SOCIAL_LINKS.map((social, index) => {
                     const Icon = social.icon;
                     return (
                       <motion.a
@@ -494,16 +316,11 @@ const ContactPage = () => {
                         : "border-[var(--ivory)] hover:border-[var(--dusty-blue)] focus:border-[var(--midnight-blue)] focus:ring-2 focus:ring-[var(--midnight-blue)]/20"
                     }`}
                   >
-                    <option value="">Select a service</option>
-                    <option value="web-development">Web Development</option>
-                    <option value="mobile-backend">
-                      Mobile Backend Development
-                    </option>
-                    <option value="uiux-design">UI/UX Design</option>
-                    <option value="business-automation">
-                      Business Automation
-                    </option>
-                    <option value="consulting">Consulting</option>
+                    {SERVICE_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                   {formErrors.service && (
                     <motion.p
@@ -561,7 +378,7 @@ const ContactPage = () => {
           />
 
           <div className="max-w-3xl mx-auto mt-16 space-y-4">
-            {faqs.map((faq, index) => {
+            {FAQ_ITEMS.map((faq, index) => {
               const isExpanded = expandedFaq === index;
               return (
                 <motion.div

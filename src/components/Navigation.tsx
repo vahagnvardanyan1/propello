@@ -1,87 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 
+import { NAVIGATION_LINKS } from "@/constants";
+import { useNavigation } from "@/hooks";
+
 export const Navigation = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const pathname = usePathname();
-
-  const links = [
-    { name: "Home", path: "/", ariaLabel: "Navigate to home page" },
-    { name: "Services", path: "/services", ariaLabel: "View our services" },
-    {
-      name: "Portfolio",
-      path: "/portfolio",
-      ariaLabel: "Explore our portfolio",
-    },
-    { name: "About", path: "/about", ariaLabel: "Learn about us" },
-    { name: "Contact", path: "/contact", ariaLabel: "Get in touch" },
-  ];
-
-  const isActive = (path: string) => pathname === path;
-
-  // Handle scroll effect with auto-hide
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Set scrolled state for background change
-      setScrolled(currentScrollY > 20);
-
-      // Auto-hide logic
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down & past threshold
-        setHidden(true);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up
-        setHidden(false);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    // Intentionally closing menu on route change - this is desired UX behavior
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  // Close mobile menu on desktop resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [mobileMenuOpen]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [mobileMenuOpen]);
+  const {
+    mobileMenuOpen,
+    scrolled,
+    hidden,
+    isActive,
+    toggleMobileMenu,
+    closeMobileMenu,
+  } = useNavigation();
 
   return (
     <>
@@ -127,7 +61,7 @@ export const Navigation = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-2">
-              {links.map((link, index) => (
+              {NAVIGATION_LINKS.map((link, index) => (
                 <motion.div
                   key={link.path}
                   initial={{ opacity: 0, y: -10 }}
@@ -191,7 +125,7 @@ export const Navigation = () => {
 
             {/* Mobile Menu Button - ONLY Mobile < 768px */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={toggleMobileMenu}
               className="md:hidden text-white p-3 -mr-2 rounded-xl hover:bg-white/10 active:bg-white/20 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[var(--buttercream)] touch-target"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -236,7 +170,7 @@ export const Navigation = () => {
                 transition={{ duration: 0.2 }}
                 className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-md z-[var(--z-modal-backdrop)]"
                 style={{ top: "64px" }}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
                 aria-hidden="true"
               />
 
@@ -256,7 +190,7 @@ export const Navigation = () => {
 
                 <div className="relative h-full flex flex-col px-6 py-8">
                   <nav className="space-y-2 flex-1">
-                    {links.map((link, index) => (
+                    {NAVIGATION_LINKS.map((link, index) => (
                       <motion.div
                         key={link.path}
                         initial={{ opacity: 0, x: 30 }}
