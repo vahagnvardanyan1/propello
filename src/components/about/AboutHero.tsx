@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
@@ -68,6 +69,8 @@ const Description = styled("p")({
 });
 
 export const AboutHero = () => {
+  const t = useTranslations("about.hero");
+
   return (
     <HeroSection>
       <AnimatedOrb
@@ -94,14 +97,10 @@ export const AboutHero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            About Propello
+            {t("title")}
           </Label>
 
-          <Title>
-            Empowering Creators & Companies
-            <br />
-            <GradientText>Through Intelligent Automation</GradientText>
-          </Title>
+          <Title>{t("subtitle")}</Title>
 
           <Description>
             We&apos;re on a mission to make world-class technology accessible to

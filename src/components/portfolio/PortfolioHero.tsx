@@ -1,10 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { Award, Users, Clock, TrendingUp } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { PORTFOLIO_STATS } from "@/constants";
 import { colors, spacing, borderRadius } from "@/theme/theme";
 
 const StyledSection = styled("section")({
@@ -120,6 +121,16 @@ const StatLabel = styled(Box)({
 });
 
 export const PortfolioHero = () => {
+  const t = useTranslations("portfolio.hero");
+  const tStats = useTranslations("portfolio.stats");
+
+  const stats = [
+    { icon: Award, value: "100+", key: "projectsDelivered" as const },
+    { icon: Users, value: "2M+", key: "usersImpacted" as const },
+    { icon: Clock, value: "10K+", key: "hoursSaved" as const },
+    { icon: TrendingUp, value: "350%", key: "avgROI" as const },
+  ];
+
   return (
     <StyledSection>
       <AnimatedOrb
@@ -146,14 +157,10 @@ export const PortfolioHero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Our Work
+            {t("title")}
           </Label>
 
-          <MainHeading>
-            Transforming Ideas Into
-            <br />
-            <GradientText>Digital Excellence</GradientText>
-          </MainHeading>
+          <MainHeading>{t("subtitle")}</MainHeading>
 
           <Description>
             Real projects. Real results. See how we&apos;ve helped businesses
@@ -167,7 +174,7 @@ export const PortfolioHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          {PORTFOLIO_STATS.map((stat, index) => (
+          {stats.map((stat, index) => (
             <StatCard
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -178,7 +185,7 @@ export const PortfolioHero = () => {
                 <stat.icon color={colors.buttercream} size={32} />
               </IconContainer>
               <StatValue>{stat.value}</StatValue>
-              <StatLabel>{stat.label}</StatLabel>
+              <StatLabel>{tStats(stat.key)}</StatLabel>
             </StatCard>
           ))}
         </StatsGrid>

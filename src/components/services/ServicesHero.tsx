@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
@@ -52,13 +53,6 @@ const Title = styled("h1")({
   margin: `0 0 ${spacing.xl} 0`,
 });
 
-const GradientText = styled("span")({
-  background: `linear-gradient(to right, ${colors.buttercream}, ${colors.ivory})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-});
-
 const Description = styled("p")({
   color: colors.ivory,
   fontSize: "20px",
@@ -68,6 +62,8 @@ const Description = styled("p")({
 });
 
 export const ServicesHero = () => {
+  const t = useTranslations("services.hero");
+
   return (
     <HeroSection>
       <AnimatedOrb
@@ -93,19 +89,12 @@ export const ServicesHero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Our Services
+            {t("title")}
           </Label>
 
-          <Title>
-            We Craft Intelligent Systems
-            <br />
-            <GradientText>That Automate Business Growth</GradientText>
-          </Title>
+          <Title>{t("subtitle")}</Title>
 
-          <Description>
-            From ideation to deployment, we build technology that transforms how
-            businesses operate, compete, and scale.
-          </Description>
+          <Description>{t("description")}</Description>
         </HeroContent>
       </Container>
     </HeroSection>

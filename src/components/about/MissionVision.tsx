@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Target, Rocket } from "lucide-react";
 import { styled } from "@mui/material/styles";
@@ -118,6 +119,8 @@ const VisionDescription = styled(CardDescription)({
 });
 
 export const MissionVision = () => {
+  const t = useTranslations("about");
+
   return (
     <StyledSection>
       <Container maxWidth={false}>
@@ -136,12 +139,8 @@ export const MissionVision = () => {
               <MissionIconBox>
                 <Target color={colors.midnightBlue} size={32} />
               </MissionIconBox>
-              <MissionTitle>Our Mission</MissionTitle>
-              <MissionDescription>
-                To democratize enterprise-grade technology by building
-                intelligent, automated systems that empower businesses to scale
-                faster, work smarter, and achieve more with less.
-              </MissionDescription>
+              <MissionTitle>{t("mission.title")}</MissionTitle>
+              <MissionDescription>{t("mission.description")}</MissionDescription>
             </CardContent>
           </MissionCard>
 
@@ -159,12 +158,8 @@ export const MissionVision = () => {
               <VisionIconBox>
                 <Rocket color={colors.white} size={32} />
               </VisionIconBox>
-              <VisionTitle>Our Vision</VisionTitle>
-              <VisionDescription>
-                To be the world&apos;s most trusted partner for businesses
-                seeking to harness the power of automation and AI, creating a
-                future where technology amplifies human potential.
-              </VisionDescription>
+              <VisionTitle>{t("vision.title")}</VisionTitle>
+              <VisionDescription>{t("vision.description")}</VisionDescription>
             </CardContent>
           </VisionCard>
         </CardsGrid>

@@ -1,10 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { Mail, Calendar, MessageSquare } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { QUICK_CONTACT_OPTIONS } from "@/constants";
 import {
   colors,
   spacing,
@@ -95,33 +96,58 @@ const OptionAction = styled("p")({
 });
 
 export const QuickContactOptions = () => {
+  const t = useTranslations("contact.quickOptions");
+
+  const options = [
+    {
+      icon: Mail,
+      key: "email" as const,
+      gradient: "linear-gradient(to bottom right, #3b82f6, #06b6d4)",
+      action: "hello@propello.com",
+      href: "mailto:hello@propello.com",
+    },
+    {
+      icon: Calendar,
+      key: "scheduleDemo" as const,
+      gradient: "linear-gradient(to bottom right, #a855f7, #ec4899)",
+      href: "#schedule",
+    },
+    {
+      icon: MessageSquare,
+      key: "liveChat" as const,
+      gradient: "linear-gradient(to bottom right, #f97316, #ef4444)",
+      href: "#chat",
+    },
+  ];
+
   return (
     <OptionsSection aria-label="Quick contact options">
       <SectionContainer maxWidth={false}>
         <OptionsGrid>
-          {QUICK_CONTACT_OPTIONS.map((option, index) => {
-            const Icon = option.icon;
-            return (
-              <OptionCard
-                key={option.title}
-                href={option.href}
-                className="group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                aria-label={`${option.title}: ${option.description}`}
-              >
-                <IconContainer gradient={option.gradient}>
-                  <Icon color={colors.white} size={28} />
-                </IconContainer>
-                <OptionTitle>{option.title}</OptionTitle>
-                <OptionDescription>{option.description}</OptionDescription>
-                <OptionAction>{option.action}</OptionAction>
-              </OptionCard>
-            );
-          })}
+          {options.map((option, index) => (
+            <OptionCard
+              key={option.key}
+              href={option.href}
+              className="group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              aria-label={`${t(`${option.key}.title`)}: ${t(`${option.key}.description`)}`}
+            >
+              <IconContainer gradient={option.gradient}>
+                <option.icon color={colors.white} size={28} />
+              </IconContainer>
+              <OptionTitle>{t(`${option.key}.title`)}</OptionTitle>
+              <OptionDescription>
+                {t(`${option.key}.description`)}
+              </OptionDescription>
+              <OptionAction>
+                {option.action || t(`${option.key}.action`)}
+              </OptionAction>
+            </OptionCard>
+          ))}
         </OptionsGrid>
       </SectionContainer>
     </OptionsSection>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Send, CheckCircle } from "lucide-react";
 import { styled } from "@mui/material/styles";
@@ -8,7 +9,6 @@ import { Box } from "@mui/material";
 import { FormInput } from "@/components/FormInput";
 import { Button } from "@/components/Button";
 import { useContactForm } from "@/hooks";
-import { SERVICE_OPTIONS } from "@/constants";
 import {
   colors,
   spacing,
@@ -127,6 +127,7 @@ const Disclaimer = styled("p")({
 });
 
 export const ContactFormSection = () => {
+  const t = useTranslations("contact.form");
   const {
     formData,
     formErrors,
@@ -136,13 +137,28 @@ export const ContactFormSection = () => {
     handleSubmit,
   } = useContactForm();
 
+  const serviceOptions = [
+    { value: "", label: t("serviceOptions.select") },
+    { value: "web-development", label: t("serviceOptions.webDevelopment") },
+    {
+      value: "mobile-backend",
+      label: t("serviceOptions.mobileBackend"),
+    },
+    { value: "uiux-design", label: t("serviceOptions.uiuxDesign") },
+    {
+      value: "business-automation",
+      label: t("serviceOptions.businessAutomation"),
+    },
+    { value: "consulting", label: t("serviceOptions.consulting") },
+  ];
+
   return (
     <FormContainer
       initial={{ opacity: 0, x: 30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
     >
-      <FormTitle id="contact-form-title">Send us a message</FormTitle>
+      <FormTitle id="contact-form-title">{t("title")}</FormTitle>
       <FormSubtitle>We&apos;ll respond within 24 hours</FormSubtitle>
 
       {submitSuccess && (
@@ -154,33 +170,31 @@ export const ContactFormSection = () => {
           <CheckCircle color="#16a34a" size={20} style={{ marginTop: "2px" }} />
           <SuccessContent>
             <SuccessTitle>Message sent successfully!</SuccessTitle>
-            <SuccessMessage>
-              We&apos;ll get back to you within 24 hours.
-            </SuccessMessage>
+            <SuccessMessage>{t("success")}</SuccessMessage>
           </SuccessContent>
         </SuccessAlert>
       )}
 
       <Form onSubmit={handleSubmit} noValidate>
         <FormInput
-          label="Full Name"
+          label={t("name")}
           name="name"
           value={formData.name}
           onChange={handleChange}
           error={formErrors.name}
-          placeholder="John Doe"
+          placeholder={t("namePlaceholder")}
           required
           autoComplete="name"
         />
 
         <FormInput
-          label="Email Address"
+          label={t("email")}
           name="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
           error={formErrors.email}
-          placeholder="john@example.com"
+          placeholder={t("emailPlaceholder")}
           required
           autoComplete="email"
         />
@@ -196,7 +210,7 @@ export const ContactFormSection = () => {
 
         <SelectWrapper>
           <Label htmlFor="service-select">
-            Service Interested In
+            {t("service")}
             <RequiredStar aria-label="required">*</RequiredStar>
           </Label>
           <Select
@@ -209,7 +223,7 @@ export const ContactFormSection = () => {
             aria-invalid={formErrors.service ? "true" : "false"}
             aria-describedby={formErrors.service ? "service-error" : undefined}
           >
-            {SERVICE_OPTIONS.map((option) => (
+            {serviceOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -228,12 +242,12 @@ export const ContactFormSection = () => {
         </SelectWrapper>
 
         <FormInput
-          label="Message"
+          label={t("message")}
           name="message"
           value={formData.message}
           onChange={handleChange}
           error={formErrors.message}
-          placeholder="Tell us about your project..."
+          placeholder={t("messagePlaceholder")}
           multiline
           rows={5}
           required
@@ -247,7 +261,7 @@ export const ContactFormSection = () => {
           loading={isSubmitting}
           rightIcon={<Send size={20} />}
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? t("sending") : t("submit")}
         </Button>
 
         <Disclaimer>

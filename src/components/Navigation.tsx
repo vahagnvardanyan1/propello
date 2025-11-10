@@ -1,14 +1,16 @@
 "use client";
 
-import Link from "next/link";
+import React from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Languages } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { NAVIGATION_LINKS } from "@/constants";
+import { Link, usePathname } from "@/navigation";
 import { useNavigation } from "@/hooks";
 import { colors, zIndex, transitions } from "@/theme/theme";
+import { locales, localeNames, type Locale } from "@/i18n/config";
 
 const StyledNav = styled(motion.nav, {
   shouldForwardProp: (prop) => prop !== "scrolled",
@@ -146,6 +148,69 @@ const HoverIndicator = styled(motion.div)({
     transform: "scaleX(1)",
   },
 });
+
+const LanguageSwitcher = styled(Box)({
+  position: "relative",
+  display: "inline-flex",
+  alignItems: "center",
+  marginLeft: "8px",
+});
+
+const LanguageButton = styled("button")({
+  display: "flex",
+  alignItems: "center",
+  gap: "6px",
+  padding: "10px 16px",
+  backgroundColor: "rgba(255, 255, 255, 0.1)",
+  color: colors.white,
+  borderRadius: "12px",
+  border: "none",
+  cursor: "pointer",
+  transition: `all ${transitions.slow}`,
+  fontSize: "14px",
+  fontWeight: 500,
+
+  "&:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
+  },
+
+  "&:focus-visible": {
+    outline: `2px solid ${colors.buttercream}`,
+    outlineOffset: "2px",
+  },
+});
+
+const LanguageDropdown = styled(motion.div)({
+  position: "absolute",
+  top: "calc(100% + 8px)",
+  right: 0,
+  minWidth: "140px",
+  backgroundColor: colors.deepNavy,
+  borderRadius: "12px",
+  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+  overflow: "hidden",
+  zIndex: zIndex.dropdown,
+});
+
+const LanguageOption = styled("button", {
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive: boolean }>(({ isActive }) => ({
+  display: "block",
+  width: "100%",
+  padding: "12px 16px",
+  textAlign: "left",
+  backgroundColor: isActive ? colors.buttercream : "transparent",
+  color: isActive ? colors.midnightBlue : colors.white,
+  border: "none",
+  cursor: "pointer",
+  transition: `all ${transitions.base}`,
+  fontSize: "14px",
+  fontWeight: isActive ? 600 : 400,
+
+  "&:hover": {
+    backgroundColor: isActive ? colors.buttercream : "rgba(255, 255, 255, 0.1)",
+  },
+}));
 
 const GetStartedButton = styled(Link)({
   position: "relative",
@@ -364,7 +429,20 @@ const TapEffect = styled(motion.div)({
   backgroundColor: "rgba(255, 255, 255, 0.2)",
 });
 
+const NAVIGATION_LINKS = [
+  { path: "/", key: "home" as const },
+  { path: "/services", key: "services" as const },
+  { path: "/portfolio", key: "portfolio" as const },
+  { path: "/about", key: "about" as const },
+  { path: "/contact", key: "contact" as const },
+];
+
 export const Navigation = () => {
+  const t = useTranslations("navigation");
+  const tCommon = useTranslations("common");
+  const currentLocale = useLocale() as Locale;
+  const pathname = usePathname();
+
   const {
     mobileMenuOpen,
     scrolled,
@@ -373,6 +451,16 @@ export const Navigation = () => {
     toggleMobileMenu,
     closeMobileMenu,
   } = useNavigation();
+
+  const [languageMenuOpen, setLanguageMenuOpen] = React.useState(false);
+
+  const switchLanguage = React.useCallback(
+    (locale: Locale) => {
+      const newUrl = `/${locale}${pathname}`;
+      window.location.assign(newUrl);
+    },
+    [pathname],
+  );
 
   return (
     <>
@@ -416,11 +504,11 @@ export const Navigation = () => {
                 >
                   <NavLink
                     href={link.path}
-                    aria-label={link.ariaLabel}
+                    aria-label={t(`${link.key}Aria`)}
                     aria-current={isActive(link.path) ? "page" : undefined}
                     isActive={isActive(link.path)}
                   >
-                    <span>{link.name}</span>
+                    <span>{t(link.key)}</span>
                     {isActive(link.path) ? (
                       <ActiveIndicator
                         layoutId="navbar-indicator"
@@ -437,6 +525,40 @@ export const Navigation = () => {
                 </motion.div>
               ))}
 
+              <LanguageSwitcher>
+                <LanguageButton
+                  onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
+                  aria-label="Change language"
+                  aria-expanded={languageMenuOpen}
+                >
+                  <Languages size={18} />
+                  <span>{currentLocale.toUpperCase()}</span>
+                </LanguageButton>
+                <AnimatePresence>
+                  {languageMenuOpen && (
+                    <LanguageDropdown
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      {locales.map((locale) => (
+                        <LanguageOption
+                          key={locale}
+                          isActive={locale === currentLocale}
+                          onClick={() => {
+                            switchLanguage(locale);
+                            setLanguageMenuOpen(false);
+                          }}
+                        >
+                          {localeNames[locale]}
+                        </LanguageOption>
+                      ))}
+                    </LanguageDropdown>
+                  )}
+                </AnimatePresence>
+              </LanguageSwitcher>
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -446,7 +568,7 @@ export const Navigation = () => {
                   href="/contact"
                   aria-label="Get started with Propello"
                 >
-                  <span>Get Started</span>
+                  <span>{tCommon("getStarted")}</span>
                   <GetStartedGradient
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "100%" }}
@@ -532,14 +654,14 @@ export const Navigation = () => {
                         <MobileNavLink
                           href={link.path}
                           role="menuitem"
-                          aria-label={link.ariaLabel}
+                          aria-label={t(`${link.key}Aria`)}
                           aria-current={
                             isActive(link.path) ? "page" : undefined
                           }
                           isActive={isActive(link.path)}
                         >
                           <MobileNavLinkContent>
-                            <span>{link.name}</span>
+                            <span>{t(link.key)}</span>
                             {isActive(link.path) && (
                               <ActiveDot
                                 initial={{ scale: 0, rotate: -180 }}
@@ -553,6 +675,18 @@ export const Navigation = () => {
                   </MobileNavLinks>
 
                   <MobileMenuFooter>
+                    <Box sx={{ mb: 2 }}>
+                      {locales.map((locale) => (
+                        <LanguageOption
+                          key={locale}
+                          isActive={locale === currentLocale}
+                          onClick={() => switchLanguage(locale)}
+                        >
+                          {localeNames[locale]}
+                        </LanguageOption>
+                      ))}
+                    </Box>
+
                     <motion.div
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -568,7 +702,7 @@ export const Navigation = () => {
                         role="menuitem"
                         aria-label="Get started with Propello"
                       >
-                        <span>Get Started</span>
+                        <span>{tCommon("getStarted")}</span>
                         <TapEffect
                           initial={{ scale: 0, opacity: 0 }}
                           whileTap={{ scale: 2, opacity: 1 }}

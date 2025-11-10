@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Twitter, Linkedin, Github, Instagram } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import { colors, spacing, transitions } from "@/theme/theme";
 
 const StyledFooter = styled("footer")({
@@ -216,20 +217,39 @@ const BottomLink = styled(Link)({
 });
 
 export const Footer = () => {
+  const t = useTranslations("footer");
+  const tNav = useTranslations("navigation");
+  const tCommon = useTranslations("common");
+  const tServicesWeb = useTranslations("services.webDevelopment");
+  const tServicesMobile = useTranslations("services.mobileBackend");
+  const tServicesUiux = useTranslations("services.uiuxDesign");
+  const tServicesAutomation = useTranslations("services.businessAutomation");
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Company: [
-      { name: "About", path: "/about" },
-      { name: "Services", path: "/services" },
-      { name: "Portfolio", path: "/portfolio" },
-      { name: "Contact", path: "/contact" },
+    company: [
+      { key: "about" as const, path: "/about" as const },
+      { key: "services" as const, path: "/services" as const },
+      { key: "portfolio" as const, path: "/portfolio" as const },
+      { key: "contact" as const, path: "/contact" as const },
     ],
-    Services: [
-      { name: "Web Development", path: "/services" },
-      { name: "Mobile Backend", path: "/services" },
-      { name: "UI/UX Design", path: "/services" },
-      { name: "Business Automation", path: "/services" },
+    services: [
+      {
+        label: tServicesWeb("title"),
+        path: "/services" as const,
+      },
+      {
+        label: tServicesMobile("shortTitle"),
+        path: "/services" as const,
+      },
+      {
+        label: tServicesUiux("title"),
+        path: "/services" as const,
+      },
+      {
+        label: tServicesAutomation("title"),
+        path: "/services" as const,
+      },
     ],
   };
 
@@ -247,12 +267,8 @@ export const Footer = () => {
           {/* Brand */}
           <BrandSection>
             <BrandName>Propello</BrandName>
-            <BrandDescription>
-              We build. We design. We automate.
-            </BrandDescription>
-            <BrandTagline>
-              Accelerate Innovation. Automate Success.
-            </BrandTagline>
+            <BrandDescription>{tCommon("tagline")}</BrandDescription>
+            <BrandTagline>{t("tagline")}</BrandTagline>
             <SocialLinks>
               {socialLinks.map((social) => (
                 <SocialLink
@@ -268,19 +284,29 @@ export const Footer = () => {
             </SocialLinks>
           </BrandSection>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <FooterSection key={category}>
-              <SectionTitle>{category}</SectionTitle>
-              <LinkList>
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <FooterLink href={link.path}>{link.name}</FooterLink>
-                  </li>
-                ))}
-              </LinkList>
-            </FooterSection>
-          ))}
+          {/* Company Links */}
+          <FooterSection>
+            <SectionTitle>{t("company")}</SectionTitle>
+            <LinkList>
+              {footerLinks.company.map((link) => (
+                <li key={link.key}>
+                  <FooterLink href={link.path}>{tNav(link.key)}</FooterLink>
+                </li>
+              ))}
+            </LinkList>
+          </FooterSection>
+
+          {/* Services Links */}
+          <FooterSection>
+            <SectionTitle>{t("services")}</SectionTitle>
+            <LinkList>
+              {footerLinks.services.map((link, index) => (
+                <li key={index}>
+                  <FooterLink href={link.path}>{link.label}</FooterLink>
+                </li>
+              ))}
+            </LinkList>
+          </FooterSection>
 
           {/* Newsletter */}
           <NewsletterSection>
@@ -297,10 +323,12 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <BottomBar>
-          <Copyright>© {currentYear} Propello. All rights reserved.</Copyright>
+          <Copyright>
+            {t("copyright", { year: currentYear.toString() })}
+          </Copyright>
           <BottomLinks>
-            <BottomLink href="#">Privacy Policy</BottomLink>
-            <BottomLink href="#">Terms of Service</BottomLink>
+            <BottomLink href="#">{t("legal.privacyPolicy")}</BottomLink>
+            <BottomLink href="#">{t("legal.termsOfService")}</BottomLink>
           </BottomLinks>
         </BottomBar>
       </FooterContainer>

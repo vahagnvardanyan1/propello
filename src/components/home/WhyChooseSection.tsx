@@ -1,6 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { Gauge, Award, Shield, Zap } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
@@ -9,7 +11,6 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/ScrollReveal";
-import { WHY_CHOOSE_PROPELLO } from "@/constants";
 import {
   colors,
   spacing,
@@ -149,6 +150,31 @@ const AdvantageDescription = styled("p")({
 });
 
 export const WhyChooseSection = () => {
+  const t = useTranslations("home.whyChoose");
+
+  const advantages = [
+    {
+      icon: Gauge,
+      title: t("lightningSpeed.title"),
+      description: t("lightningSpeed.description"),
+    },
+    {
+      icon: Award,
+      title: t("premiumQuality.title"),
+      description: t("premiumQuality.description"),
+    },
+    {
+      icon: Shield,
+      title: t("rockSolidReliability.title"),
+      description: t("rockSolidReliability.description"),
+    },
+    {
+      icon: Zap,
+      title: t("automationFirst.title"),
+      description: t("automationFirst.description"),
+    },
+  ];
+
   return (
     <StyledSection>
       <DecorativeOrb1 />
@@ -158,17 +184,14 @@ export const WhyChooseSection = () => {
         <ScrollReveal direction="up">
           <SectionHeader>
             <SectionLabel>The Propello Advantage</SectionLabel>
-            <SectionTitle>Why Choose Propello?</SectionTitle>
-            <SectionDescription>
-              We combine technical excellence with business intelligence to
-              deliver measurable results
-            </SectionDescription>
+            <SectionTitle>{t("title")}</SectionTitle>
+            <SectionDescription>{t("subtitle")}</SectionDescription>
           </SectionHeader>
         </ScrollReveal>
 
         <StaggerContainer>
           <AdvantagesGrid>
-            {WHY_CHOOSE_PROPELLO.map((item, index) => (
+            {advantages.map((item, index) => (
               <StaggerItem key={index}>
                 <AdvantageCard
                   className="group"

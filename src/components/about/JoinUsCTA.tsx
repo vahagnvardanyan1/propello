@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Users, Code } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 const CTASection = styled("section")({
@@ -66,6 +67,8 @@ const CTAButton = styled(Link)({
 });
 
 export const JoinUsCTA = () => {
+  const t = useTranslations("about.joinCTA");
+
   return (
     <CTASection>
       <Container maxWidth={false}>
@@ -78,14 +81,11 @@ export const JoinUsCTA = () => {
             <Users color={colors.midnightBlue} size={36} />
           </IconBox>
 
-          <Title>Join Propello — Let&apos;s Build the Future Together</Title>
-          <Description>
-            We&apos;re always looking for talented individuals who share our
-            passion for innovation
-          </Description>
+          <Title>{t("title")}</Title>
+          <Description>{t("subtitle")}</Description>
 
           <CTAButton href="/contact">
-            Get in Touch
+            {t("button")}
             <Code size={22} />
           </CTAButton>
         </CTAContent>

@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
@@ -156,6 +157,9 @@ const SecondaryCTA = styled(Link)({
 });
 
 export const FinalCTASection = () => {
+  const t = useTranslations("home.finalCTA");
+  const tCommon = useTranslations("common");
+
   return (
     <StyledSection>
       <DecorativeOrb1 />
@@ -164,15 +168,12 @@ export const FinalCTASection = () => {
       <SectionContainer maxWidth={false}>
         <ScrollReveal direction="up">
           <ContentWrapper>
-            <MainHeading>Let&apos;s Build Something Extraordinary</MainHeading>
-            <Subheading>
-              Join the visionaries who chose Propello to accelerate their
-              digital transformation and automate their path to success
-            </Subheading>
+            <MainHeading>{t("title")}</MainHeading>
+            <Subheading>{t("subtitle")}</Subheading>
 
             <CTAContainer whileHover={{ scale: 1.02 }}>
               <PrimaryCTA href="/contact" className="group">
-                <span>Start Your Project</span>
+                <span>{t("cta")}</span>
                 <ArrowRight size={22} />
                 <CTAGradient
                   initial={{ x: "-100%" }}
@@ -182,7 +183,7 @@ export const FinalCTASection = () => {
               </PrimaryCTA>
 
               <SecondaryCTA href="/portfolio" className="group">
-                <span>View Our Portfolio</span>
+                <span>{tCommon("viewPortfolio")}</span>
                 <ArrowRight size={20} />
               </SecondaryCTA>
             </CTAContainer>

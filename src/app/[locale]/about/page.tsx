@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
@@ -42,6 +43,8 @@ const Title = styled("h2")({
 });
 
 const AboutPage = () => {
+  const tCommon = useTranslations("common");
+
   return (
     <Box id="main-content" sx={{ minHeight: "100vh" }}>
       <AboutHero />
@@ -53,8 +56,8 @@ const AboutPage = () => {
       <TeamSection>
         <Container maxWidth={false}>
           <TeamHeader>
-            <Label>Meet the Team</Label>
-            <Title>Led by Industry Experts</Title>
+            <Label>{tCommon("meetTheTeam")}</Label>
+            <Title>{tCommon("ledByExperts")}</Title>
           </TeamHeader>
           <TeamCards />
         </Container>

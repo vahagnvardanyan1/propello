@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
@@ -82,6 +83,8 @@ const TechDescription = styled("p")({
 });
 
 const PortfolioPage = () => {
+  const tCommon = useTranslations("common");
+
   return (
     <Box id="main-content" sx={{ minHeight: "100vh" }}>
       <PortfolioHero />
@@ -94,12 +97,9 @@ const PortfolioPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Label>Featured Projects</Label>
-            <Title>Our Latest Work</Title>
-            <Description>
-              Explore our portfolio of cutting-edge solutions across web,
-              mobile, design, and automation
-            </Description>
+            <Label>{tCommon("featuredProjects")}</Label>
+            <Title>{tCommon("ourLatestWork")}</Title>
+            <Description>{tCommon("explorePortfolio")}</Description>
           </SectionHeader>
 
           <ProjectGrid />
@@ -116,10 +116,8 @@ const PortfolioPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <TechTitle>Technologies We Master</TechTitle>
-            <TechDescription>
-              Building with the best tools in the industry
-            </TechDescription>
+            <TechTitle>{tCommon("technologiesWeMaster")}</TechTitle>
+            <TechDescription>{tCommon("buildingWithBestTools")}</TechDescription>
           </TechHeader>
         </SectionContainer>
 

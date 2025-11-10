@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Award } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 const StyledSection = styled("section")({
@@ -60,6 +61,8 @@ const CTAButton = styled(Link)({
 });
 
 export const PortfolioCTA = () => {
+  const t = useTranslations("portfolio.cta");
+
   return (
     <StyledSection>
       <SectionContainer maxWidth={false}>
@@ -68,13 +71,11 @@ export const PortfolioCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <MainHeading>Ready to Create Your Success Story?</MainHeading>
-          <Description>
-            Let&apos;s build something that transforms your business
-          </Description>
+          <MainHeading>{t("title")}</MainHeading>
+          <Description>{t("subtitle")}</Description>
 
           <CTAButton href="/contact">
-            Let&apos;s Talk
+            {t("button")}
             <Award size={22} />
           </CTAButton>
         </motion.div>

@@ -1,11 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
 import { SectionHeading } from "@/components/SectionHeading";
-import { CONTACT_INFO, SOCIAL_LINKS } from "@/constants";
+import { SOCIAL_LINKS } from "@/constants";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 const InfoContainer = styled(motion.div)({});
@@ -101,6 +103,28 @@ const SocialLink = styled(motion.a, {
 }));
 
 export const ContactInfo = () => {
+  const t = useTranslations("contact.contactInfo");
+
+  const contactItems = [
+    {
+      icon: Mail,
+      key: "email" as const,
+      value: "hello@propello.com",
+      href: "mailto:hello@propello.com",
+    },
+    {
+      icon: Phone,
+      key: "phone" as const,
+      value: "+1 (555) 123-4567",
+      href: "tel:+15551234567",
+    },
+    {
+      icon: MapPin,
+      key: "office" as const,
+      href: "https://maps.google.com",
+    },
+  ];
+
   return (
     <InfoContainer
       initial={{ opacity: 0, x: -30 }}
@@ -115,30 +139,27 @@ export const ContactInfo = () => {
       />
 
       <ContactItems>
-        {CONTACT_INFO.map((info, index) => {
-          const Icon = info.icon;
-          return (
-            <ContactItem
-              key={info.label}
-              href={info.href}
-              className="group"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ x: 5 }}
-              aria-label={`${info.label}: ${info.value}`}
-            >
-              <IconContainer>
-                <Icon size={20} />
-              </IconContainer>
-              <InfoContent>
-                <InfoLabel>{info.label}</InfoLabel>
-                <InfoValue>{info.value}</InfoValue>
-              </InfoContent>
-            </ContactItem>
-          );
-        })}
+        {contactItems.map((info, index) => (
+          <ContactItem
+            key={info.key}
+            href={info.href}
+            className="group"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ x: 5 }}
+            aria-label={`${t(`${info.key}.label`)}: ${info.value || t(`${info.key}.value`)}`}
+          >
+            <IconContainer>
+              <info.icon size={20} />
+            </IconContainer>
+            <InfoContent>
+              <InfoLabel>{t(`${info.key}.label`)}</InfoLabel>
+              <InfoValue>{info.value || t(`${info.key}.value`)}</InfoValue>
+            </InfoContent>
+          </ContactItem>
+        ))}
       </ContactItems>
 
       {/* Social Links */}

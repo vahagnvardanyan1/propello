@@ -1,10 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
+import { Target, Zap, Heart, Lightbulb } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { COMPANY_VALUES } from "@/constants";
 import { colors, spacing, borderRadius, shadows } from "@/theme/theme";
 
 const StyledSection = styled("section")({
@@ -81,6 +82,15 @@ const ValueDescription = styled("p")({
 });
 
 export const ValuesSection = () => {
+  const t = useTranslations("about.values");
+
+  const values = [
+    { icon: Target, key: "excellence" as const },
+    { icon: Zap, key: "speed" as const },
+    { icon: Heart, key: "empathy" as const },
+    { icon: Lightbulb, key: "innovation" as const },
+  ];
+
   return (
     <StyledSection>
       <Container maxWidth={false}>
@@ -90,11 +100,11 @@ export const ValuesSection = () => {
           viewport={{ once: true }}
         >
           <Label>What Drives Us</Label>
-          <Title>Our Core Values</Title>
+          <Title>{t("title")}</Title>
         </SectionHeader>
 
         <ValuesGrid>
-          {COMPANY_VALUES.map((value, index) => (
+          {values.map((value, index) => (
             <ValueCard
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -110,9 +120,9 @@ export const ValuesSection = () => {
                 <value.icon color={colors.white} size={36} />
               </ValueIcon>
 
-              <ValueTitle>{value.title}</ValueTitle>
+              <ValueTitle>{t(`${value.key}.title`)}</ValueTitle>
 
-              <ValueDescription>{value.description}</ValueDescription>
+              <ValueDescription>{t(`${value.key}.description`)}</ValueDescription>
             </ValueCard>
           ))}
         </ValuesGrid>

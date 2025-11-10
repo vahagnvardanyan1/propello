@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 
 import { motion, useScroll, useTransform } from "motion/react";
 import { styled } from "@mui/material/styles";
@@ -80,6 +81,7 @@ const Description = styled("p")({
 });
 
 export const ContactHero = () => {
+  const t = useTranslations("contact.hero");
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -115,14 +117,8 @@ export const ContactHero = () => {
               <span>Get in Touch</span>
             </Badge>
 
-            <Title id="contact-hero-title">
-              Let&apos;s Talk About Your{" "}
-              <HighlightText>Next Breakthrough</HighlightText>
-            </Title>
-            <Description>
-              From code to automation — let&apos;s build efficiency together.
-              Ready to transform your vision into reality?
-            </Description>
+            <Title id="contact-hero-title">{t("title")}</Title>
+            <Description>{t("subtitle")}</Description>
           </HeroInner>
         </HeroContent>
       </Container>

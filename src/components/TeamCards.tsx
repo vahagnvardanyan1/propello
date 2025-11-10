@@ -1,11 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Linkedin, Twitter, Mail } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
-import { TEAM_MEMBERS } from "@/constants";
 import {
   colors,
   spacing,
@@ -132,9 +132,50 @@ const SocialLink = styled(motion.a)({
 });
 
 export const TeamCards = () => {
+  const t = useTranslations("about.team");
+
+  const teamMembers = [
+    {
+      key: "alexRivera" as const,
+      image: "👨‍💼",
+      social: {
+        linkedin: "#",
+        twitter: "#",
+        email: "alex@propello.com",
+      },
+    },
+    {
+      key: "sarahChen" as const,
+      image: "👩‍🎨",
+      social: {
+        linkedin: "#",
+        twitter: "#",
+        email: "sarah@propello.com",
+      },
+    },
+    {
+      key: "marcusJohnson" as const,
+      image: "👨‍💻",
+      social: {
+        linkedin: "#",
+        twitter: "#",
+        email: "marcus@propello.com",
+      },
+    },
+    {
+      key: "emilyPark" as const,
+      image: "👩‍🔬",
+      social: {
+        linkedin: "#",
+        twitter: "#",
+        email: "emily@propello.com",
+      },
+    },
+  ];
+
   return (
     <TeamGrid>
-      {TEAM_MEMBERS.map((member, index) => (
+      {teamMembers.map((member, index) => (
         <TeamMemberCard
           key={index}
           className="group"
@@ -161,9 +202,9 @@ export const TeamCards = () => {
                 {member.image}
               </Avatar>
 
-              <MemberName>{member.name}</MemberName>
-              <MemberRole>{member.role}</MemberRole>
-              <MemberBio>{member.bio}</MemberBio>
+              <MemberName>{t(`${member.key}.name`)}</MemberName>
+              <MemberRole>{t(`${member.key}.role`)}</MemberRole>
+              <MemberBio>{t(`${member.key}.bio`)}</MemberBio>
 
               <SocialLinks>
                 <SocialLink

@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Zap, ArrowRight } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import {
   colors,
   spacing,
@@ -74,6 +75,8 @@ const DemoButton = styled(Link)({
 });
 
 export const DemoCallout = () => {
+  const tCommon = useTranslations("common");
+
   return (
     <CalloutSection>
       <Container maxWidth={false}>
@@ -96,15 +99,12 @@ export const DemoCallout = () => {
             <Zap color={colors.midnightBlue} size={40} />
           </IconBox>
 
-          <Title>See Automation in Action</Title>
+          <Title>{tCommon("seeAutomationInAction")}</Title>
 
-          <Description>
-            Watch how we integrate AI-powered workflows that save 40+ hours per
-            week and increase productivity by 300%
-          </Description>
+          <Description>{tCommon("watchHowWeIntegrate")}</Description>
 
           <DemoButton href="/" className="group">
-            View Live Demo
+            {tCommon("viewLiveDemo")}
             <ArrowRight size={20} />
           </DemoButton>
         </CalloutContent>

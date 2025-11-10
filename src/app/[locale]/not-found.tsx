@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { Home, ArrowLeft } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
+import { Link, useRouter } from "@/navigation";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 const NotFoundSection = styled("section")({

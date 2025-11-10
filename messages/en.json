@@ -1,0 +1,571 @@
+{
+  "metadata": {
+    "title": "Propello - Accelerate Innovation, Automate Success",
+    "description": "We design, develop, and automate digital ecosystems that scale businesses through intelligent technology. Expert web development, mobile backend, UI/UX design, and business automation."
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact",
+    "homeAria": "Navigate to home page",
+    "servicesAria": "View our services",
+    "portfolioAria": "Explore our portfolio",
+    "aboutAria": "Learn about us",
+    "contactAria": "Get in touch"
+  },
+  "home": {
+    "hero": {
+      "title": "Accelerate Innovation, Automate Success",
+      "subtitle": "We design, develop, and automate digital ecosystems that scale your business through intelligent technology.",
+      "cta": "Start Your Project",
+      "learnMore": "Explore Services"
+    },
+    "services": {
+      "eyebrow": "Our Expertise",
+      "title": "Core Services",
+      "description": "Comprehensive solutions designed to transform your business through technology"
+    },
+    "metrics": {
+      "projectsDelivered": "Projects Delivered",
+      "yearsExperience": "Years Experience",
+      "clientRetention": "Client Retention"
+    },
+    "whyChoose": {
+      "title": "Why Choose Propello",
+      "subtitle": "We deliver results through speed, quality, and innovation",
+      "lightningSpeed": {
+        "title": "Lightning Speed",
+        "description": "Rapid development and deployment without compromising quality."
+      },
+      "premiumQuality": {
+        "title": "Premium Quality",
+        "description": "Enterprise-grade solutions with meticulous attention to detail."
+      },
+      "rockSolidReliability": {
+        "title": "Rock-Solid Reliability",
+        "description": "99.9% uptime with proactive monitoring and support."
+      },
+      "automationFirst": {
+        "title": "Automation First",
+        "description": "Every solution is optimized for efficiency and scalability."
+      }
+    },
+    "finalCTA": {
+      "title": "Ready to Transform Your Business?",
+      "subtitle": "Let's build something exceptional together. Get in touch and let's discuss your project.",
+      "cta": "Get Started Now"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "We Craft Intelligent Systems That Automate Business Growth",
+      "description": "From ideation to deployment, we build technology that transforms how businesses operate, compete, and scale."
+    },
+    "webDevelopment": {
+      "title": "Web Development",
+      "tagline": "Build. Scale. Dominate.",
+      "description": "We craft high-performance web applications that scale with your business. From startups to enterprise, we deliver solutions that drive results.",
+      "features": {
+        "responsiveDesign": {
+          "text": "Responsive Design",
+          "detail": "Pixel-perfect on every device"
+        },
+        "cloudNative": {
+          "text": "Cloud-Native Architecture",
+          "detail": "Scalable and resilient"
+        },
+        "lightningPerformance": {
+          "text": "Lightning Performance",
+          "detail": "Optimized for speed"
+        },
+        "enterpriseSecurity": {
+          "text": "Enterprise Security",
+          "detail": "Bank-level protection"
+        }
+      },
+      "shortDescription": "Scalable, performant web applications built with cutting-edge technology and best practices.",
+      "shortFeatures": {
+        "reactNextjs": "React & Next.js",
+        "cloudNative": "Cloud-Native",
+        "apiIntegration": "API Integration"
+      }
+    },
+    "mobileBackend": {
+      "title": "Mobile Backend Engineering",
+      "tagline": "Power. Performance. Scale.",
+      "description": "Robust backend systems that power millions of mobile users. Real-time data, seamless sync, and bulletproof reliability.",
+      "features": {
+        "realTimeSync": {
+          "text": "Real-Time Data Sync",
+          "detail": "Instant updates everywhere"
+        },
+        "microservices": {
+          "text": "Microservices Architecture",
+          "detail": "Modular and maintainable"
+        },
+        "autoScaling": {
+          "text": "Auto-Scaling Infrastructure",
+          "detail": "Handles any load"
+        },
+        "advancedSecurity": {
+          "text": "Advanced Security",
+          "detail": "OAuth 2.0 & JWT"
+        }
+      },
+      "shortTitle": "Mobile Backend",
+      "shortDescription": "Robust, secure backend systems that power mobile experiences at any scale.",
+      "shortFeatures": {
+        "restfulApis": "RESTful APIs",
+        "realTimeData": "Real-time Data",
+        "microservices": "Microservices"
+      }
+    },
+    "uiuxDesign": {
+      "title": "UI/UX Design",
+      "tagline": "Design. Delight. Convert.",
+      "description": "Beautiful interfaces that users love and that drive business metrics. We blend art with science to create experiences that convert.",
+      "features": {
+        "userResearch": {
+          "text": "User Research",
+          "detail": "Data-driven insights"
+        },
+        "interactivePrototypes": {
+          "text": "Interactive Prototypes",
+          "detail": "Test before build"
+        },
+        "designSystems": {
+          "text": "Design Systems",
+          "detail": "Scalable consistency"
+        },
+        "conversionOptimization": {
+          "text": "Conversion Optimization",
+          "detail": "Maximize ROI"
+        }
+      },
+      "shortDescription": "Beautiful, intuitive interfaces that users love and that drive business results.",
+      "shortFeatures": {
+        "userResearch": "User Research",
+        "prototyping": "Prototyping",
+        "designSystems": "Design Systems"
+      }
+    },
+    "businessAutomation": {
+      "title": "Business Automation",
+      "tagline": "Automate. Accelerate. Grow.",
+      "description": "AI-powered automation that eliminates busywork and supercharges your team. Save time, reduce errors, and scale faster.",
+      "features": {
+        "aiIntegration": {
+          "text": "AI Integration",
+          "detail": "GPT-4 & machine learning"
+        },
+        "workflowAutomation": {
+          "text": "Workflow Automation",
+          "detail": "End-to-end processes"
+        },
+        "smartTriggers": {
+          "text": "Smart Triggers",
+          "detail": "Event-driven automation"
+        },
+        "integrationHub": {
+          "text": "Integration Hub",
+          "detail": "1000+ app connections"
+        }
+      },
+      "shortDescription": "AI-powered workflows that eliminate manual tasks and accelerate growth.",
+      "shortFeatures": {
+        "aiIntegration": "AI Integration",
+        "workflowAutomation": "Workflow Automation",
+        "processOptimization": "Process Optimization"
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Let's discuss how we can help accelerate your business",
+      "button": "Contact Us Today"
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "title": "Our Portfolio",
+      "subtitle": "Real projects, real results, real impact"
+    },
+    "stats": {
+      "projectsDelivered": "Projects Delivered",
+      "usersImpacted": "Users Impacted",
+      "hoursSaved": "Hours Saved",
+      "avgROI": "Avg ROI"
+    },
+    "caseStudies": {
+      "title": "Case Studies",
+      "ecommerce": {
+        "title": "E-Commerce Automation",
+        "company": "RetailTech Inc.",
+        "challenge": "Manual order processing taking 20+ hours weekly",
+        "solution": "AI-powered automation with real-time inventory sync",
+        "results": {
+          "timeSaved": "Time Saved",
+          "annualSavings": "Annual Savings",
+          "accuracyRate": "Accuracy Rate"
+        }
+      },
+      "healthcare": {
+        "title": "Healthcare Platform Scale",
+        "company": "MediConnect",
+        "challenge": "Platform crashing under 10K concurrent users",
+        "solution": "Microservices architecture with auto-scaling",
+        "results": {
+          "activeUsers": "Active Users",
+          "loadTime": "Load Time",
+          "uptime": "Uptime"
+        }
+      },
+      "uxRedesign": {
+        "title": "UX Redesign Impact",
+        "company": "SaaS Platform",
+        "challenge": "High bounce rate and low user engagement",
+        "solution": "Complete UX overhaul with user research",
+        "results": {
+          "engagement": "Engagement",
+          "conversionUp": "Conversion Up",
+          "satisfaction": "Satisfaction"
+        }
+      }
+    },
+    "projects": {
+      "all": "All",
+      "categories": {
+        "webDevelopment": "Web Development",
+        "mobileBackend": "Mobile Backend",
+        "uiuxDesign": "UI/UX Design",
+        "businessAutomation": "Business Automation"
+      },
+      "ecommercePlatform": {
+        "title": "E-Commerce Platform",
+        "description": "Full-stack e-commerce solution with real-time inventory and AI recommendations.",
+        "metrics": {
+          "users": "users",
+          "conversion": "conversion",
+          "time": "time"
+        }
+      },
+      "healthcareApp": {
+        "title": "Healthcare Mobile App",
+        "description": "HIPAA-compliant telemedicine platform serving 100K+ patients.",
+        "metrics": {
+          "users": "users",
+          "uptime": "uptime",
+          "time": "time"
+        }
+      },
+      "saasRedesign": {
+        "title": "SaaS Dashboard Redesign",
+        "description": "Complete UX overhaul that increased user engagement by 200%.",
+        "metrics": {
+          "engagement": "engagement",
+          "satisfaction": "satisfaction",
+          "time": "time"
+        }
+      },
+      "marketingAutomation": {
+        "title": "Marketing Automation Hub",
+        "description": "AI-powered automation saving 40+ hours/week in manual tasks.",
+        "metrics": {
+          "saved": "saved",
+          "roi": "roi",
+          "time": "time"
+        }
+      },
+      "realEstate": {
+        "title": "Real Estate Platform",
+        "description": "Property listing platform with virtual tours and AI matching.",
+        "metrics": {
+          "listings": "listings",
+          "speed": "speed",
+          "time": "time"
+        }
+      },
+      "fitnessApi": {
+        "title": "Fitness Tracking API",
+        "description": "Real-time data sync for 500K+ active fitness enthusiasts.",
+        "metrics": {
+          "users": "users",
+          "latency": "latency",
+          "time": "time"
+        }
+      },
+      "bankingUI": {
+        "title": "Banking App UI",
+        "description": "Award-winning fintech interface with accessibility at its core.",
+        "metrics": {
+          "award": "award",
+          "accessibility": "accessibility",
+          "time": "time"
+        }
+      },
+      "crmIntegration": {
+        "title": "CRM Integration Suite",
+        "description": "Unified workflow connecting 15+ business tools seamlessly.",
+        "metrics": {
+          "tools": "tools",
+          "efficiency": "efficiency",
+          "time": "time"
+        }
+      }
+    },
+    "cta": {
+      "title": "Want Results Like These?",
+      "subtitle": "Let's create your success story together",
+      "button": "Start Your Project"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About Propello",
+      "subtitle": "Innovators. Builders. Problem Solvers."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To democratize enterprise-grade technology and empower businesses of all sizes to compete in the digital age through intelligent automation and cutting-edge development."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "A world where technology accelerates every business, where automation eliminates busywork, and where innovation is accessible to all."
+    },
+    "timeline": {
+      "title": "Our Journey",
+      "milestones": {
+        "2015": {
+          "title": "The Beginning",
+          "description": "Founded with a mission to democratize enterprise-grade technology for growing businesses."
+        },
+        "2017": {
+          "title": "First Major Client",
+          "description": "Partnered with Fortune 500 company, scaling our team and capabilities."
+        },
+        "2019": {
+          "title": "AI Integration",
+          "description": "Pioneered AI-powered automation solutions, saving clients 1000+ hours monthly."
+        },
+        "2022": {
+          "title": "Industry Recognition",
+          "description": "Awarded \"Top Design & Development Agency\" by TechCrunch."
+        },
+        "2025": {
+          "title": "Global Expansion",
+          "description": "100+ projects delivered. 2M+ users impacted. Building the future."
+        }
+      }
+    },
+    "values": {
+      "title": "Our Values",
+      "excellence": {
+        "title": "Excellence",
+        "description": "We obsess over details and never compromise on quality."
+      },
+      "speed": {
+        "title": "Speed",
+        "description": "Rapid delivery without sacrificing craftsmanship."
+      },
+      "empathy": {
+        "title": "Empathy",
+        "description": "We build with users and businesses in mind, always."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Constantly pushing boundaries with cutting-edge tech."
+      }
+    },
+    "culture": {
+      "title": "Our Culture",
+      "remoteFirst": "Remote-First",
+      "globalTeam": "Global Team",
+      "alwaysLearning": "Always Learning",
+      "resultsDriven": "Results-Driven",
+      "creativeFreedom": "Creative Freedom",
+      "collaborative": "Collaborative",
+      "fastPaced": "Fast-Paced",
+      "designFocused": "Design-Focused"
+    },
+    "team": {
+      "title": "Meet the Team",
+      "alexRivera": {
+        "name": "Alex Rivera",
+        "role": "Founder & CEO",
+        "bio": "15+ years building scalable systems. Former lead engineer at tech giants."
+      },
+      "sarahChen": {
+        "name": "Sarah Chen",
+        "role": "Head of Design",
+        "bio": "Award-winning designer. Obsessed with creating delightful user experiences."
+      },
+      "marcusJohnson": {
+        "name": "Marcus Johnson",
+        "role": "Lead Engineer",
+        "bio": "Full-stack wizard. Passionate about clean code and automation."
+      },
+      "emilyPark": {
+        "name": "Emily Park",
+        "role": "Automation Specialist",
+        "bio": "AI integration expert. Turns complex workflows into simple automations."
+      }
+    },
+    "joinCTA": {
+      "title": "Join Our Team",
+      "subtitle": "We're always looking for talented individuals who are passionate about innovation",
+      "button": "View Open Positions"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Let's Build Together",
+      "subtitle": "Have a project in mind? We'd love to hear about it."
+    },
+    "quickOptions": {
+      "email": {
+        "title": "Email Us",
+        "description": "Get a response within 24 hours"
+      },
+      "scheduleDemo": {
+        "title": "Schedule a Demo",
+        "description": "Book a free 30-minute consultation",
+        "action": "Schedule Now"
+      },
+      "liveChat": {
+        "title": "Live Chat",
+        "description": "Chat with our team instantly",
+        "action": "Start Chat"
+      }
+    },
+    "contactInfo": {
+      "email": {
+        "label": "Email"
+      },
+      "phone": {
+        "label": "Phone"
+      },
+      "office": {
+        "label": "Office",
+        "value": "123 Innovation Drive, San Francisco, CA 94103"
+      }
+    },
+    "form": {
+      "title": "Send us a Message",
+      "name": "Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email",
+      "emailPlaceholder": "john@example.com",
+      "service": "Service",
+      "servicePlaceholder": "Select a service",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! We'll get back to you soon.",
+      "error": "Failed to send message. Please try again.",
+      "serviceOptions": {
+        "select": "Select a service",
+        "webDevelopment": "Web Development",
+        "mobileBackend": "Mobile Backend Development",
+        "uiuxDesign": "UI/UX Design",
+        "businessAutomation": "Business Automation",
+        "consulting": "Consulting"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "whatServices": {
+          "question": "What services does Propello offer?",
+          "answer": "We specialize in Web Development, Mobile Backend Development, UI/UX Design, and Business Automation. We create end-to-end solutions that scale with your business needs."
+        },
+        "projectTimeline": {
+          "question": "How long does a typical project take?",
+          "answer": "Project timelines vary based on scope and complexity. Simple projects may take 4-6 weeks, while enterprise solutions can span 3-6 months. We provide detailed timelines during our discovery phase."
+        },
+        "pricingModel": {
+          "question": "What is your pricing model?",
+          "answer": "We offer flexible engagement models including fixed-price projects, time & materials, and dedicated team arrangements. Pricing is customized based on your specific requirements and project scope."
+        },
+        "ongoingSupport": {
+          "question": "Do you offer ongoing support after launch?",
+          "answer": "Yes! We provide comprehensive support packages including maintenance, updates, monitoring, and optimization. We're committed to your long-term success."
+        },
+        "aiAutomation": {
+          "question": "Can you help with automation and AI integration?",
+          "answer": "Absolutely! Business automation and AI integration are core strengths. We help streamline workflows, automate repetitive tasks, and integrate AI capabilities into your systems."
+        }
+      }
+    }
+  },
+  "process": {
+    "title": "Our Process",
+    "discover": {
+      "title": "Discover",
+      "description": "We dive deep into your business needs, goals, and challenges to create a comprehensive strategy."
+    },
+    "design": {
+      "title": "Design",
+      "description": "Our designers craft intuitive, beautiful interfaces that users love and that align with your brand."
+    },
+    "build": {
+      "title": "Build",
+      "description": "Expert engineers transform designs into robust, scalable applications using cutting-edge technology."
+    },
+    "automate": {
+      "title": "Automate",
+      "description": "We integrate intelligent automation and AI to streamline workflows and boost productivity."
+    },
+    "optimize": {
+      "title": "Optimize",
+      "description": "Continuous monitoring, refinement, and scaling to ensure peak performance and growth."
+    }
+  },
+  "footer": {
+    "tagline": "Accelerate Innovation. Automate Success.",
+    "company": "Company",
+    "services": "Services",
+    "legal": {
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
+    },
+    "copyright": "© {year} Propello. All rights reserved."
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "backToTop": "Back to Top",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "tagline": "We Build. We Design. We Automate.",
+    "viewPortfolio": "View Portfolio",
+    "viewLiveDemo": "View Live Demo",
+    "emailUsDirectly": "Email Us Directly",
+    "getInTouch": "Get in Touch",
+    "ourExpertise": "Our Expertise",
+    "howWeWork": "How We Work",
+    "featuredProjects": "Featured Projects",
+    "ourLatestWork": "Our Latest Work",
+    "technologiesWeMaster": "Technologies We Master",
+    "buildingWithBestTools": "Building with the best tools in the industry",
+    "meetTheTeam": "Meet the Team",
+    "ledByExperts": "Led by Industry Experts",
+    "readyToStart": "Ready to Start?",
+    "letsBuildAmazing": "Let's Build Something Amazing",
+    "joinCompanies": "Join over 50+ companies who trust Propello to deliver exceptional digital solutions.",
+    "provenMethodology": "A proven methodology that delivers exceptional results, every time",
+    "seeAutomationInAction": "See Automation in Action",
+    "watchHowWeIntegrate": "Watch how we integrate AI-powered workflows that save 40+ hours per week and increase productivity by 300%",
+    "explorePortfolio": "Explore our portfolio of cutting-edge solutions across web, mobile, design, and automation"
+  }
+}
+

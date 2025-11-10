@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 const CTASection = styled("section")({
@@ -54,6 +55,8 @@ const ContactButton = styled(Link)({
 });
 
 export const ServicesCTA = () => {
+  const t = useTranslations("services.cta");
+
   return (
     <CTASection>
       <Container maxWidth={false}>
@@ -62,14 +65,11 @@ export const ServicesCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <Title>Ready to Start Your Project?</Title>
-          <Description>
-            Let&apos;s discuss how we can help bring your vision to life with
-            world-class technology and design
-          </Description>
+          <Title>{t("title")}</Title>
+          <Description>{t("subtitle")}</Description>
 
           <ContactButton href="/contact" className="group">
-            Contact Us Today
+            {t("button")}
             <ArrowRight size={22} />
           </ContactButton>
         </CTAContent>

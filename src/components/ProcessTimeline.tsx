@@ -1,49 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Search, Palette, Code, Zap, TrendingUp } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
 import { colors, spacing, shadows } from "@/theme/theme";
-
-const processSteps = [
-  {
-    icon: Search,
-    title: "Discover",
-    description:
-      "We dive deep into your business needs, goals, and challenges to create a comprehensive strategy.",
-    color: "linear-gradient(to bottom right, #60a5fa, #2563eb)",
-  },
-  {
-    icon: Palette,
-    title: "Design",
-    description:
-      "Our designers craft intuitive, beautiful interfaces that users love and that align with your brand.",
-    color: "linear-gradient(to bottom right, #c084fc, #9333ea)",
-  },
-  {
-    icon: Code,
-    title: "Build",
-    description:
-      "Expert engineers transform designs into robust, scalable applications using cutting-edge technology.",
-    color: "linear-gradient(to bottom right, #4ade80, #16a34a)",
-  },
-  {
-    icon: Zap,
-    title: "Automate",
-    description:
-      "We integrate intelligent automation and AI to streamline workflows and boost productivity.",
-    color: "linear-gradient(to bottom right, #facc15, #ca8a04)",
-  },
-  {
-    icon: TrendingUp,
-    title: "Optimize",
-    description:
-      "Continuous monitoring, refinement, and scaling to ensure peak performance and growth.",
-    color: "linear-gradient(to bottom right, #f87171, #dc2626)",
-  },
-];
 
 const TimelineContainer = styled(Box)({
   position: "relative",
@@ -213,6 +176,36 @@ const MobileStepDescription = styled("p")({
 });
 
 export const ProcessTimeline = () => {
+  const t = useTranslations("process");
+
+  const processSteps = [
+    {
+      icon: Search,
+      key: "discover" as const,
+      color: "linear-gradient(to bottom right, #60a5fa, #2563eb)",
+    },
+    {
+      icon: Palette,
+      key: "design" as const,
+      color: "linear-gradient(to bottom right, #c084fc, #9333ea)",
+    },
+    {
+      icon: Code,
+      key: "build" as const,
+      color: "linear-gradient(to bottom right, #4ade80, #16a34a)",
+    },
+    {
+      icon: Zap,
+      key: "automate" as const,
+      color: "linear-gradient(to bottom right, #facc15, #ca8a04)",
+    },
+    {
+      icon: TrendingUp,
+      key: "optimize" as const,
+      color: "linear-gradient(to bottom right, #f87171, #dc2626)",
+    },
+  ];
+
   return (
     <TimelineContainer>
       {/* Desktop Timeline */}
@@ -245,8 +238,10 @@ export const ProcessTimeline = () => {
                 </IconCircle>
 
                 <StepContent>
-                  <StepTitle>{step.title}</StepTitle>
-                  <StepDescription>{step.description}</StepDescription>
+                  <StepTitle>{t(`${step.key}.title`)}</StepTitle>
+                  <StepDescription>
+                    {t(`${step.key}.description`)}
+                  </StepDescription>
                 </StepContent>
               </StepCard>
             ))}
@@ -277,8 +272,10 @@ export const ProcessTimeline = () => {
             </MobileIconContainer>
 
             <MobileContent>
-              <MobileStepTitle>{step.title}</MobileStepTitle>
-              <MobileStepDescription>{step.description}</MobileStepDescription>
+              <MobileStepTitle>{t(`${step.key}.title`)}</MobileStepTitle>
+              <MobileStepDescription>
+                {t(`${step.key}.description`)}
+              </MobileStepDescription>
             </MobileContent>
           </MobileStepCard>
         ))}

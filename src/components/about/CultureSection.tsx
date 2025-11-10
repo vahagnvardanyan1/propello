@@ -1,10 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { COMPANY_CULTURE } from "@/constants";
 import {
   colors,
   spacing,
@@ -74,6 +74,19 @@ const CultureLabel = styled("div")({
 });
 
 export const CultureSection = () => {
+  const t = useTranslations("about.culture");
+
+  const cultureItems = [
+    { emoji: "🚀", key: "remoteFirst" as const },
+    { emoji: "🌍", key: "globalTeam" as const },
+    { emoji: "📚", key: "alwaysLearning" as const },
+    { emoji: "🎯", key: "resultsDriven" as const },
+    { emoji: "💡", key: "creativeFreedom" as const },
+    { emoji: "🤝", key: "collaborative" as const },
+    { emoji: "⚡", key: "fastPaced" as const },
+    { emoji: "🎨", key: "designFocused" as const },
+  ];
+
   return (
     <StyledSection>
       <Container maxWidth={false}>
@@ -82,14 +95,14 @@ export const CultureSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <Title>Our Culture</Title>
+          <Title>{t("title")}</Title>
           <Description>
             What it&apos;s like to be part of the Propello family
           </Description>
         </SectionHeader>
 
         <CultureGrid>
-          {COMPANY_CULTURE.map((item, index) => (
+          {cultureItems.map((item, index) => (
             <CultureCard
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -99,7 +112,7 @@ export const CultureSection = () => {
               whileHover={{ scale: 1.1, rotate: 5 }}
             >
               <Emoji>{item.emoji}</Emoji>
-              <CultureLabel>{item.label}</CultureLabel>
+              <CultureLabel>{t(item.key)}</CultureLabel>
             </CultureCard>
           ))}
         </CultureGrid>

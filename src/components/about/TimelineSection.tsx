@@ -1,10 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { MILESTONES } from "@/constants";
 import {
   colors,
   spacing,
@@ -152,6 +152,16 @@ const Spacer = styled(Box)({
 });
 
 export const TimelineSection = () => {
+  const t = useTranslations("about.timeline");
+
+  const milestones = [
+    { year: "2015", key: "2015" as const },
+    { year: "2017", key: "2017" as const },
+    { year: "2019", key: "2019" as const },
+    { year: "2022", key: "2022" as const },
+    { year: "2025", key: "2025" as const },
+  ];
+
   return (
     <StyledSection>
       <Container maxWidth={false}>
@@ -161,14 +171,14 @@ export const TimelineSection = () => {
           viewport={{ once: true }}
         >
           <Label>Our Journey</Label>
-          <Title>Building the Future, One Milestone at a Time</Title>
+          <Title>{t("title")}</Title>
         </SectionHeader>
 
         <TimelineContainer>
           <TimelineLine />
 
           <MilestonesContainer>
-            {MILESTONES.map((milestone, index) => {
+            {milestones.map((milestone, index) => {
               const isEven = index % 2 === 0;
 
               return (
@@ -183,9 +193,11 @@ export const TimelineSection = () => {
                   <ContentSection isEven={isEven}>
                     <ContentCard whileHover={{ scale: 1.05 }}>
                       <Year>{milestone.year}</Year>
-                      <MilestoneTitle>{milestone.title}</MilestoneTitle>
+                      <MilestoneTitle>
+                        {t(`milestones.${milestone.key}.title`)}
+                      </MilestoneTitle>
                       <MilestoneDescription>
-                        {milestone.description}
+                        {t(`milestones.${milestone.key}.description`)}
                       </MilestoneDescription>
                     </ContentCard>
                   </ContentSection>

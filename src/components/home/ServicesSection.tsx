@@ -1,17 +1,17 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Code, Smartphone, Palette, Zap } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import {
   ScrollReveal,
   StaggerContainer,
   StaggerItem,
 } from "@/components/ScrollReveal";
-import { SERVICES } from "@/constants";
 import {
   colors,
   spacing,
@@ -175,23 +175,70 @@ const ExploreButton = styled(Link)({
 });
 
 export const ServicesSection = () => {
+  const tWebDev = useTranslations("services.webDevelopment");
+  const tMobile = useTranslations("services.mobileBackend");
+  const tUIUX = useTranslations("services.uiuxDesign");
+  const tAutomation = useTranslations("services.businessAutomation");
+  const tCommon = useTranslations("common");
+  const tHome = useTranslations("home.services");
+
+  const services = [
+    {
+      icon: Code,
+      title: tWebDev("title"),
+      description: tWebDev("shortDescription"),
+      features: [
+        tWebDev("shortFeatures.reactNextjs"),
+        tWebDev("shortFeatures.cloudNative"),
+        tWebDev("shortFeatures.apiIntegration"),
+      ],
+    },
+    {
+      icon: Smartphone,
+      title: tMobile("shortTitle"),
+      description: tMobile("shortDescription"),
+      features: [
+        tMobile("shortFeatures.restfulApis"),
+        tMobile("shortFeatures.realTimeData"),
+        tMobile("shortFeatures.microservices"),
+      ],
+    },
+    {
+      icon: Palette,
+      title: tUIUX("title"),
+      description: tUIUX("shortDescription"),
+      features: [
+        tUIUX("shortFeatures.userResearch"),
+        tUIUX("shortFeatures.prototyping"),
+        tUIUX("shortFeatures.designSystems"),
+      ],
+    },
+    {
+      icon: Zap,
+      title: tAutomation("title"),
+      description: tAutomation("shortDescription"),
+      features: [
+        tAutomation("shortFeatures.aiIntegration"),
+        tAutomation("shortFeatures.workflowAutomation"),
+        tAutomation("shortFeatures.processOptimization"),
+      ],
+    },
+  ];
+
   return (
     <StyledSection>
       <SectionContainer maxWidth={false}>
         <ScrollReveal direction="up">
           <SectionHeader>
-            <SectionLabel>Our Expertise</SectionLabel>
-            <SectionTitle>Core Services</SectionTitle>
-            <SectionDescription>
-              Comprehensive solutions designed to transform your business
-              through technology
-            </SectionDescription>
+            <SectionLabel>{tHome("eyebrow")}</SectionLabel>
+            <SectionTitle>{tHome("title")}</SectionTitle>
+            <SectionDescription>{tHome("description")}</SectionDescription>
           </SectionHeader>
         </ScrollReveal>
 
         <StaggerContainer>
           <ServicesGrid>
-            {SERVICES.map((service, index) => (
+            {services.map((service, index) => (
               <StaggerItem key={index}>
                 <ServiceCard
                   className="group"
@@ -226,7 +273,7 @@ export const ServicesSection = () => {
         <ScrollReveal direction="up" delay={0.2}>
           <CTAContainer>
             <ExploreButton href="/services" className="group">
-              <span>Explore All Services</span>
+              <span>{tCommon("viewAll")}</span>
               <ArrowRight size={18} />
             </ExploreButton>
           </CTAContainer>

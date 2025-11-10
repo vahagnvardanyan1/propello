@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 
+import { usePathname } from "@/navigation";
 import { isActiveRoute } from "@/utils";
 
 interface UseNavigationConfig {

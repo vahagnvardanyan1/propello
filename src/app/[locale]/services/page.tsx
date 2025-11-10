@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
@@ -50,6 +51,9 @@ const Description = styled("p")({
 });
 
 const ServicesPage = () => {
+  const t = useTranslations("process");
+  const tCommon = useTranslations("common");
+
   return (
     <Box id="main-content" sx={{ minHeight: "100vh" }}>
       <ServicesHero />
@@ -63,11 +67,9 @@ const ServicesPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Label>How We Work</Label>
-            <Title>Our Process</Title>
-            <Description>
-              A proven methodology that delivers exceptional results, every time
-            </Description>
+            <Label>{tCommon("howWeWork")}</Label>
+            <Title>{t("title")}</Title>
+            <Description>{tCommon("provenMethodology")}</Description>
           </ProcessHeader>
 
           <ProcessTimeline />

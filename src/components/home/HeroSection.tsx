@@ -1,15 +1,15 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, Zap } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
+import { Link } from "@/navigation";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
-import { HOME_METRICS } from "@/constants";
 import { colors, spacing, transitions, borderRadius } from "@/theme/theme";
 
 const StyledHeroSection = styled("section")({
@@ -269,7 +269,16 @@ const MetricLabel = styled(Box)({
   },
 });
 
+const HOME_METRICS = [
+  { end: 100, suffix: "+", key: "projectsDelivered" as const },
+  { end: 10, suffix: "+", key: "yearsExperience" as const },
+  { end: 98, suffix: "%", key: "clientRetention" as const },
+];
+
 export const HeroSection = () => {
+  const t = useTranslations("home.hero");
+  const tMetrics = useTranslations("home.metrics");
+  const tCommon = useTranslations("common");
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -317,7 +326,7 @@ export const HeroSection = () => {
             transition={{ delay: 0.2 }}
           >
             <Zap color={colors.buttercream} size={16} />
-            <TaglineText>We Build. We Design. We Automate.</TaglineText>
+            <TaglineText>{tCommon("tagline")}</TaglineText>
           </BrandTagline>
 
           {/* Main Headline */}
@@ -326,9 +335,7 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            Accelerate Innovation.
-            <br />
-            <GradientText>Automate Success.</GradientText>
+            {t("title")}
           </MainHeadline>
 
           {/* Subheadline */}
@@ -337,8 +344,7 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            We design, develop, and automate digital ecosystems that scale
-            businesses through intelligent technology.
+            {t("subtitle")}
           </Subheadline>
 
           {/* CTAs */}
@@ -348,7 +354,7 @@ export const HeroSection = () => {
             transition={{ delay: 0.5 }}
           >
             <PrimaryCTA href="/contact">
-              <span>Get Started</span>
+              <span>{t("cta")}</span>
               <ArrowRight size={18} />
               <CTAGradient
                 initial={{ x: "-100%" }}
@@ -358,7 +364,7 @@ export const HeroSection = () => {
             </PrimaryCTA>
 
             <SecondaryCTA href="/portfolio">
-              <span>See Our Work</span>
+              <span>{t("learnMore")}</span>
               <ArrowRight size={18} />
             </SecondaryCTA>
           </CTAContainer>
@@ -374,7 +380,7 @@ export const HeroSection = () => {
                 <MetricValue>
                   <AnimatedCounter end={metric.end} suffix={metric.suffix} />
                 </MetricValue>
-                <MetricLabel>{metric.label}</MetricLabel>
+                <MetricLabel>{tMetrics(metric.key)}</MetricLabel>
               </MetricItem>
             ))}
           </MetricsGrid>

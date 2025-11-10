@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
@@ -8,7 +9,6 @@ import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
 import { SectionHeading } from "@/components/SectionHeading";
-import { FAQ_ITEMS } from "@/constants";
 import { colors, spacing, borderRadius, transitions } from "@/theme/theme";
 
 const StyledSection = styled("section")({
@@ -74,19 +74,28 @@ const Answer = styled("div")({
 });
 
 export const FAQSection = () => {
+  const t = useTranslations("contact.faq");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+
+  const faqKeys = [
+    "whatServices",
+    "projectTimeline",
+    "pricingModel",
+    "ongoingSupport",
+    "aiAutomation",
+  ] as const;
 
   return (
     <StyledSection aria-labelledby="faq-title">
       <Container maxWidth={false}>
         <SectionHeading
           eyebrow="FAQ"
-          title="Frequently Asked Questions"
+          title={t("title")}
           description="Find answers to common questions about our services and process."
         />
 
         <FAQContainer>
-          {FAQ_ITEMS.map((faq, index) => {
+          {faqKeys.map((faqKey, index) => {
             const isExpanded = expandedFaq === index;
             return (
               <FAQItem
@@ -101,7 +110,7 @@ export const FAQSection = () => {
                   aria-expanded={isExpanded}
                   aria-controls={`faq-answer-${index}`}
                 >
-                  <Question>{faq.question}</Question>
+                  <Question>{t(`questions.${faqKey}.question`)}</Question>
                   <IconWrapper>
                     <motion.div
                       animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -121,7 +130,7 @@ export const FAQSection = () => {
                   transition={{ duration: 0.3 }}
                   id={`faq-answer-${index}`}
                 >
-                  <Answer>{faq.answer}</Answer>
+                  <Answer>{t(`questions.${faqKey}.answer`)}</Answer>
                 </AnswerContainer>
               </FAQItem>
             );

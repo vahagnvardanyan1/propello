@@ -1,10 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { styled } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 
-import { CASE_STUDIES } from "@/constants";
 import {
   colors,
   spacing,
@@ -185,6 +185,51 @@ const ResultLabel = styled(Box)({
 });
 
 export const CaseStudiesSection = () => {
+  const t = useTranslations("portfolio.caseStudies");
+  const tCommon = useTranslations("common");
+  const tEcommerce = useTranslations("portfolio.caseStudies.ecommerce");
+  const tHealthcare = useTranslations("portfolio.caseStudies.healthcare");
+  const tUxRedesign = useTranslations("portfolio.caseStudies.uxRedesign");
+
+  const caseStudies = [
+    {
+      title: tEcommerce("title"),
+      company: tEcommerce("company"),
+      challenge: tEcommerce("challenge"),
+      solution: tEcommerce("solution"),
+      color: "linear-gradient(to bottom right, #3b82f6, #06b6d4)",
+      results: [
+        { metric: "95%", label: tEcommerce("results.timeSaved") },
+        { metric: "$50K", label: tEcommerce("results.annualSavings") },
+        { metric: "99.9%", label: tEcommerce("results.accuracyRate") },
+      ],
+    },
+    {
+      title: tHealthcare("title"),
+      company: tHealthcare("company"),
+      challenge: tHealthcare("challenge"),
+      solution: tHealthcare("solution"),
+      color: "linear-gradient(to bottom right, #10b981, #059669)",
+      results: [
+        { metric: "100K+", label: tHealthcare("results.activeUsers") },
+        { metric: "0.8s", label: tHealthcare("results.loadTime") },
+        { metric: "99.99%", label: tHealthcare("results.uptime") },
+      ],
+    },
+    {
+      title: tUxRedesign("title"),
+      company: tUxRedesign("company"),
+      challenge: tUxRedesign("challenge"),
+      solution: tUxRedesign("solution"),
+      color: "linear-gradient(to bottom right, #a855f7, #ec4899)",
+      results: [
+        { metric: "200%", label: tUxRedesign("results.engagement") },
+        { metric: "45%", label: tUxRedesign("results.conversionUp") },
+        { metric: "4.9/5", label: tUxRedesign("results.satisfaction") },
+      ],
+    },
+  ];
+
   return (
     <StyledSection>
       <SectionContainer maxWidth={false}>
@@ -194,7 +239,7 @@ export const CaseStudiesSection = () => {
           viewport={{ once: true }}
         >
           <Label>Success Stories</Label>
-          <Title>Automation Case Studies</Title>
+          <Title>{t("title")}</Title>
           <Description>
             Real businesses, real impact. See how automation transformed
             operations.
@@ -202,7 +247,7 @@ export const CaseStudiesSection = () => {
         </SectionHeader>
 
         <CaseStudiesContainer>
-          {CASE_STUDIES.map((study, index) => (
+          {caseStudies.map((study, index) => (
             <CaseStudyCard
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -220,7 +265,7 @@ export const CaseStudiesSection = () => {
                     <InfoBlock>
                       <InfoBlockTitle>
                         <StatusDot color="#ef4444" />
-                        Challenge
+                        {tCommon("challenge")}
                       </InfoBlockTitle>
                       <InfoBlockText>{study.challenge}</InfoBlockText>
                     </InfoBlock>
@@ -228,7 +273,7 @@ export const CaseStudiesSection = () => {
                     <InfoBlock>
                       <InfoBlockTitle>
                         <StatusDot color="#22c55e" />
-                        Solution
+                        {tCommon("solution")}
                       </InfoBlockTitle>
                       <InfoBlockText>{study.solution}</InfoBlockText>
                     </InfoBlock>
@@ -238,7 +283,7 @@ export const CaseStudiesSection = () => {
                 {/* Results */}
                 <ResultsSection gradient={study.color}>
                   <ResultsContent>
-                    <ResultsTitle>Results</ResultsTitle>
+                    <ResultsTitle>{tCommon("results")}</ResultsTitle>
                     <ResultsGrid>
                       {study.results.map((result, i) => (
                         <ResultItem key={i}>

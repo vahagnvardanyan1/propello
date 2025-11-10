@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { motion } from "motion/react";
 import { ExternalLink, ArrowRight } from "lucide-react";
@@ -15,84 +16,6 @@ import {
   shadows,
 } from "@/theme/theme";
 
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    category: "Web Development",
-    description:
-      "Full-stack e-commerce solution with real-time inventory and AI recommendations.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    metrics: { users: "50K+", conversion: "+127%", time: "6 weeks" },
-    color: "linear-gradient(to bottom right, #3b82f6, #a855f7)",
-  },
-  {
-    id: 2,
-    title: "Healthcare Mobile App",
-    category: "Mobile Backend",
-    description:
-      "HIPAA-compliant telemedicine platform serving 100K+ patients.",
-    tags: ["GraphQL", "MongoDB", "AWS"],
-    metrics: { users: "100K+", uptime: "99.9%", time: "8 weeks" },
-    color: "linear-gradient(to bottom right, #10b981, #14b8a6)",
-  },
-  {
-    id: 3,
-    title: "SaaS Dashboard Redesign",
-    category: "UI/UX Design",
-    description: "Complete UX overhaul that increased user engagement by 200%.",
-    tags: ["Figma", "Design System", "User Research"],
-    metrics: { engagement: "+200%", satisfaction: "4.9/5", time: "4 weeks" },
-    color: "linear-gradient(to bottom right, #ec4899, #ef4444)",
-  },
-  {
-    id: 4,
-    title: "Marketing Automation Hub",
-    category: "Business Automation",
-    description: "AI-powered automation saving 40+ hours/week in manual tasks.",
-    tags: ["OpenAI", "Zapier", "Python"],
-    metrics: { saved: "40hrs/wk", roi: "400%", time: "3 weeks" },
-    color: "linear-gradient(to bottom right, #eab308, #f97316)",
-  },
-  {
-    id: 5,
-    title: "Real Estate Platform",
-    category: "Web Development",
-    description:
-      "Property listing platform with virtual tours and AI matching.",
-    tags: ["Next.js", "AWS", "Redis"],
-    metrics: { listings: "10K+", speed: "0.8s", time: "7 weeks" },
-    color: "linear-gradient(to bottom right, #6366f1, #3b82f6)",
-  },
-  {
-    id: 6,
-    title: "Fitness Tracking API",
-    category: "Mobile Backend",
-    description: "Real-time data sync for 500K+ active fitness enthusiasts.",
-    tags: ["Node.js", "WebSocket", "Docker"],
-    metrics: { users: "500K+", latency: "< 50ms", time: "6 weeks" },
-    color: "linear-gradient(to bottom right, #06b6d4, #3b82f6)",
-  },
-  {
-    id: 7,
-    title: "Banking App UI",
-    category: "UI/UX Design",
-    description:
-      "Award-winning fintech interface with accessibility at its core.",
-    tags: ["Figma", "WCAG AAA", "Animation"],
-    metrics: { award: "Gold", accessibility: "AAA", time: "5 weeks" },
-    color: "linear-gradient(to bottom right, #a855f7, #ec4899)",
-  },
-  {
-    id: 8,
-    title: "CRM Integration Suite",
-    category: "Business Automation",
-    description: "Unified workflow connecting 15+ business tools seamlessly.",
-    tags: ["Make", "Webhooks", "API"],
-    metrics: { tools: "15+", efficiency: "+250%", time: "4 weeks" },
-    color: "linear-gradient(to bottom right, #f97316, #ef4444)",
-  },
-];
 
 const FilterContainer = styled(Box)({
   display: "flex",
@@ -280,17 +203,169 @@ const CTAButton = styled(motion.button)({
 });
 
 export const ProjectGrid = () => {
+  const t = useTranslations("portfolio.projects");
+  const tCategories = useTranslations("portfolio.projects.categories");
   const [filter, setFilter] = useState("All");
+
+  const projects = [
+    {
+      id: 1,
+      title: t("ecommercePlatform.title"),
+      category: tCategories("webDevelopment"),
+      description: t("ecommercePlatform.description"),
+      tags: ["React", "Node.js", "PostgreSQL"],
+      metrics: {
+        users: "50K+",
+        conversion: "+127%",
+        time: "6 weeks",
+      },
+      metricsLabels: {
+        users: t("ecommercePlatform.metrics.users"),
+        conversion: t("ecommercePlatform.metrics.conversion"),
+        time: t("ecommercePlatform.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #3b82f6, #a855f7)",
+    },
+    {
+      id: 2,
+      title: t("healthcareApp.title"),
+      category: tCategories("mobileBackend"),
+      description: t("healthcareApp.description"),
+      tags: ["GraphQL", "MongoDB", "AWS"],
+      metrics: {
+        users: "100K+",
+        uptime: "99.9%",
+        time: "8 weeks",
+      },
+      metricsLabels: {
+        users: t("healthcareApp.metrics.users"),
+        uptime: t("healthcareApp.metrics.uptime"),
+        time: t("healthcareApp.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #10b981, #14b8a6)",
+    },
+    {
+      id: 3,
+      title: t("saasRedesign.title"),
+      category: tCategories("uiuxDesign"),
+      description: t("saasRedesign.description"),
+      tags: ["Figma", "Design System", "User Research"],
+      metrics: {
+        engagement: "+200%",
+        satisfaction: "4.9/5",
+        time: "4 weeks",
+      },
+      metricsLabels: {
+        engagement: t("saasRedesign.metrics.engagement"),
+        satisfaction: t("saasRedesign.metrics.satisfaction"),
+        time: t("saasRedesign.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #ec4899, #ef4444)",
+    },
+    {
+      id: 4,
+      title: t("marketingAutomation.title"),
+      category: tCategories("businessAutomation"),
+      description: t("marketingAutomation.description"),
+      tags: ["OpenAI", "Zapier", "Python"],
+      metrics: {
+        saved: "40hrs/wk",
+        roi: "400%",
+        time: "3 weeks",
+      },
+      metricsLabels: {
+        saved: t("marketingAutomation.metrics.saved"),
+        roi: t("marketingAutomation.metrics.roi"),
+        time: t("marketingAutomation.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #eab308, #f97316)",
+    },
+    {
+      id: 5,
+      title: t("realEstate.title"),
+      category: tCategories("webDevelopment"),
+      description: t("realEstate.description"),
+      tags: ["Next.js", "AWS", "Redis"],
+      metrics: {
+        listings: "10K+",
+        speed: "0.8s",
+        time: "7 weeks",
+      },
+      metricsLabels: {
+        listings: t("realEstate.metrics.listings"),
+        speed: t("realEstate.metrics.speed"),
+        time: t("realEstate.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #6366f1, #3b82f6)",
+    },
+    {
+      id: 6,
+      title: t("fitnessApi.title"),
+      category: tCategories("mobileBackend"),
+      description: t("fitnessApi.description"),
+      tags: ["Node.js", "WebSocket", "Docker"],
+      metrics: {
+        users: "500K+",
+        latency: "< 50ms",
+        time: "6 weeks",
+      },
+      metricsLabels: {
+        users: t("fitnessApi.metrics.users"),
+        latency: t("fitnessApi.metrics.latency"),
+        time: t("fitnessApi.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #06b6d4, #3b82f6)",
+    },
+    {
+      id: 7,
+      title: t("bankingUI.title"),
+      category: tCategories("uiuxDesign"),
+      description: t("bankingUI.description"),
+      tags: ["Figma", "WCAG AAA", "Animation"],
+      metrics: {
+        award: "Gold",
+        accessibility: "AAA",
+        time: "5 weeks",
+      },
+      metricsLabels: {
+        award: t("bankingUI.metrics.award"),
+        accessibility: t("bankingUI.metrics.accessibility"),
+        time: t("bankingUI.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #a855f7, #ec4899)",
+    },
+    {
+      id: 8,
+      title: t("crmIntegration.title"),
+      category: tCategories("businessAutomation"),
+      description: t("crmIntegration.description"),
+      tags: ["Make", "Webhooks", "API"],
+      metrics: {
+        tools: "15+",
+        efficiency: "+250%",
+        time: "4 weeks",
+      },
+      metricsLabels: {
+        tools: t("crmIntegration.metrics.tools"),
+        efficiency: t("crmIntegration.metrics.efficiency"),
+        time: t("crmIntegration.metrics.time"),
+      },
+      color: "linear-gradient(to bottom right, #f97316, #ef4444)",
+    },
+  ];
+
   const categories = [
-    "All",
-    "Web Development",
-    "Mobile Backend",
-    "UI/UX Design",
-    "Business Automation",
+    t("all"),
+    tCategories("webDevelopment"),
+    tCategories("mobileBackend"),
+    tCategories("uiuxDesign"),
+    tCategories("businessAutomation"),
   ];
 
   const filteredProjects =
-    filter === "All" ? projects : projects.filter((p) => p.category === filter);
+    filter === t("all")
+      ? projects
+      : projects.filter((p) => p.category === filter);
 
   return (
     <Box>
@@ -363,7 +438,13 @@ export const ProjectGrid = () => {
                 {Object.entries(project.metrics).map(([key, value], i) => (
                   <MetricItem key={i}>
                     <MetricValue>{value}</MetricValue>
-                    <MetricLabel>{key}</MetricLabel>
+                    <MetricLabel>
+                      {
+                        project.metricsLabels[
+                          key as keyof typeof project.metricsLabels
+                        ]
+                      }
+                    </MetricLabel>
                   </MetricItem>
                 ))}
               </MetricsGrid>

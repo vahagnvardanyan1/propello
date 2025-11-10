@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUp } from "lucide-react";
@@ -43,6 +44,7 @@ const BackToTopButton = styled(motion.button)({
 });
 
 export const BackToTop = () => {
+  const t = useTranslations("common");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -80,7 +82,7 @@ export const BackToTop = () => {
           whileHover={{ scale: 1.1, y: -4 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToTop}
-          aria-label="Scroll to top"
+          aria-label={t("backToTop")}
           type="button"
         >
           <ArrowUp size={22} strokeWidth={2.5} />
