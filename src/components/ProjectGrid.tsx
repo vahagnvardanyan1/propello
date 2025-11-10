@@ -16,7 +16,6 @@ import {
   shadows,
 } from "@/theme/theme";
 
-
 const FilterContainer = styled(Box)({
   display: "flex",
   flexWrap: "wrap",

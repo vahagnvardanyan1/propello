@@ -117,7 +117,9 @@ const PortfolioPage = () => {
             viewport={{ once: true }}
           >
             <TechTitle>{tCommon("technologiesWeMaster")}</TechTitle>
-            <TechDescription>{tCommon("buildingWithBestTools")}</TechDescription>
+            <TechDescription>
+              {tCommon("buildingWithBestTools")}
+            </TechDescription>
           </TechHeader>
         </SectionContainer>
 

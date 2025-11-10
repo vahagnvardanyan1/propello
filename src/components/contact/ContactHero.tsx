@@ -68,10 +68,6 @@ const Title = styled("h1")({
   margin: `0 0 ${spacing.xl} 0`,
 });
 
-const HighlightText = styled("span")({
-  color: colors.buttercream,
-});
-
 const Description = styled("p")({
   color: colors.ivory,
   fontSize: "20px",

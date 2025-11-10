@@ -122,7 +122,9 @@ export const ValuesSection = () => {
 
               <ValueTitle>{t(`${value.key}.title`)}</ValueTitle>
 
-              <ValueDescription>{t(`${value.key}.description`)}</ValueDescription>
+              <ValueDescription>
+                {t(`${value.key}.description`)}
+              </ValueDescription>
             </ValueCard>
           ))}
         </ValuesGrid>

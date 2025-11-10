@@ -101,13 +101,6 @@ const MainHeadline = styled(motion.h1)({
   },
 });
 
-const GradientText = styled("span")({
-  background: `linear-gradient(to right, ${colors.buttercream}, ${colors.ivory})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-});
-
 const Subheadline = styled(motion.p)({
   color: colors.ivory,
   fontSize: "16px",

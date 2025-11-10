@@ -140,7 +140,9 @@ export const MissionVision = () => {
                 <Target color={colors.midnightBlue} size={32} />
               </MissionIconBox>
               <MissionTitle>{t("mission.title")}</MissionTitle>
-              <MissionDescription>{t("mission.description")}</MissionDescription>
+              <MissionDescription>
+                {t("mission.description")}
+              </MissionDescription>
             </CardContent>
           </MissionCard>
 

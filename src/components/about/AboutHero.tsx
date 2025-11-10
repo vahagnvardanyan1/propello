@@ -53,13 +53,6 @@ const Title = styled("h1")({
   margin: `0 0 ${spacing.xl} 0`,
 });
 
-const GradientText = styled("span")({
-  background: `linear-gradient(to right, ${colors.buttercream}, ${colors.ivory})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-});
-
 const Description = styled("p")({
   color: colors.ivory,
   fontSize: "20px",
